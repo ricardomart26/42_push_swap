@@ -14,6 +14,11 @@ typedef struct stacks_s
 
 } stacks_t;
 
+stacks_t do_easy_one(stacks_t main);
+stacks_t do_not_so_easy_one(stacks_t main);
+stacks_t beast_mode(stacks_t main);
+
+
 stacks_t sa(stacks_t main);
 stacks_t sb(stacks_t main);
 stacks_t ss(stacks_t main);
@@ -25,6 +30,14 @@ stacks_t rrb(stacks_t main);
 stacks_t rrr(stacks_t main);
 stacks_t pa(stacks_t main);
 stacks_t pb(stacks_t main);
+
+int ft_strlen(char *str);
+int ft_atoi(char *str);
+
+int ft_isntdigit(char c);
+int is_valid(stacks_t main);
+
+void    print_stacks(stacks_t main);
 
 
 
