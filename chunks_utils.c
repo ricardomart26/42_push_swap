@@ -6,24 +6,28 @@ int find_lower(int *stackA, int lower)
     int i;
 
     i = 0;
-    x = 0;
+    x = 1;
     printf("\n\tlower before = %d", lower);
-
+    int size;
+    size = sizeof(*stackA) / sizeof(int);
+    printf("\nsize = %d", size);
     while (stackA[x] != '\0')
     {
-        if (stackA[x] <= lower)
+        if (stackA[i] <= lower)
         {
             x++;
             i++;
         }
-        else if (stackA[i] < stackA[x + 1])
+        else if (stackA[i] < stackA[x])
         {
-            // printf("\n\tstack i = %d && stack x = %d", stackA[i], stackA[x]);
+            printf("\n\tstack i = %d && stack x = %d", stackA[i], stackA[x]);
             x++;
         }
         else
             i = x;
     }
+    printf("\ti = %d", i);
+
     printf("\n\tlower after = %d", stackA[i]);
     return(stackA[i]);
 }
