@@ -5,133 +5,92 @@ int    *organize_the_stack(int *stack, int size)
     int x;
     int size2;
 
-    // printf("THIS NUMBER IN SENDO TO STACK A IS %d", number);
     size2 = size - 1;
     x = 0;
     stack = realloc(stack, sizeof(int) * size2 + 1);
-    printf("stack x = %d\n", stack[x]);
-    printf("stack x = %d\n", stack[x + 1]);
-    // printf("stack x = %d", *stack[x + 2]);
-    // printf("stack x = %d", *stack[x + 3]);
-
-    printf("\tTHIS SIZE IN SENDO TO STACK A IS %d\n", size2);
     while (size2--)
     {
-        printf("stack x = %d", stack[x]);
         stack[x] = stack[x + 1];
         x++;
     }
     stack[x] = 0;
     return (stack);
-    printf("\tFINISH IN SEND TO STACK\n");
-
 }
 
-int *not_first_in_p(int *stack1, int **stack2, int *size, int *size2)
+int    *push_to_p(int *stack, int *size, int number)
 {
-    int temp;
+    int temp_size;
     int x;
+    int temp;
+    int temp2;
 
-    temp = *stack2[0];
-    *stack2[0] = stack1[0];
     x = 1;
-    printf("\t\ntemp = %d", temp);
-    printf("\t\nsize2 = %d", *size2);
-    while (*size2)
+    temp_size = *size;
+    *size += 1;
+    stack = realloc(stack, (*size * 4) + 1);
+    temp = stack[0];
+    stack[0] = number;
+    while (temp_size--)
     {
-            // printf("\n\tstackA[x] = %d && stackA[x+1] = %d", stackB[x], stackB[x + 1]);
-            *stack2[x] = temp;
-            if (*size2 == 1)
-                break;
-            temp = *stack2[x + 1];
-            x++;
-            (*size2)--;
+        printf("\n\ttemp = %d stackb = %d", temp, stack[x]);
+        temp2 = stack[x];
+        stack[x] = temp;
+        temp = temp2;
+        x++;
     }
-    stack1 = organize_the_stack(stack1, *size);
-    (*size2)++;
-    (*size)--;
-    return (stack1);
+    return (stack);
 }
 
 stacks_t pa(stacks_t main)
 {
+    int number;
+
+    number = main.stackB[0];
+    if (!main.stackB)
+        perror("\n\tIN PB: main stack A esta vazio\n");
     if (main.sizeA == 0)
     {
-        main.stackA = malloc(sizeof(int) + 1);
-        main.stackA[0] = main.stackB[0];
+        main.stackA = malloc(sizeof(int) + 1); // Posso fazer isto?
+        main.stackA[0] = number;
         main.stackB = organize_the_stack(main.stackB, main.sizeB);
-        main.sizeB--;
         main.sizeA++;
-        return (main);
-    }
-    else
-    {
-        main.stackA = realloc(main.stackA, main.sizeA * 4 + 4);
-        main.stackB = not_first_in_p(main.stackB, &main.stackA, &main.sizeB - 1, &main.sizeA);
-        return (main);
-    }
-}
-
-stacks_t pb(stacks_t main)
-{
-
-    if (!main.stackA)
-        perror("\n\tIN PB: main stack A esta vazio\n");
-    printf("\n\tsizeB = %d", main.sizeB);
-    if (main.sizeB == 0)
-    {
-        main.stackB = malloc(sizeof(int) + 1); // Posso fazer isto?
-        main.stackB[0] = main.stackA[0];
-        main.stackA = organize_the_stack(main.stackA, main.sizeA);
-        main.sizeB++;
-        main.sizeA--;
-        return (main);
     }
     else
     {
         // printf("\n\tsizeB = %d", main.sizeB);
-        main.stackB = realloc(main.stackB, (main.sizeB * 4) + 5);
-        main.stackA = not_first_in_p(main.stackA, &main.stackB, &main.sizeA - 1, &main.sizeB);
-        return (main);
+        main.stackA = push_to_p(main.stackA, &main.sizeA, number);
+        main.stackB = organize_the_stack(main.stackB, main.sizeB);
     }
+    main.sizeB--;
+    write(1, "pa ", 4);
+        return (main);
+
 }
 
-
-stacks_t sa(stacks_t main)
+stacks_t pb(stacks_t main)
 {
-    int x;
-    int temp;
+    int number;
 
+    number = main.stackA[0];
     if (!main.stackA)
-        perror("\n\tIN SA: main stack A esta vazio\n");
+        perror("\n\tIN PB: main stack A esta vazio\n");
+    if (main.sizeB == 0)
+    {
+        main.stackB = malloc(sizeof(int) + 1); // Posso fazer isto?
+        main.stackB[0] = number;
+        main.stackA = organize_the_stack(main.stackA, main.sizeA);
+        main.sizeB++;
+    }
+    else
+    {
+        // printf("\n\tsizeB = %d", main.sizeB);
+        main.stackB = push_to_p(main.stackB, &main.sizeB, number);
+        main.stackA = organize_the_stack(main.stackA, main.sizeA);
+    }
+    main.sizeA--;
 
-    x = 0;
-    temp = main.stackA[x];
-    main.stackA[x] = main.stackA[x + 1];
-    main.stackA[x + 1] = temp;
+    write(1, "pb ", 4);
     return (main);
-}
 
 
-stacks_t sb(stacks_t main)
-{
-    int x;
-    int temp;
-
-    if (!main.stackB)
-        perror("\n\tIN SB: main stack B esta vazio\n");
-
-    x = 0;
-    temp = main.stackB[x];
-    main.stackB[x] = main.stackB[x + 1];
-    main.stackB[x + 1] = temp;
-    return (main);
-}
-
-
-stacks_t ss(stacks_t main)
-{
-    main = sa(main);
-    main = sb(main);
-    return (main);
 }

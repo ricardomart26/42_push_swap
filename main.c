@@ -8,10 +8,16 @@ stacks_t get_av(stacks_t main, char **av)
     while (av[x])
     {
         main.stackA[x - 1] = ft_atoi(av[x]);
+        if (x == 1)
+            main.lower_in_stack = main.stackA[x - 1];
+        else
+        {
+            if (main.lower_in_stack >= main.stackA[x - 1])
+                main.lower_in_stack = main.stackA[x - 1]; 
+        }
         x++;
-    }
-    // get_chunks(&main);
-    
+    }    
+    printf("\n\tlowest in all the stack %d", main.lower_in_stack);
     return (main);
 }
 
@@ -22,6 +28,7 @@ void    init_struct(stacks_t *main, int ac)
     if (!main->stackA)
         return ;
     main->sizeA = ac - 1;
+    main->lower_in_stack = 0;
 }
 
 int main(int ac, char **av)

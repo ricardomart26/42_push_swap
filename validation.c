@@ -7,15 +7,13 @@ int is_valid(stacks_t main)
     int i;
 
     x = 0;
-    printf("teste");
-    printf("\n\tx = %d", main.stackA[x]);
 
     while (main.stackA[x])
     {
         i = x + 1;
         while (main.stackA[i])
         {
-            printf("\n\tx = %d && i = %d", main.stackA[x], main.stackA[i]);
+            // printf("\n\tx = %d && i = %d", main.stackA[x], main.stackA[i]);
             if (main.stackA[x] == main.stackA[i])
                 return (0);
             i++;
