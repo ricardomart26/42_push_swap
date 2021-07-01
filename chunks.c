@@ -1,97 +1,137 @@
 #include "push_swap.h"
 
-int do_chunk1(int *stackA, chunks_t *chunks, int lower_in_stack)
-{
-    int x;
-    int size;
-    int bigger;
+// int *do_chunks(int *stackA, chunk_t *chunks, int lower_in_stack, int divisor)
+// {
+//     int x;
+//     int size;
+//     int bigger;
 
-    chunks->chunk1[0] = lower_in_stack;
-    x = 1;
-    size = chunks->size/4;
-    while (size - 1)
+//     *chunks->chunks[0] = lower_in_stack;
+//     x = 1;
+//     size = chunks->size/divisor;
+//     while (size - 1)
+//     {
+//         // printf("size = %d\n", size);
+//         lower_in_stack = find_lower(stackA, lower_in_stack);
+//         *chunks->chunks[x] = lower_in_stack;
+//         x++; 
+//         size--;
+//     }
+//     bigger = *chunks->chunks[x - 1];
+//     return (bigger);
+// }
+
+
+
+// int do_chunk2(int *stackA, chunk_t *chunks, int bigger, int divisor)
+// {
+//     int x;
+//     int size;
+//     int lower;
+
+//     x = 0;
+//     size = chunks->size/divisor;
+//     lower = bigger;
+//     while (size)
+//     {
+//         // printf("size = %d\n", size);
+//         lower = find_lower_limit(stackA, lower, bigger);
+//         *chunks->chunks[x] = lower;
+//         x++; 
+//         size--;
+
+//     }
+//     bigger = *chunks->chunks[x - 1];
+//     return (bigger);
+// }
+
+
+// int do_chunk3(int *stackA, chunk_t *chunks, int bigger, int divisor)
+// {
+//     int x;
+//     int size;
+//     int lower;
+
+
+//     x = 0;
+//     size = chunks->size/divisor;
+//     while (size)
+//     {
+//         lower = find_lower_limit(stackA, lower, bigger);
+//         *chunks->chunks[x] = lower;
+//         x++; 
+//         size--;
+
+//     }
+//     bigger = *chunks->chunks[x - 1];
+//     return (bigger);
+// }
+
+// int do_chunk4(int *stackA, chunk_t *chunks, int bigger, int divisor)
+// {
+//     int x;
+//     int size;
+//     int lower;
+
+
+//     x = 0;
+//     size = chunks->size/divisor;
+//     while (size)
+//     {
+//         lower = find_lower(stackA, lower);
+//         *chunks->chunks[x] = lower;
+//         x++;
+//         size--;
+//     }
+//     bigger = *chunks->chunks[x - 1];
+//     return (bigger);
+// }
+
+
+chunk_t *malloc_arrays(int size, int divisor, chunk_t *chunks)
+{
+    int i;
+
+    i = -1;
+    if (divisor < 2)
+        perror("\n\t\033[0;31mO divisor tem de ser 2 ou 4 ou 11");
+    else if (divisor == 2)
     {
-        // printf("size = %d\n", size);
-        lower_in_stack = find_lower(stackA, lower_in_stack);
-        chunks->chunk1[x] = lower_in_stack;
-        x++; 
-        size--;
+        chunks->chunks = (int **)malloc((divisor * sizeof(int *)) + 1);
+        while (i++ < divisor)
+            chunks->chunks[i] = (int *)malloc((size/divisor * sizeof(int)) + 1);
+
     }
-    bigger = chunks->chunk1[x - 1];
-    return (bigger);
+    else if (divisor == 4)
+    {
+        chunks->chunks = malloc((divisor * sizeof(int *)) + 1);
+        while (i++ < divisor)
+            chunks->chunks[i] = (int *)malloc((size/divisor * sizeof(int)) + 1);
+    }
+    else if (divisor == 11)
+    {
+        chunks->chunks = malloc((divisor * sizeof(int *)) + 1);
+        while (i++ < divisor)
+           chunks->chunks[i] = (int *)malloc((size/divisor * sizeof(int)) + 1);
+    }   
+    else
+        perror("\n\t\033[0;31mO divisor tem de ser 2 ou 4 ou 11");
+    printf("\n\n\tMalloc arrays DONE!");
+    return (chunks);
 }
 
+// void    get_attr_chunks2(chunk_t *chunks, int sizeA)
+// {
+//     chunks->size = sizeA;
+//     // chunks->chunk2 = malloc((chunks->size/2 * 4) + 1);
+//     chunks = malloc_arrays(sizeA, 2, chunks);
+// }
 
 
-int do_chunk2(int *stackA, chunks_t *chunks, int bigger)
-{
-    int x;
-    int size;
-    int lower;
-
-    x = 0;
-    size = chunks->size/4;
-    lower = bigger;
-    while (size)
-    {
-        // printf("size = %d\n", size);
-        lower = find_lower_limit(stackA, lower, bigger);
-        chunks->chunk1[x] = lower;
-        x++; 
-        size--;
-
-    }
-    bigger = chunks->chunk1[x - 1];
-    return (bigger);
-}
-
-
-int do_chunk3(int *stackA, chunks_t *chunks, int bigger)
-{
-    int x;
-    int size;
-    int lower;
-
-
-    x = 0;
-    size = chunks->size/4;
-    while (size)
-    {
-        lower = find_lower_limit(stackA, lower, bigger);
-        chunks->chunk1[x] = lower;
-        x++; 
-        size--;
-
-    }
-    bigger = chunks->chunk1[x - 1];
-    return (bigger);
-}
-
-int do_chunk4(int *stackA, chunks_t *chunks, int bigger)
-{
-    int x;
-    int size;
-    int lower;
-
-
-    x = 0;
-    size = chunks->size/4;
-    while (size)
-    {
-        lower = find_lower(stackA, lower);
-        chunks->chunk1[x] = lower;
-        x++;
-        size--;
-    }
-    bigger = chunks->chunk1[x - 1];
-    return (bigger);
-}
-
-void    get_attr_chunks(chunks_t *chunks, int sizeA)
+void    get_attr_chunks(chunk_t *chunks, int sizeA, int divisor)
 {
     chunks->size = sizeA;
-    chunks->chunk1 = malloc(chunks->size + 1);
-    chunks->chunk2 = malloc(chunks->size + 1);
-    chunks->chunk3 = malloc(chunks->size + 1);
-    chunks->chunk4 = malloc(chunks->size + 1);
+    chunks->middle_in_stack = sizeA/2;
+    // chunks->chunk2 = malloc((chunks->size/2 * 4) + 1);
+    chunks = malloc_arrays(sizeA, divisor, chunks);
 }

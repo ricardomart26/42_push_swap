@@ -12,25 +12,26 @@ typedef struct stacks_s
     int sizeA;
     int sizeB;
     int ac;
-    int lower_in_stack;
+
 } stacks_t;
 
-typedef struct chunks_s
+typedef struct chunk_s
 {
-    int *chunk1;
-    int *chunk2;
-    int *chunk3;
-    int *chunk4;
+    int **chunks;
     int size;
     int if_neg;
-} chunks_t;
+    int middle_in_stack;
+
+} chunk_t;
 
 
 stacks_t do_easy_one(stacks_t main);
 stacks_t do_not_so_easy_one(stacks_t main);
 stacks_t beast_mode(stacks_t main);
+void print_array(int *stack, int size);
+chunk_t get_divisor_chunk(int *org, chunk_t chunks, int divisor, int size);
 
-/* cmds */
+/* cmds */  
 stacks_t pa(stacks_t main);
 stacks_t pb(stacks_t main);
 int    *push_to_p(int *stack, int *size, int number);
@@ -58,16 +59,25 @@ int ft_isntdigit(char c);
 int is_valid(stacks_t main);
 
 void    print_stacks(stacks_t main);
+chunk_t *malloc_arrays(int size, int divisor, chunk_t *chunks);
 
-int do_chunk1(int *stackA, chunks_t *chunks, int lower);
-int do_chunk2(int *stackA, chunks_t *chunks, int bigger);
-int do_chunk3(int *stackA, chunks_t *chunks, int bigger);
-int do_chunk4(int *stackA, chunks_t *chunks, int bigger);
-void    get_attr_chunks(chunks_t *chunks, int sizeA);
+// int do_chunk1(int *stackA, chunk_t *chunks, int lower, int divisor);
+// int do_chunk3(int *stackA, chunk_t *chunks, int bigger, int divisor);
+// int do_chunk2(int *stackA, chunk_t *chunks, int bigger, int divisor);
+// int do_chunk4(int *stackA, chunk_t *chunks, int bigger, int divisor);
+// void    get_attr_chunks2(chunk_t *chunks, int sizeA);
 
+void    get_attr_chunks(chunk_t *chunks, int sizeA, int divisor);
 
-int find_lower(int *stackA, int number);
-int find_lower_limit(int *stackA, int number, int bigger);
+int *organize_array(int *stack, int size);
+
+// chunk_t get_chunks4(int *stackA, chunk_t chunks, int lower_in_stack);
+// chunk_t get_chunks2(int *stackA, chunk_t chunks);
+chunk_t get_divisor_chunks(int *org, chunk_t chunks, int divisor, int size);
+
+// int find_lower(int *stackA, int number);
+// int find_lower_limit(int *stackA, int number, int bigger);
+
 
 
 

@@ -20,14 +20,12 @@ int find_lower(int *stackA, int lower)
         }
         else if (stackA[i] < stackA[x])
         {
-            printf("\n\tstack i = %d && stack x = %d", stackA[i], stackA[x]);
             x++;
         }
         else
             i = x;
+        printf("\n\tstack i = %d && stack x = %d", stackA[i], stackA[x]);
     }
-    printf("\ti = %d", i);
-
     printf("\n\tlower after = %d", stackA[i]);
     return(stackA[i]);
 }
@@ -41,6 +39,8 @@ int find_lower_limit(int *stackA, int number, int bigger)
     x = 0;
     while (stackA[x] != '\0')
     {
+        printf("\n\t stackA x = %d && stackA i = %d", stackA[x], stackA[i]);
+        printf("\n\t bigger = %d && number = %d", bigger, number);
         if (stackA[x] < bigger || stackA[x] <= number)
             x++;
         else if (stackA[i] <= stackA[x])
