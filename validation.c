@@ -1,6 +1,5 @@
 #include "push_swap.h"
 
-
 int is_valid(stacks_t main)
 {
     int x;

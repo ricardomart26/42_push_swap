@@ -19,7 +19,7 @@ stacks_t get_av(stacks_t main, char **av)
         }
         x++;
     }    
-    printf("\n\tlowest in all the stack %d", lower_in_stack);
+    // printf("\n\tlowest in all the stack %d", lower_in_stack);
     return (main);
 }
 
@@ -40,15 +40,13 @@ int main(int ac, char **av)
     main = get_av(main, av);
     if (!is_valid(main))
         perror("ERROR: NUMBER DUP\n\n");
-    if (ac < 5)
-        main = peanuts(main);
-    if (ac < 99)
+    
+    if (ac < 20)
+        main = peanuts(main, main.sizeA);
+    else if (ac < 99)
         main = do_easy_one(main);
     else if (ac < 500)
         main = do_not_so_easy_one(main);
     else
         main = beast_mode(main);
-
-    // if (ac < 50)
-        // main = do_easy_one(main);
 }

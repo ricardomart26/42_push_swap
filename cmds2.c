@@ -17,7 +17,7 @@ stacks_t ra(stacks_t main, int option)
     }
     main.stackA[x] = temp;
     if (option)
-        write(1, "ra ", 4);
+        write(1, "ra \n", 5);
     return (main);
 }
 
@@ -37,7 +37,7 @@ stacks_t rb(stacks_t main, int option)
     }
     main.stackB[x] = temp;
     if (option)
-        write(1, "rb ", 4);
+        write(1, "rb \n", 5);
     return (main);
 }
 
@@ -62,7 +62,7 @@ stacks_t rra(stacks_t main, int option)
         main.stackA[size] = main.stackA[size - 1];
     main.stackA[0] = last;
     if (option)
-        write(1, "rra ", 5);
+        write(1, "rra \n", 6);
     return (main);
 }
 
@@ -78,6 +78,6 @@ stacks_t rrb(stacks_t main, int option)
         main.stackB[size] = main.stackB[size - 1];
     main.stackB[0] = last;
     if (option)
-        write(1, "rrb ", 5);
+        write(1, "rrb \n", 6);
     return (main);
 }

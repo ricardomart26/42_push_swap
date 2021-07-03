@@ -12,7 +12,9 @@ typedef struct stacks_s
     int sizeA;
     int sizeB;
     int ac;
-
+    int lowest;
+    int lowest_pos;
+    int middle_size;
 } stacks_t;
 
 typedef struct chunk_s
@@ -28,7 +30,7 @@ typedef struct chunk_s
 stacks_t do_easy_one(stacks_t main);
 stacks_t do_not_so_easy_one(stacks_t main);
 stacks_t beast_mode(stacks_t main);
-stacks_t peanuts(stacks_t main);
+stacks_t peanuts(stacks_t main, int size);
 
 void print_array(int *stack, int size);
 
@@ -58,6 +60,8 @@ int ft_atoi(char *str);
 
 int ft_isntdigit(char c);
 int is_valid(stacks_t main);
+int is_correct(int *stack, int size);
+
 
 void    print_stacks(stacks_t main);
 chunk_t *malloc_arrays(int size, int divisor, chunk_t *chunks);

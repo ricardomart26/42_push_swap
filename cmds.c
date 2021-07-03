@@ -32,7 +32,7 @@ int    *push_to_p(int *stack, int *size, int number)
     stack[0] = number;
     while (temp_size--)
     {
-        printf("\n\ttemp = %d stackb = %d", temp, stack[x]);
+        // printf("\n\ttemp = %d stackb = %d", temp, stack[x]);
         temp2 = stack[x];
         stack[x] = temp;
         temp = temp2;
@@ -62,7 +62,7 @@ stacks_t pa(stacks_t main)
         main.stackB = organize_the_stack(main.stackB, main.sizeB);
     }
     main.sizeB--;
-    write(1, "pa ", 4);
+    write(1, "pa \n", 5);
         return (main);
 
 }
@@ -89,8 +89,6 @@ stacks_t pb(stacks_t main)
     }
     main.sizeA--;
 
-    write(1, "pb ", 4);
+    write(1, "pb \n", 5);
     return (main);
-
-
 }

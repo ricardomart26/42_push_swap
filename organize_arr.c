@@ -68,7 +68,7 @@ int *organize_array(int *stack, int size)
         // printf("\n\tis organize array A = %d && org A + 1 %d", org[i], org[i + 1]);
         // printf_array(org, size + 2);
     }
-    print_array(org, size + 1);
+    // print_array(org, size + 1);
 
     return (org);
 }
