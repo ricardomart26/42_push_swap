@@ -1,5 +1,18 @@
 #include "push_swap.h"
 
+void print_array(int *stack, int size)
+{
+    int i;
+
+    i = 0;
+    while (size)
+    {
+        printf("\n\t%d print array %d", i, stack[i]);
+        i++;
+        size--;
+    }
+}
+
 void    print_stacks(stacks_t main)
 {
     int size;
@@ -39,7 +52,4 @@ void    print_stacks(stacks_t main)
     }
     printf("\t************\n");
     printf("\t************\n");
-
-
-
 }

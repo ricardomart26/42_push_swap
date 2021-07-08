@@ -70,7 +70,7 @@ void    get_attr_chunks(chunk_t *chunks, int sizeA, int divisor, int *org);
 
 int *organize_array(int *stack, int size);
 
-chunk_t *get_divisor_chunk(int *org, chunk_t *chunks, int divisor, int size);
+chunk_t *divisor_chunk(int *org, chunk_t *chunks, int divisor, int size);
 
 
 

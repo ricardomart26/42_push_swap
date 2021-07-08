@@ -29,19 +29,6 @@ int    *ft_swap(int *stack, int i)
     return (stack);
 }
 
-void print_array(int *stack, int size)
-{
-    int i;
-
-    i = 0;
-    while (size)
-    {
-        printf("\n\tprint array %d", stack[i]);
-        i++;
-        size--;
-    }
-}
-
 int *organize_array(int *stack, int size)
 {
     int i;
@@ -66,9 +53,11 @@ int *organize_array(int *stack, int size)
         if (i < size)
             org = ft_swap(org, i);
         // printf("\n\tis organize array A = %d && org A + 1 %d", org[i], org[i + 1]);
-        // printf_array(org, size + 2);
+        // printf();
+        // print_array(org, size);
     }
-    // print_array(org, size + 1);
+    print_array(org, size + 1);
+    printf("\n");
 
     return (org);
 }

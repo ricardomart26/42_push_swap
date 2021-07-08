@@ -38,5 +38,5 @@ void    get_attr_chunks(chunk_t *chunks, int sizeA, int divisor, int *org)
     chunks->middle_in_stack = sizeA/2;
     // chunks->chunk2 = malloc((chunks->size/2 * 4) + 1);
     chunks = malloc_arrays(sizeA, divisor, chunks);
-    chunks = get_divisor_chunk(org , chunks, divisor, sizeA);
+    chunks = divisor_chunk(org , chunks, divisor, sizeA);
 }
