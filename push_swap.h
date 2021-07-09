@@ -33,6 +33,7 @@ stacks_t beast_mode(stacks_t main);
 stacks_t peanuts(stacks_t main, int size);
 
 void print_array(int *stack, int size);
+stacks_t    push_chunk_to_b(stacks_t main, chunk_t chunks, int *i);
 
 /* cmds */  
 stacks_t pa(stacks_t main);
@@ -54,7 +55,6 @@ stacks_t sa(stacks_t main, int option);
 stacks_t sb(stacks_t main, int option);
 stacks_t ss(stacks_t main);
 
-
 int ft_strlen(char *str);
 int ft_atoi(char *str);
 
@@ -62,19 +62,10 @@ int ft_isntdigit(char c);
 int is_valid(stacks_t main);
 int is_correct(int *stack, int size);
 
-
 void    print_stacks(stacks_t main);
 chunk_t *malloc_arrays(int size, int divisor, chunk_t *chunks);
-
 void    get_attr_chunks(chunk_t *chunks, int sizeA, int divisor, int *org);
-
 int *organize_array(int *stack, int size);
-
 chunk_t *divisor_chunk(int *org, chunk_t *chunks, int divisor, int size);
-
-
-
-
-
 
 #endif

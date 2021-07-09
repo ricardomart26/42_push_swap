@@ -32,12 +32,10 @@ int    *ft_swap(int *stack, int i)
 int *organize_array(int *stack, int size)
 {
     int i;
-    int x;
     int *org;
 
     org = malloc(sizeof(int) * size + 1);
     i = -1;
-    x = 0;
     while (i++ < size)
         org[i] = stack[i];
     i = 0;
