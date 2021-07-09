@@ -7,27 +7,12 @@ chunk_t *malloc_arrays(int size, int divisor, chunk_t *chunks)
     i = -1;
     if (divisor < 2)
         perror("\n\t\033[0;31mO divisor tem de ser 2 ou 4 ou 11");
-    else if (divisor == 2)
+    else
     {
         chunks->chunks = (int **)malloc((divisor * sizeof(int *)) + 1);
         while (i++ < divisor)
             chunks->chunks[i] = (int *)malloc((size/divisor * sizeof(int)) + 1);
-
     }
-    else if (divisor == 4)
-    {
-        chunks->chunks = malloc((divisor * sizeof(int *)) + 1);
-        while (i++ < divisor)
-            chunks->chunks[i] = (int *)malloc((size/divisor * sizeof(int)) + 1);
-    }
-    else if (divisor == 11)
-    {
-        chunks->chunks = malloc((divisor * sizeof(int *)) + 1);
-        while (i++ < divisor)
-           chunks->chunks[i] = (int *)malloc((size/divisor * sizeof(int)) + 1);
-    }   
-    else
-        perror("\n\t\033[0;31mO divisor tem de ser 2 ou 4 ou 11");
     printf("\n\n\tMalloc arrays DONE!");
     return (chunks);
 }

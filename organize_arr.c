@@ -1,21 +1,6 @@
 #include "push_swap.h"
 
-int is_correct(int *stack, int size)
-{
-    int i;
 
-    i = 0;
-    while (size)
-    {
-        // printf("\n\tis correct stack A = %d && stack A + 1 %d", stack[i], stack[i + 1]);
-        if (stack[i] < stack[i + 1])
-            i++;
-        else
-            return (0);
-        size--;
-    }
-    return (1);
-}
 
 int    *ft_swap(int *stack, int i)
 {

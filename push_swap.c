@@ -133,9 +133,9 @@ int find_closer_to_beginning(stacks_t main, int *chunk, int *hold_first, int siz
         // sleep(2);
         while (main.stackA[i] != chunk[x] && x + 1 < main.middle_size)
         {
-            printf("\n\n\tstackA = %d", main.stackA[i]);
-            printf("\n\tchunk = %d", chunk[x]);
-            printf("\n\tx = %d", x);
+            // printf("\n\n\tstackA = %d", main.stackA[i]);
+            // printf("\n\tchunk = %d", chunk[x]);
+            // printf("\n\tx = %d", x);
             x++;
         }
         if (x + 1 == main.middle_size)
@@ -211,8 +211,14 @@ stacks_t push_chunk_to_b(stacks_t main, chunk_t chunks, int *i)
                 main = ra(main, 1);
         }
         main = pb(main);
+        if (main.sizeB != 1)
+        {
+            while (!is_correct_stackB(main.stackB, main.sizeB))
+            {
+                
+            }
+        }
         print_stacks(main);
-        sleep(0.5);
         // printf("\tHold second = %d\n", hold_second);
     }
     // printf("before i = %d\n", *i);
