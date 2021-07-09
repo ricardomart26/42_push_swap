@@ -160,32 +160,27 @@ int find_closer_to_end(stacks_t main, int *chunk, int *hold_second)
 {
     int size;
     int x;
-    int counter;
 
-    counter = 1;
     size = main.sizeA;
     // printf("\n\tmain.stackA = %d", main.stackA[size - 1]);
-    // sleep(2);
+    // print_array(chunk, main.middle_size);
+    // // sleep(2);
+
     while (main.stackA[size - 1])
     {
         x = 0;
-        // print_array(chunk, main.middle_size);
         while (main.stackA[size - 1] != chunk[x] && x < main.middle_size)
             x++;
         if (x == main.middle_size)
-        {
-            counter++;
             size--;
-        }
         else
         {
-            *hold_second = x;
+            *hold_second = x + 1;
             return (size - 1);
         }
     }
     return (-1);
 }
-
 
 stacks_t push_chunk_to_b(stacks_t main, chunk_t chunks, int *i)
 {
@@ -195,7 +190,7 @@ stacks_t push_chunk_to_b(stacks_t main, chunk_t chunks, int *i)
     // printf("\n\tsizeB = %d\tmiddle_size = %d\n", main.sizeB, main.middle_size);
     // print_stacks(main);
     // sleep(2);
-    while (main.sizeB != main.middle_size)
+    while (main.sizeB != main.middle_size - 1)
     {
         // printf("\n\tstackA = %d", main.stackA[*i]);
         if ((!find_closer_to_beginning(main, chunks.chunks[*i], &hold_first, main.sizeA)))
@@ -207,24 +202,17 @@ stacks_t push_chunk_to_b(stacks_t main, chunk_t chunks, int *i)
         // sleep(2);
         if (hold_first >= hold_second)
         {
-            while (hold_second != 2)
-            {
+            while (hold_second-- != 1)
                 main = rra(main, 1);
-                hold_second--;
-            }
         }
-        else if (hold_first < hold_second)
+        else if (hold_first-- < hold_second)
         {
-            while (hold_first != 0)
-            {
+            while (hold_first-- != -1)
                 main = ra(main, 1);
-                hold_first--;
-            }
         }
         main = pb(main);
         print_stacks(main);
-        sleep(1);
-
+        sleep(0.5);
         // printf("\tHold second = %d\n", hold_second);
     }
     // printf("before i = %d\n", *i);
@@ -241,7 +229,11 @@ stacks_t do_easy_one(stacks_t main)
     // int chunks_size = main.sizeA/2;
     int i;
 
-    main.middle_size = main.sizeA/2;
+    if (main.sizeA % 2 != 0)
+        main.middle_size = main.sizeA/2 + 1;
+    else
+        main.middle_size = main.sizeA/2;
+
     i = 0;
     org = organize_array(main.stackA, main.sizeA - 1);
     get_attr_chunks(&chunks, main.sizeA, 2, org);
