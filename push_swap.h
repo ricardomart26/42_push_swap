@@ -32,7 +32,10 @@ stacks_t beast_mode(stacks_t main);
 stacks_t peanuts(stacks_t main, int size);
 
 void print_array(int *stack, int size);
-stacks_t    push_chunk_to_b(stacks_t main, chunk_t chunks, int *i);
+stacks_t    push_chunk_to_b(stacks_t main, chunk_t chunks, int *i, int *org);
+stacks_t do_easy_one(stacks_t main);
+stacks_t do_not_so_easy_one(stacks_t main);
+
 
 /* cmds */  
 stacks_t pa(stacks_t main);
