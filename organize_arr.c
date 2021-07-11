@@ -1,19 +1,5 @@
 #include "push_swap.h"
 
-
-
-int    *ft_swap(int *stack, int i)
-{
-    int temp;
-    // printf("\ni %d", i);
-    // printf("\n before %d %d", stack[i], stack[i + 1]);
-    temp = stack[i + 1];
-    stack[i + 1] = stack[i];
-    stack[i] = temp;
-    // printf("\n after %d %d", stack[i], stack[i + 1]);
-    return (stack);
-}
-
 int *organize_array(int *stack, int size)
 {
     int i;

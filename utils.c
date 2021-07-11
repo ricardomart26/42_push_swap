@@ -37,3 +37,29 @@ int ft_atoi(char *str)
     // printf("\nret in atoi %ld\n", ret);
     return ((int)ret);
 }
+
+int    *ft_swap(int *stack, int i)
+{
+    int temp;
+    // printf("\ni %d", i);
+    // printf("\n before %d %d", stack[i], stack[i + 1]);
+    temp = stack[i + 1];
+    stack[i + 1] = stack[i];
+    stack[i] = temp;
+    // printf("\n after %d %d", stack[i], stack[i + 1]);
+    return (stack);
+}
+
+int  find(int number, int *arr)
+{
+    int i;
+    
+    i = 0;
+    while (arr[i])
+    {
+        if (number == arr[i])
+            return (i);
+        i++;
+    }
+    return (-1);
+}
