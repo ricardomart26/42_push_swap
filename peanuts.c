@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-
-
 static void    push_everything_to_b(stacks_t *main, int *org)
 {   
     while (main->sizeA != 0) // Enquanto tiver numeros no stackA mandar para o stack B

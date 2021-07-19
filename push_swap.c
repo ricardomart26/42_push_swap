@@ -1,63 +1,48 @@
 #include "push_swap.h"
-/* Exprimentar com 0 no av  */
 
-// int    is_lowest(int *middle_size, int *lowest_pos, int size, int *stackA)
-// {
-//     int i;
-//     int x;
-//     int lowest;
+stacks_t get_av(stacks_t main, char **av)
+{
+    int x;
+    
+    x = 1;
+    while (av[x])
+    {
+        main.stackA[x - 1] = ft_atoi(av[x]);
+        x++;
+    }    
+    return (main);
+}
 
-//     *middle_size = size/2;
-//     i = 0;
-//     x = 0;
-//     // printf("size = %d\n", size);
-//     while (x + i != size)
-//     {
-//         if (stackA[i] > stackA[i + x] && x + i != size)
-//             i++;
-//         else if (x + i != size)
-//             x++;
-//     }
-//     lowest = stackA[i];
-//     *lowest_pos = i;
-//     printf("lowest = %d\n", lowest);
-//     printf("lowest_pos = %d\n", *lowest_pos);
-//     printf("middle_size = %d\n", *middle_size);
-//     return (lowest);
-// }
+void    init_struct(stacks_t *main, int ac)
+{
+    main->ac = ac - 1;
+    main->stackA = calloc(ac - 1, sizeof(int));
+    if (!main->stackA)
+        return ;
+    main->sizeA = ac - 1;
+    main->sizeB = 0;
+    main->hold_first = 0;
+    main->hold_second = 0;
+    main->ra_counter = -1;
+    main->rra_counter = -1;
+    main->rb_counter = -1;
+    main->rrb_counter = -1;
+}
 
+int main(int ac, char **av)
+{
+    stacks_t main;
 
-// void    push_chunk_to_b(stacks_t *main, int *chunk, int size, int divisor)
-// {
-//     while (main->sizeA/divisor != 0)
-//     {
-//         main->lowest = *chunk;
-//         main->middle_size = main->sizeA/2;
-//         main->lowest_pos = find(*chunk, main->stackA);
-//         // printf("teste\n");
-//         // if (main->stackA[0] > main->stackA[1])
-//         //     *main = sa(*main, 1);
-//         if (main->lowest_pos == 0)
-//             *main = pb(*main);
-//         else if (main->lowest_pos > main->middle_size && main->sizeA != 0)
-//         {
-//             while (main->lowest_pos++ != main->sizeA)
-//                 *main = rra(*main, 1);
-//             *main = pb(*main);
-//         }
-//         else if (main->lowest_pos <= main->middle_size && main->sizeA != 0)
-//         {
-//             while (main->lowest_pos-- != 0)
-//                 *main = ra(*main, 1);
-//             *main = pb(*main);
-//         }
-//         chunk++;
-//         // print_stacks(*main);    
-//     }
-// }
-
-
-// stacks_t    start_loop(stacks_t main, chunk_t chunks)
-// {
-
-// }
+    init_struct(&main, ac); // Iniciar a struct do main, alocar memoria para o stackA, e o tamanho de sizeA
+    main = get_av(main, av); // Passar os numeros para o stackA
+    if (!is_valid(main)) // Verificar se tem numeros dup
+        perror("ERROR: NUMBER DUP\n\n");
+    if (ac < 20)
+        main = peanuts(main, main.sizeA); 
+    else if (ac < 99)
+        main = do_easy_one2(main);
+    else if (ac < 500)
+        main = do_not_so_easy_one(main);
+    else
+        main = beast_mode(main);
+}

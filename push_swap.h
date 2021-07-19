@@ -15,25 +15,31 @@ typedef struct stacks_s
     int lowest;
     int lowest_pos;
     int middle_size;
+    int hold_first;
+    int hold_second;
+    int ra_counter;
+    int rra_counter;
+    int rb_counter;
+    int rrb_counter;
 } stacks_t;
 
 
-stacks_t do_easy_one(stacks_t main);
-stacks_t do_not_so_easy_one(stacks_t main);
-stacks_t beast_mode(stacks_t main);
-stacks_t peanuts(stacks_t main, int size);
+stacks_t    do_easy_one(stacks_t main);
+stacks_t    do_not_so_easy_one(stacks_t main);
+stacks_t    beast_mode(stacks_t main);
+stacks_t    peanuts(stacks_t main, int size);
 
-void print_array(int *stack, int size);
-stacks_t    push_chunk_to_b(stacks_t main, int *chunks, int *org, int *divisor);
-stacks_t do_easy_one(stacks_t main);
-stacks_t do_not_so_easy_one(stacks_t main);
+void        print_array(int *stack, int size);
+stacks_t    push_chunk_to_b(stacks_t main, int *chunks);
+stacks_t    do_easy_one(stacks_t main);
+stacks_t    do_not_so_easy_one(stacks_t main);
 
 
 /* cmds */  
-stacks_t pa(stacks_t main);
-stacks_t pb(stacks_t main);
-int    *push_to_p(int *stack, int *size, int number);
-int    *organize_the_stack(int *stack, int size);
+stacks_t    pa(stacks_t main);
+stacks_t    pb(stacks_t main);
+int         *push_to_p(int *stack, int *size, int number);
+int         *organize_the_stack(int *stack, int size);
 
 stacks_t    start_loop(stacks_t main, int *chunks);
 /* cmds2 */
@@ -59,6 +65,13 @@ int ft_isntdigit(char c);
 int is_valid(stacks_t main);
 int is_correct(int *stack, int size);
 int is_correct_stackB(int *stackB, int size);
+
+stacks_t *combo1(stacks_t *main);
+stacks_t *combo2(stacks_t *main);
+stacks_t do_easy_one2(stacks_t main);
+
+
+
 
 void    print_stacks(stacks_t main);
 void    get_attr_chunks(int **chunks, int sizeA, int *org);

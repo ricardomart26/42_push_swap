@@ -55,7 +55,7 @@ int is_correct_stackB(int *stackB, int size)
     i = 0;
     while (size)
     {
-        printf("\n\tsize %d - stack A %d = %d && stack A %d %d", size, i, stackB[i], i + 1, stackB[i + 1]);
+        // printf("\n\tsize %d - stack A %d = %d && stack A %d %d", size, i, stackB[i], i + 1, stackB[i + 1]);
         // sleep(1);
         if (stackB[i] > stackB[i + 1])
             i++;

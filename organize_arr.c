@@ -25,8 +25,8 @@ int *organize_array(int *stack, int size)
         // printf();
         // print_array(org, size);
     }
-    print_array(org, size + 1);
-    printf("\n");
+    // print_array(org, size + 1);
+    // printf("\n");
 
     return (org);
 }
