@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
 
-stacks_t ra(stacks_t main, int option)
+stacks_t ra_funct(stacks_t main, int option)
 {
     int size;
     int x;
@@ -21,7 +21,7 @@ stacks_t ra(stacks_t main, int option)
     return (main);
 }
 
-stacks_t rb(stacks_t main, int option)
+stacks_t rb_funct(stacks_t main, int option)
 {
     int size;
     int x;
@@ -42,16 +42,16 @@ stacks_t rb(stacks_t main, int option)
 }
 
 
-stacks_t rr(stacks_t main)
+stacks_t rr_funct(stacks_t main)
 {
-    main = ra(main, 0);
-    main = rb(main, 0);
+    main = ra_funct(main, 0);
+    main = rb_funct(main, 0);
     write(1, "rr ", 4);
     return (main);
 }
 
 
-stacks_t rra(stacks_t main, int option)
+stacks_t rra_funct(stacks_t main, int option)
 {
     int size;
     int last;
@@ -67,7 +67,7 @@ stacks_t rra(stacks_t main, int option)
 }
 
 
-stacks_t rrb(stacks_t main, int option)
+stacks_t rrb_funct(stacks_t main, int option)
 {
     int size;
     int last;

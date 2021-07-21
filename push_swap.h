@@ -53,18 +53,18 @@ stacks_t    do_not_so_easy_one(stacks_t main);
 
 
 /* cmds */  
-stacks_t    pa(stacks_t main);
-stacks_t    pb(stacks_t main);
+stacks_t    pa_funct(stacks_t main);
+stacks_t    pb_funct(stacks_t main);
 int         *push_to_p(int *stack, int *size, int number);
 int         *organize_the_stack(int *stack, int size);
 
 stacks_t    start_loop(stacks_t main, int *chunks);
 /* cmds2 */
-stacks_t ra(stacks_t main, int option);
-stacks_t rb(stacks_t main, int option);
-stacks_t rr(stacks_t main);
-stacks_t rra(stacks_t main, int option);
-stacks_t rrb(stacks_t main, int option);
+stacks_t ra_funct(stacks_t main, int option);
+stacks_t rb_funct(stacks_t main, int option);
+stacks_t rr_funct(stacks_t main);
+stacks_t rra_funct(stacks_t main, int option);
+stacks_t rrb_funct(stacks_t main, int option);
 
 /* cmds3 */
 stacks_t rrr(stacks_t main);

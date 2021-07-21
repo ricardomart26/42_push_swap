@@ -41,7 +41,7 @@ int    *push_to_p(int *stack, int *size, int number)
     return (stack);
 }
 
-stacks_t pa(stacks_t main)
+stacks_t pa_funct(stacks_t main)
 {
     int number;
 
@@ -67,7 +67,7 @@ stacks_t pa(stacks_t main)
 
 }
 
-stacks_t pb(stacks_t main)
+stacks_t pb_funct(stacks_t main)
 {
     int number;
 

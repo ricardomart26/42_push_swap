@@ -1,14 +1,14 @@
 #include "push_swap.h"
 
-stacks_t rrr(stacks_t main)
+stacks_t rrr_funct(stacks_t main)
 {
-    main = rra(main, 0);
-    main = rrb(main, 0);
+    main = rra_funct(main, 0);
+    main = rrb_funct(main, 0);
     write(1, "rrr ", 4);
     return (main);
 }
 
-stacks_t sa(stacks_t main, int option)
+stacks_t sa_funct(stacks_t main, int option)
 {
     int temp;
 
@@ -22,7 +22,7 @@ stacks_t sa(stacks_t main, int option)
     return (main);
 }
 
-stacks_t sb(stacks_t main, int option)
+stacks_t sb_funct(stacks_t main, int option)
 {
     int x;
     int temp;
@@ -39,9 +39,9 @@ stacks_t sb(stacks_t main, int option)
     return (main);
 }
 
-stacks_t ss(stacks_t main)
+stacks_t ss_funct(stacks_t main)
 {
-    main = sa(main, 0);
-    main = sb(main, 0);
+    main = sa_funct(main, 0);
+    main = sb_funct(main, 0);
     return (main);
 }

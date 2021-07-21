@@ -29,7 +29,9 @@ int find_closer_to_beginning2(stacks_t *main, int *chunk, int size, moves_t *cmd
             i++;
         else
         {
-            cmd->num1 = i;
+            cmd->ra = i;
+			cmd->rra = 0;
+
             printf("\n\t(find closer to beginning) stack[%d] %d\n", i, main->stackA[i]);
             break;
         }
@@ -60,7 +62,8 @@ int find_closer_to_end2(stacks_t *main, int *chunk, moves_t *cmd)
         }
         else
         {
-			cmd->num2 = main->sizeA - size;
+			cmd->rra = main->sizeA - size;
+			cmd->ra = 0;
             printf("\t(find closer to end) 3 stack[%d] %d\n", size, main->stackA[size]);
             return (size);
         }
@@ -119,9 +122,7 @@ void	set_two_numbers(stacks_t *main, moves_t *cmd)
 
 void    init_cmd(moves_t *cmd)
 {
-    cmd->ra = 0;
     cmd->rb = 0;
-    cmd->rra = 0;
     cmd->rrb = 0;
     cmd->rr = 0;
     cmd->rrr = 0;
@@ -141,7 +142,7 @@ int simulate_first_num(stacks_t *main, int number, int place)
     else if (place == main->sizeB)
     {
         // printf("\n\t(organize stack b) second pb\n");
-        cmd.rr = 1; 
+        cmd.rr = 1;
         cmd.ra--;
         if (cmd.ra == 0)
             return (cmd.rr);
@@ -184,7 +185,7 @@ int simulate_second_num(stacks_t *main, int number, int place)
         cmd.rb = moves_rb(main);
 }
 
-int check_four_opt(stacks_t main)
+int check_four_opt(stacks_t main, int *chunks)
 {
     int first_in_stackb;
     int second_in_stackb;
@@ -194,22 +195,23 @@ int check_four_opt(stacks_t main)
     int moves_second;
     moves_t cmd;
     
-    if ((!find_closer_to_beginning2(&main, chunks, main.sizeA)))
+    if ((!find_closer_to_beginning2(&main, chunks, main.sizeA, &cmd)))
         perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-    if ((!find_closer_to_end2(&main, chunks)))
+    if ((!find_closer_to_end2(&main, chunks, &cmd)))
     	perror("\n\n\tCannot find chunk number in stackA\n"); // Encontrar primeiro numero dentro do stackA do final
         
-
-    first_number = main.stackA[main.hold_first - 1];
-    second_number = main.stackA[main.hold_second - 1];
-    cmd.rra = c.num1;
-    c.ra = c.hold_second;
+    first_number = main.stackA[cmd.num1 - 1];
+    second_number = main.stackA[cmd.num2 - 1];
+    cmd.rra = cmd.num1;
+    cmd.ra = cmd.num2;
 
     first_in_stackb = where_to_putnbr2(first_number, main.stackB, main.sizeB); // Ver onde tem que ir o primeiro numero
     second_in_stackb = where_to_putnbr2(second_number, main.stackB, main.sizeB); // Ver onde tem que ir o primeiro numero
     
-    moves_first = simulate_first_num(&main, first_number, first_in_stackb);
-    moves_second = simulate_second_num(&main, second_number, second_in_stackb);
+    cmd.moves1 = simulate_first_num(&main, first_number, first_in_stackb);
+    cmd.moves2 = simulate_second_num(&main, second_number, second_in_stackb);
+    cmd.moves3 = simulate_third_num(&main, second_number, second_in_stackb);
+    cmd.moves4 = simulate_fourth_num(&main, second_number, second_in_stackb);
 
     if (moves_first >= moves_second)
         return (1);
@@ -230,7 +232,7 @@ stacks_t push_chunk_to_b2(stacks_t main, int *chunks)
         beg_or_end = 0;
         // printf("\n\t(push_chunk_to_b) sizeA %d\n", main.sizeA);
 
-        printf("\n\t(push_chunk_to_b) hold_first %d hold_second %d\n", main.hold_first, main.hold_second);
+        printf("\n\t(push_chunk_to_b) hold_first %d hold_second %d\n", cmd.num1, main.hold_second);
 		sets(&main);
         beg_or_end = check_four_opt(main);
         printf("\n\t(push_chunk_to_b) sizeB %d", main.sizeB);
@@ -239,7 +241,7 @@ stacks_t push_chunk_to_b2(stacks_t main, int *chunks)
         else
         {
             // printf("\n\t(push_chunk_to_b) Foi este pb?\n");
-            main = pb(main);
+            main = pb_funct(main);
         }
         print_stacks(main);
         counter++;
