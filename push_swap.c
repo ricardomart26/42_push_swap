@@ -21,12 +21,6 @@ void    init_struct(stacks_t *main, int ac)
         return ;
     main->sizeA = ac - 1;
     main->sizeB = 0;
-    main->hold_first = 0;
-    main->hold_second = 0;
-    main->ra_counter = -1;
-    main->rra_counter = -1;
-    main->rb_counter = -1;
-    main->rrb_counter = -1;
 }
 
 int main(int ac, char **av)

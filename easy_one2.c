@@ -14,7 +14,7 @@ int where_to_putnbr2(int x, int *stackB, int size)
     return (0);
 }
 
-int find_closer_to_beginning2(stacks_t *main, int *chunk, int size)
+int find_closer_to_beginning2(stacks_t *main, int *chunk, int size, moves_t *cmd)
 {
     int i;
     int x;
@@ -29,7 +29,7 @@ int find_closer_to_beginning2(stacks_t *main, int *chunk, int size)
             i++;
         else
         {
-            main->hold_first = i;
+            cmd->num1 = i;
             printf("\n\t(find closer to beginning) stack[%d] %d\n", i, main->stackA[i]);
             break;
         }
@@ -39,7 +39,7 @@ int find_closer_to_beginning2(stacks_t *main, int *chunk, int size)
     return (1);
 }
 
-int find_closer_to_end2(stacks_t *main, int *chunk)
+int find_closer_to_end2(stacks_t *main, int *chunk, moves_t *cmd)
 {
     int size;
     int x;
@@ -60,7 +60,7 @@ int find_closer_to_end2(stacks_t *main, int *chunk)
         }
         else
         {
-			main->hold_second = size;
+			cmd->num2 = main->sizeA - size;
             printf("\t(find closer to end) 3 stack[%d] %d\n", size, main->stackA[size]);
             return (size);
         }
@@ -82,13 +82,13 @@ void    organize_stackB2(stacks_t *main)
     if (i_in_stackb == 0)
     {
         printf("\n\t(organize stack b) first pb\n");
-        *main = pb(*main);
+        *main = pb_funct(*main);
     }
     else if (i_in_stackb == main->sizeB)
     {
         // printf("\n\t(organize stack b) second pb\n");
-        *main = pb(*main);
-        *main = rb(*main, 1);
+        *main = pb_funct(*main);
+        *main = rb_funct(*main, 1);
     }
     else if (i_in_stackb >= main->sizeB/2) // Se o i for acima do meio
         main = combo1(main);
@@ -99,46 +99,146 @@ void    organize_stackB2(stacks_t *main)
     // sleep(1);
 }
 
-void	push_to_beg_stackA2(stacks_t *main)
+void	set_two_numbers(stacks_t *main, moves_t *cmd)
 {
     int temp;
 
-	if (main->hold_first >= main->sizeA - main->hold_second)
+	if (cmd->num1 >= cmd->num2)
     {
-        temp = main->stackA[main->hold_first - 1];
-    	main->rra_counter = main->hold_first;
+        temp = main->stackA[cmd->num1 - 1];
+    	cmd->rra = cmd->num1;
         printf("\n\t(push_to_beg_stackA2) temp = %d\n", temp);
     } // Se estiver mais perto do final fazer rra ate ao inicio
-    else if (main->hold_first < main->sizeA - main->hold_second) // Se estiver mais perto do incio fazer rra ate ao inicio
+    else if (cmd->num1 < cmd->num2) // Se estiver mais perto do incio fazer rra ate ao inicio
 	{
-        temp = main->stackA[main->hold_second - 1];
+        temp = main->stackA[cmd->num2 - 1];
         printf("\t(push_to_beg_stackA2) htemp = %d\n", temp);
-        main->ra_counter = main->hold_second;
+        cmd->ra = cmd->num2;
     }
 }
 
+void    init_cmd(moves_t *cmd)
+{
+    cmd->ra = 0;
+    cmd->rb = 0;
+    cmd->rra = 0;
+    cmd->rrb = 0;
+    cmd->rr = 0;
+    cmd->rrr = 0;
+}
+
+
+int simulate_first_num(stacks_t *main, int number, int place)
+{
+    moves_t cmd;
+    
+    init_cmd(&cmd);
+    if (place == 0)
+    {
+        printf("\n\t(simulate_first_num) place = 0\n");
+        return (cmd.ra + pb);
+    }
+    else if (place == main->sizeB)
+    {
+        // printf("\n\t(organize stack b) second pb\n");
+        cmd.rr = 1; 
+        cmd.ra--;
+        if (cmd.ra == 0)
+            return (cmd.rr);
+        return (cmd.rr - cmd.ra + pb);
+    }
+    else if (place >= main->sizeB/2)
+    {
+        cmd.rrb = moves_rrb(main, place); // Se o i for acima do meio entao tens que fazer rb
+    } // Se o i for acima do meio entao tens que fazer rb
+    else if (place <= main->sizeB/2) // Se o i for acima do meio entao tens que fazer rrb
+        cmd.rb = moves_rb(main);
+}
+
+int simulate_second_num(stacks_t *main, int number, int place)
+{
+    moves_t cmd;
+    
+    init_cmd(&cmd);
+
+    if (place == 0)
+    {
+        printf("\n\t(simulate_first_num) place = 0\n");
+        return (cmd.rra + pb);
+    }
+    else if (place == main->sizeB)
+    {
+        // printf("\n\t(organize stack b) second pb\n");
+        cmd.rrr = 1; 
+        cmd.rra--;
+        if (cmd.ra == 0)
+            return (cmd.rr);
+        return (cmd.rr - cmd.ra + pb);
+    }
+    else if (place >= main->sizeB/2)
+    {
+        cmd.rrb = moves_rrb(main, place); // Se o i for acima do meio entao tens que fazer rb
+
+    } // Se o i for acima do meio entao tens que fazer rb
+    else if (place <= main->sizeB/2) // Se o i for acima do meio entao tens que fazer rrb
+        cmd.rb = moves_rb(main);
+}
+
+int check_four_opt(stacks_t main)
+{
+    int first_in_stackb;
+    int second_in_stackb;
+    int first_number;
+    int second_number;
+    int moves_first;
+    int moves_second;
+    moves_t cmd;
+    
+    if ((!find_closer_to_beginning2(&main, chunks, main.sizeA)))
+        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
+    if ((!find_closer_to_end2(&main, chunks)))
+    	perror("\n\n\tCannot find chunk number in stackA\n"); // Encontrar primeiro numero dentro do stackA do final
+        
+
+    first_number = main.stackA[main.hold_first - 1];
+    second_number = main.stackA[main.hold_second - 1];
+    cmd.rra = c.num1;
+    c.ra = c.hold_second;
+
+    first_in_stackb = where_to_putnbr2(first_number, main.stackB, main.sizeB); // Ver onde tem que ir o primeiro numero
+    second_in_stackb = where_to_putnbr2(second_number, main.stackB, main.sizeB); // Ver onde tem que ir o primeiro numero
+    
+    moves_first = simulate_first_num(&main, first_number, first_in_stackb);
+    moves_second = simulate_second_num(&main, second_number, second_in_stackb);
+
+    if (moves_first >= moves_second)
+        return (1);
+    else
+        return (2);        
+
+}
 // ver tamanho do stackB, e em que index o numero deve ficar, e para que lado e mais rapido
 stacks_t push_chunk_to_b2(stacks_t main, int *chunks)
 {
     int counter;
+    int beg_or_end;
     // printf("\n\tsizeB %d", main.sizeB);
     // printf("\n\tmiddle size %d", main.middle_size);
     counter = 0;
     while (counter < main.middle_size - 1)
     {
+        beg_or_end = 0;
         // printf("\n\t(push_chunk_to_b) sizeA %d\n", main.sizeA);
-        if ((!find_closer_to_beginning2(&main, chunks, main.sizeA)))
-            perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-        if ((!find_closer_to_end2(&main, chunks)))
-    	    perror("\n\n\tCannot find chunk number in stackA\n"); // Encontrar primeiro numero dentro do stackA do final
+
         printf("\n\t(push_chunk_to_b) hold_first %d hold_second %d\n", main.hold_first, main.hold_second);
-		push_to_beg_stackA2(&main);
+		sets(&main);
+        beg_or_end = check_four_opt(main);
         printf("\n\t(push_chunk_to_b) sizeB %d", main.sizeB);
         if (main.sizeB)
             organize_stackB2(&main); // Ver qual maneira e mais facil de enviar o numero
         else
         {
-            printf("\n\t(push_chunk_to_b) Foi este pb?\n");
+            // printf("\n\t(push_chunk_to_b) Foi este pb?\n");
             main = pb(main);
         }
         print_stacks(main);

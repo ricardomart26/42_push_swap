@@ -15,13 +15,30 @@ typedef struct stacks_s
     int lowest;
     int lowest_pos;
     int middle_size;
-    int hold_first;
-    int hold_second;
-    int ra_counter;
-    int rra_counter;
-    int rb_counter;
-    int rrb_counter;
 } stacks_t;
+
+
+typedef struct moves_s
+{
+    int ra;
+    int rra;
+    int rb;
+    int rrb;
+    int rr;
+    int rrr;
+    int num1;
+    int num2;
+    int num3;
+    int num4;
+    int moves1;
+    int moves2;
+    int moves3;
+    int moves4;
+} moves_t;
+
+#define pb 1
+#define pa 1
+
 
 
 stacks_t    do_easy_one(stacks_t main);
