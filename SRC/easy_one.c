@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int where_to_putnbr(int x, int *stackB, int size)
 {
@@ -76,13 +76,13 @@ void    organize_stackB(stacks_t *main)
     if (i_in_stackb == 0)
     {
         // printf("\n\t(organize stack b) first pb\n");
-        *main = pb(*main);
+        *main = pb_funct(*main);
     }
     else if (i_in_stackb == main->sizeB)
     {
         // printf("\n\t(organize stack b) second pb\n");
-        *main = pb(*main);
-        *main = rb(*main, 1);
+        *main = pb_funct(*main);
+        *main = rb_funct(*main, 1);
     }
     else if (i_in_stackb >= main->sizeB/2) // Se o i for acima do meio
         main = combo1(main);
@@ -112,14 +112,14 @@ stacks_t push_chunk_to_b(stacks_t main, int *chunks)
         // printf("\n\t(push_chunk_to_b) hold_first %d hold_second %d\n", hold_first, hold_second);
         if (hold_first >= hold_second) // Se estiver mais perto do final fazer rra ate ao inicio
             while (hold_second-- != 1)
-                main = rra(main, 1);
+                main = rra_funct(main, 1);
         if (hold_first < hold_second) // Se estiver mais perto do incio fazer rra ate ao inicio
             while (hold_first-- != 0)
-                main = ra(main, 1);
+                main = ra_funct(main, 1);
         if (main.sizeB > 1)
             organize_stackB(&main); // Ver qual maneira e mais facil de enviar o numero
         else
-            main = pb(main);
+            main = pb_funct(main);
         // print_stacks(main);
         counter++;
     }
@@ -130,9 +130,7 @@ stacks_t do_easy_one(stacks_t main)
 {
     int *chunks;
     int *org;
-    int i;
 
-    i = 1;
     // Fazer um while com estes dois para poder dividir função
     // O middle size tem de ser updated
     while (main.sizeA != 3) // Enquanto nao houver 3 numeros no stackA

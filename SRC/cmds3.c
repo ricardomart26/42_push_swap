@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 stacks_t rrr_funct(stacks_t main)
 {

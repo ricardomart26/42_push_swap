@@ -1,9 +1,7 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int moves_rb(stacks_t *main, int place, moves_t cmd)
+int moves_rb(int place, moves_t cmd)
 {
-    int moves_rb;
-
     cmd.rb = place;
     if (cmd.ra == cmd.rb)
         return (cmd.ra + cmd.rb + pb);
@@ -19,12 +17,11 @@ int moves_rb(stacks_t *main, int place, moves_t cmd)
         cmd.rb -= cmd.ra;
         return (cmd.rr + cmd.rb + pb);
     }
+    return (0);
 }
 
 int moves_rrb(stacks_t *main, int place, moves_t cmd)
 {
-    int moves_rrb;
-    
     cmd.rrb = main->sizeB - place;
     if (cmd.rra == cmd.rrb)
         return (cmd.rra + cmd.rrb + pb);
@@ -40,6 +37,7 @@ int moves_rrb(stacks_t *main, int place, moves_t cmd)
         cmd.rrb -= cmd.rra;
         return (cmd.rrr + cmd.rrb + pb);
     }
+    return (0);
 }
 
 

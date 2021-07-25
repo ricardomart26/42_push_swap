@@ -26,14 +26,10 @@ typedef struct moves_s
     int rrb;
     int rr;
     int rrr;
-    int num1;
-    int num2;
-    int num3;
-    int num4;
-    int moves1;
-    int moves2;
-    int moves3;
-    int moves4;
+    int total;
+    int num;
+    int moves;
+    int pos_stackb;
 } moves_t;
 
 #define pb 1
@@ -41,14 +37,27 @@ typedef struct moves_s
 
 
 
-stacks_t    do_easy_one(stacks_t main);
+int simulate_num2(stacks_t *temp, moves_t *cmd);
+stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa);
+int where_to_putnbr2(int x, int *stackB, int size);
+
+int move_bottom_of_stack(stacks_t **temp, int place, moves_t *cmd);
+int move_top_of_stack(stacks_t **temp, int place, moves_t *cmd);
+int special_cases(stacks_t **temp, moves_t *cmd, int place);
+int simulate_num1(stacks_t *temp, moves_t *cmd);
+
+int closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd);
+int closer_to_end2(stacks_t main, int *chunk, moves_t *cmd);
+
+stacks_t get_av(stacks_t main, char **av);
+
+stacks_t    do_easy_one2(stacks_t main);
 stacks_t    do_not_so_easy_one(stacks_t main);
 stacks_t    beast_mode(stacks_t main);
 stacks_t    peanuts(stacks_t main, int size);
 
 void        print_array(int *stack, int size);
 stacks_t    push_chunk_to_b(stacks_t main, int *chunks);
-stacks_t    do_easy_one(stacks_t main);
 stacks_t    do_not_so_easy_one(stacks_t main);
 
 
@@ -65,9 +74,9 @@ stacks_t rb_funct(stacks_t main, int option);
 stacks_t rr_funct(stacks_t main);
 stacks_t rra_funct(stacks_t main, int option);
 stacks_t rrb_funct(stacks_t main, int option);
+stacks_t rrr_funct(stacks_t main);
 
 /* cmds3 */
-stacks_t rrr(stacks_t main);
 stacks_t sa(stacks_t main, int option);
 stacks_t sb(stacks_t main, int option);
 stacks_t ss(stacks_t main);
@@ -85,8 +94,9 @@ int is_correct_stackB(int *stackB, int size);
 
 stacks_t *combo1(stacks_t *main);
 stacks_t *combo2(stacks_t *main);
-stacks_t do_easy_one2(stacks_t main);
 
+void    init_struct(stacks_t *main, int ac);
+void    init_cmd(moves_t *cmd);
 
 
 

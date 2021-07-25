@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void    get_attr_chunks(int **chunks, int sizeA, int *org)
 {

@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int is_valid(stacks_t main)
 {
@@ -15,7 +15,10 @@ int is_valid(stacks_t main)
         {
             // printf("\n\tx = %d && i = %d", main.stackA[x], main.stackA[i]);
             if (main.stackA[x] == main.stackA[i])
+            {
+                printf("(is_valid) dup number %d", main.stackA[x]);
                 return (0);
+            }
             i++;
         }
         x++;

@@ -1,5 +1,4 @@
-#include "push_swap.h"
-
+#include "../push_swap.h"
 
 stacks_t ra_funct(stacks_t main, int option)
 {

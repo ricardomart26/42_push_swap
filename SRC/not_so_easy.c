@@ -1,12 +1,10 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
-stacks_t beast_mode(stacks_t main)
+stacks_t do_not_so_easy_one(stacks_t main)
 {
     int *chunks;
     int *org;
-    int i;
 
-    i = 1;
     // Fazer um while com estes dois para poder dividir função
     // O middle size tem de ser updated
     while (main.sizeA != 3) // Enquanto nao houver 3 numeros no stackA

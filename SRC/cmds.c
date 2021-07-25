@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int    *organize_the_stack(int *stack, int size)
 {
