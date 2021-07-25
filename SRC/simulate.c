@@ -3,8 +3,8 @@
 int put_last(stacks_t ***temp, moves_t *cmd)
 {
     /*
-    Se estiver na metade de baixo, e o numero for para a 
-    metade de baixo do stack B.
+    Se estiver na metade de baixo do stackA, e o numero 
+    for para a metade de cima do stack B.
     Converter para rr, e se tiver mais ra fazer ate o numero 
     da stackA ficar na 1º posição e fazer um pb e um rra
     */
@@ -16,17 +16,19 @@ int put_last(stacks_t ***temp, moves_t *cmd)
         if (!cmd->ra)
         {
             ***temp = gen_moves(***temp, 0, 0, 1);
+            printf("\n\t(put last) nra: This amount of moves %d", cmd->rr + pb + 1);
             return (cmd->rr + pb + 1);
         }
         else
         {
             ***temp = gen_moves(***temp, 0, cmd->ra, 1);
+            printf("\n\t(put last) ra: This amount of moves %d", cmd->rr - cmd->ra + pb);
             return (cmd->rr - cmd->ra + pb);
         }
     }
     else if (cmd->rra)
     {
-        // Se estiver na metade de baixo, e o numero foir
+        // Se estiver na metade de baixo, e o numero fo
         ***temp = gen_moves(***temp, 1, cmd->rra, 0);
         if (cmd->ra == 0)
         {
@@ -72,7 +74,6 @@ int simulate_num2(stacks_t *temp, moves_t *cmd)
 
 stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa)
 {
-
     while (counter)
     {
         if (option == 0)
@@ -101,20 +102,99 @@ stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa)
     return (main);
 }
 
+int rr_sim(moves_t **cmd, int rr, int ra, int rb)
+{
+    (*cmd)->rr = rr;
+    (*cmd)->ra = ra;
+    (*cmd)->rb = rb;
+    return ((*cmd)->rr + (*cmd)->ra + (*cmd)->rb);
+}
+
+moves_t **rrr_sim(moves_t **cmd, int rrr, int rrb, int rra)
+{
+    (*cmd)->rrr = rrr;
+    (*cmd)->rrb = rrb;
+    (*cmd)->rra = rra;
+    (*cmd)->total = (*cmd)->rrr + (*cmd)->rra + (*cmd)->rrb;
+    return (cmd);
+}
+
+int do_rrr_bottom(moves_t **cmd, stacks_t ***temp)
+{
+    if ((*cmd)->rb == (*cmd)->rra)
+    {
+        cmd = rrr_sim(cmd, (*cmd)->rra, 0, 0);
+        ***temp = gen_moves(***temp, 5, (*cmd)->rrr, 1);
+        return ((*cmd)->total);
+    }
+    else if ((*cmd)->rrb > (*cmd)->rra)
+    {
+        cmd = rrr_sim(cmd, (*cmd)->rra, (*cmd)->rrb -= (*cmd)->rra, 0);
+        ***temp = gen_moves(***temp, 5, (*cmd)->rrr, 0);
+        ***temp = gen_moves(***temp, 3, (*cmd)->rrb, 1);
+        printf("\n\t(move bottom of stack) rrb > rra total %d", (*cmd)->total);
+        return ((*cmd)->total);
+    }
+    else if ((*cmd)->rrb < (*cmd)->rra)
+    {
+        cmd = rrr_sim(cmd, (*cmd)->rrb, 0, (*cmd)->rra -= (*cmd)->rrb);
+        ***temp = gen_moves(***temp, 5, (*cmd)->rrr, 0);
+        ***temp = gen_moves(***temp, 1, (*cmd)->rra, 1);
+        printf("\n\t(move bottom of stack) rrb < rra total %d", (*cmd)->total);
+        return ((*cmd)->total);
+    }
+}
+
+int do_rrr_bottom(moves_t **cmd, stacks_t ***temp)
+{
+    if ((*cmd)->rrb == (*cmd)->rra)
+    {
+        cmd = rrr_sim(cmd, (*cmd)->rra, 0, 0);
+        ***temp = gen_moves(***temp, 5, (*cmd)->rrr, 1);
+        return ((*cmd)->total);
+    }
+    else if ((*cmd)->rrb > (*cmd)->rra)
+    {
+        cmd = rrr_sim(cmd, (*cmd)->rra, (*cmd)->rrb -= (*cmd)->rra, 0);
+        ***temp = gen_moves(***temp, 5, (*cmd)->rrr, 0);
+        ***temp = gen_moves(***temp, 3, (*cmd)->rrb, 1);
+        printf("\n\t(move bottom of stack) rrb > rra total %d", (*cmd)->total);
+        return ((*cmd)->total);
+    }
+    else if ((*cmd)->rrb < (*cmd)->rra)
+    {
+        cmd = rrr_sim(cmd, (*cmd)->rrb, 0, (*cmd)->rra -= (*cmd)->rrb);
+        ***temp = gen_moves(***temp, 5, (*cmd)->rrr, 0);
+        ***temp = gen_moves(***temp, 1, (*cmd)->rra, 1);
+        printf("\n\t(move bottom of stack) rrb < rra total %d", (*cmd)->total);
+        return ((*cmd)->total);
+    }
+}
+
 int move_bottom_of_stack(stacks_t **temp, int place, moves_t *cmd)
 {
-    (void)temp;
-    (void)place;
-    (void)cmd;
-    return (0);
+    int size;
+
+    size = (*temp)->sizeB + 1;
+    printf("\n\t(move bottom of stack) rra %d size %d", cmd->rra, size);
+    cmd->rrb = size - place;
+    if (cmd->ra)
+    {
+        **temp = gen_moves(**temp, 0, cmd->ra, 0);
+        **temp = gen_moves(**temp, 3, cmd->rrb, 1);
+        return (cmd->ra + cmd->rrb + pb);
+    }
+    else if (cmd->rra)
+        return (do_rrr_bottom(&cmd, &temp));
+    else 
+        **temp = gen_moves(**temp, 1, 0, 1);
+
+    return (cmd->rra + pb);
 }
 
 int move_top_of_stack(stacks_t **temp, int place, moves_t *cmd)
 {
-    (void)temp;
-    (void)place;
-    (void)cmd;
-
+    
     return (0);
 }
 
@@ -127,9 +207,9 @@ int simulate_num1(stacks_t *temp, moves_t *cmd)
 
     if (cmd->total != 0)
     {
+        printf("\n\t(simulate num 1) total = %d", cmd->total);
         print_stacks(*temp);
         sleep(2);
-        printf("\n\t(simulate num 1) total = %d", cmd->total);
         return (cmd->total);    
     }
     else if (cmd->pos_stackb >= temp->sizeB/2)

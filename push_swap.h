@@ -60,7 +60,6 @@ void        print_array(int *stack, int size);
 stacks_t    push_chunk_to_b(stacks_t main, int *chunks);
 stacks_t    do_not_so_easy_one(stacks_t main);
 
-
 /* cmds */  
 stacks_t    pa_funct(stacks_t main);
 stacks_t    pb_funct(stacks_t main);
@@ -86,7 +85,6 @@ int ft_atoi(char *str);
 int  find(int number, int *arr);
 int    *ft_swap(int *stack, int i);
 
-
 int ft_isntdigit(char c);
 int is_valid(stacks_t main);
 int is_correct(int *stack, int size);
@@ -97,8 +95,6 @@ stacks_t *combo2(stacks_t *main);
 
 void    init_struct(stacks_t *main, int ac);
 void    init_cmd(moves_t *cmd);
-
-
 
 void    print_stacks(stacks_t main);
 void    get_attr_chunks(int **chunks, int sizeA, int *org);
