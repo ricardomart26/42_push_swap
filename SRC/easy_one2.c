@@ -43,7 +43,7 @@ stacks_t pass_stacks_to_temp(stacks_t main)
     return (temp);
 }
 
-int simulate_next(stacks_t *temp, int *chunks)
+int simulate_next(stacks_t *temp, int *chunks, int moves)
 {
     moves_t cmd[2];
     stacks_t temp2;
