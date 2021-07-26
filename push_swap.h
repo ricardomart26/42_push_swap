@@ -28,7 +28,7 @@ typedef struct moves_s
     int rrr;
     int total;
     int num;
-    int moves;
+    int moves[2];
     int pos_stackb;
 } moves_t;
 
@@ -36,10 +36,24 @@ typedef struct moves_s
 #define pa 1
 
 
+void    init_cmd(moves_t **cmd, int i);
 
 int simulate_num2(stacks_t *temp, moves_t *cmd);
 stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa);
 int where_to_putnbr2(int x, int *stackB, int size);
+int simulate_next_f(stacks_t temp, int *chunks, int moves);
+int simulate_next_s(stacks_t temp, int *chunks, int moves);
+stacks_t pass_stacks_to_temp(stacks_t main);
+
+void    print_cmds(moves_t *cmd, int i);
+
+int do_rr_top(moves_t **cmd, stacks_t ***temp); // Dont know if it works
+int do_rrr_bottom(moves_t **cmd, stacks_t ***temp); // Dont know if it works
+int move_bottom_of_stack(stacks_t **temp, int place, moves_t *cmd);
+int move_top_of_stack(stacks_t **temp, int place, moves_t *cmd);
+moves_t **rrr_sim(moves_t **cmd, int rrr, int rrb, int rra);
+moves_t **rr_sim(moves_t **cmd, int rr, int ra, int rb);
+stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa);
 
 int move_bottom_of_stack(stacks_t **temp, int place, moves_t *cmd);
 int move_top_of_stack(stacks_t **temp, int place, moves_t *cmd);
@@ -94,7 +108,6 @@ stacks_t *combo1(stacks_t *main);
 stacks_t *combo2(stacks_t *main);
 
 void    init_struct(stacks_t *main, int ac);
-void    init_cmd(moves_t *cmd);
 
 void    print_stacks(stacks_t main);
 void    get_attr_chunks(int **chunks, int sizeA, int *org);

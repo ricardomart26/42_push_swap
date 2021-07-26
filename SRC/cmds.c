@@ -7,12 +7,16 @@ int    *organize_the_stack(int *stack, int size)
 
     size2 = size - 1;
     x = 0;
+    printf("\n\t(simulate next f 2) FUCK YOU %d %d\n", stack[x], x);
+
     stack = realloc(stack, sizeof(int) * size2 + 1);
     while (size2--)
     {
         stack[x] = stack[x + 1];
         x++;
     }
+    printf("\n\t(simulate next f 2) FUCK YOU %d %d\n", stack[x], x);
+
     stack[x] = 0;
     return (stack);
 }
@@ -70,24 +74,33 @@ stacks_t pa_funct(stacks_t main)
 stacks_t pb_funct(stacks_t main)
 {
     int number;
-
+    printf("\n\t(simulate next f) WHATT Finished sim next f -> moves  to num \n");
+    
     number = main.stackA[0];
+    printf("\n\t(simulate next f 1) WHATT Finished sim next f -> moves  to num \n");
+
     if (!main.stackA)
         perror("\n\tIN PB: main stack A esta vazio\n");
     if (main.sizeB == 0)
     {
+
         main.stackB = malloc(sizeof(int) + 1); // Posso fazer isto?
         main.stackB[0] = number;
+        printf("\n\t(simulate next f 2) WHATT Finished sim next f -> moves  to num \n");
         main.stackA = organize_the_stack(main.stackA, main.sizeA);
+
         main.sizeB++;
     }
     else
     {
+        printf("\n\t(simulate next f 3) WHATT Finished sim next f -> moves  to num \n");
+
         // printf("\n\tsizeB = %d", main.sizeB);
         main.stackB = push_to_p(main.stackB, &main.sizeB, number);
         main.stackA = organize_the_stack(main.stackA, main.sizeA);
     }
     main.sizeA--;
+        printf("\n\t(simulate next f 3) WHATT Finished sim next f -> moves  to num \n");
 
     write(1, "pb \n", 5);
     return (main);

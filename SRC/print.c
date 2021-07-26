@@ -13,6 +13,19 @@ void print_array(int *stack, int size)
     }
 }
 
+void    print_cmds(moves_t *cmd, int i)
+{
+    printf("\n\n\t************\n");
+    printf("\t**  ra  = %d  **\n", cmd[i].ra);
+    printf("\t**  rb  = %d  **\n", cmd[i].rb);
+    printf("\t**  rr  = %d  **\n", cmd[i].rr);
+    printf("\t**  rra  = %d **\n", cmd[i].rra);
+    printf("\t**  rrb  = %d **\n", cmd[i].rrb);
+    printf("\t**  rrr  = %d **\n", cmd[i].rrr);
+    printf("\t**  total = %d **\n", cmd[i].total);
+    printf("\t****************\n");
+}
+
 void    print_stacks(stacks_t main)
 {
     int size;
