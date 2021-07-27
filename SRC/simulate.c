@@ -41,14 +41,22 @@ int put_last(stacks_t ***temp, moves_t *cmd)
 
 int special_cases(stacks_t **temp, moves_t *cmd, int place)
 {
-    printf("\n\t\t(special case) Place %d size %d\n", place, (*temp)->sizeB);
+    printf("\n\t\t(special case)size %d\n", (*temp)->sizeB);
+    // print_stacks(**temp);
+    
     if (place == 0)
     {
         printf("\n\t(special case) Place is 0 ra %d rra %d\n", cmd->ra, cmd->rra);
         if (cmd->ra)
             **temp = gen_moves(**temp, 0, cmd->ra, 1);
         else if (cmd->rra)
+        {
+            // print_stacks(**temp);
             **temp = gen_moves(**temp, 1, cmd->rra, 1);
+        }
+        else
+            **temp = gen_moves(**temp, 1, 0, 1);
+
         printf("\n\t(special case) total %d\n", cmd->ra + cmd->rra + pb);
         return (cmd->ra + cmd->rra + pb);
     }
@@ -65,7 +73,6 @@ int special_cases(stacks_t **temp, moves_t *cmd, int place)
     }
     return (0);
 }
-
 
 int simulate_num2(stacks_t *temp, moves_t *cmd)
 {
@@ -93,7 +100,9 @@ int simulate_num2(stacks_t *temp, moves_t *cmd)
 int simulate_num1(stacks_t *temp, moves_t *cmd)
 {
     init_cmd(&cmd, 0);
-    printf("\n\t(simulate num 1) First simulate stack");
+    // printf("\n\t\t\tSEEE HERE BROOOOOOO\n");
+    // print_stacks(*temp);
+    // printf("\n\t(simulate num 1) First simulate stack");
     // print_stacks(*temp);
     cmd->total = special_cases(&temp, cmd, cmd->pos_stackb);
     printf("\n\t\t (simulate num 1) total after special cases %d\n", cmd->total);

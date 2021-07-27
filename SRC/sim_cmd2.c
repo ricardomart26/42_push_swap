@@ -21,6 +21,7 @@ stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa)
         counter--;
     }
     printf("\n\t(gen moves 2) done!\n");
+    // print_array(main.stackA, main.sizeA);
 
     if (pb_pa == 1)
         main = pb_funct(main);

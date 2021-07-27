@@ -1,15 +1,17 @@
 #include "../push_swap.h"
 
-int    *organize_the_stack(int *stack, int size)
+int    *organize_the_stack(int *stack, int size, int opt)
 {
     int x;
     int size2;
 
     size2 = size - 1;
     x = 0;
-    printf("\n\t(simulate next f 2) FUCK YOU %d %d\n", stack[x], x);
 
-    stack = realloc(stack, sizeof(int) * size2 + 1);
+    printf("\n\t(simulate next f 2) FUCK YOU %d %d size %d\n", stack[x], x, size);
+    print_array(stack, size);
+    if (opt)
+        stack = realloc(stack, sizeof(int) * size2 + 1);
     while (size2--)
     {
         stack[x] = stack[x + 1];
@@ -56,14 +58,14 @@ stacks_t pa_funct(stacks_t main)
     {
         main.stackA = malloc(sizeof(int) + 1); // Posso fazer isto?
         main.stackA[0] = number;
-        main.stackB = organize_the_stack(main.stackB, main.sizeB);
+        main.stackB = organize_the_stack(main.stackB, main.sizeB, 0);
         main.sizeA++;
     }
     else
     {
         // printf("\n\tsizeB = %d", main.sizeB);
         main.stackA = push_to_p(main.stackA, &main.sizeA, number);
-        main.stackB = organize_the_stack(main.stackB, main.sizeB);
+        main.stackB = organize_the_stack(main.stackB, main.sizeB, 1);
     }
     main.sizeB--;
     write(1, "pa \n", 5);
@@ -78,6 +80,7 @@ stacks_t pb_funct(stacks_t main)
     
     number = main.stackA[0];
     printf("\n\t(simulate next f 1) WHATT Finished sim next f -> moves  to num \n");
+    print_array(main.stackA, main.sizeA);
 
     if (!main.stackA)
         perror("\n\tIN PB: main stack A esta vazio\n");
@@ -86,9 +89,8 @@ stacks_t pb_funct(stacks_t main)
 
         main.stackB = malloc(sizeof(int) + 1); // Posso fazer isto?
         main.stackB[0] = number;
-        printf("\n\t(simulate next f 2) WHATT Finished sim next f -> moves  to num \n");
-        main.stackA = organize_the_stack(main.stackA, main.sizeA);
-
+        printf("\n\t(pb funct) pb funct size %d number %d\n", main.sizeB, number);
+        main.stackA = organize_the_stack(main.stackA, main.sizeA, 0);
         main.sizeB++;
     }
     else
@@ -97,7 +99,7 @@ stacks_t pb_funct(stacks_t main)
 
         // printf("\n\tsizeB = %d", main.sizeB);
         main.stackB = push_to_p(main.stackB, &main.sizeB, number);
-        main.stackA = organize_the_stack(main.stackA, main.sizeA);
+        main.stackA = organize_the_stack(main.stackA, main.sizeA, 1);
     }
     main.sizeA--;
         printf("\n\t(simulate next f 3) WHATT Finished sim next f -> moves  to num \n");

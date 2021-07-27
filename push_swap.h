@@ -78,7 +78,7 @@ stacks_t    do_not_so_easy_one(stacks_t main);
 stacks_t    pa_funct(stacks_t main);
 stacks_t    pb_funct(stacks_t main);
 int         *push_to_p(int *stack, int *size, int number);
-int         *organize_the_stack(int *stack, int size);
+int         *organize_the_stack(int *stack, int size, int opt);
 
 stacks_t    start_loop(stacks_t main, int *chunks);
 /* cmds2 */
