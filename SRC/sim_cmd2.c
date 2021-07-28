@@ -2,7 +2,7 @@
 
 stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa)
 {
-    printf("\n\t(gen moves 1) done!\n");
+    // printf("\n\t(gen moves 1) done!\n");
 
     while (counter)
     {
@@ -20,7 +20,7 @@ stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa)
             main = rrr_funct(main);
         counter--;
     }
-    printf("\n\t(gen moves 2) done!\n");
+    // printf("\n\t(gen moves 2) done!\n");
     // print_array(main.stackA, main.sizeA);
 
     if (pb_pa == 1)
@@ -28,7 +28,7 @@ stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa)
     else if (pb_pa == 2)
         main = pa_funct(main);
 
-    printf("\n\t(gen moves) donze!\n");
+    // printf("\n\t(gen moves) donze!\n");
     // printf("\n\t(simulate next) CHEGOU AQUI\n");
     // print_stacks(main);
     return (main);

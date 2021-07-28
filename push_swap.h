@@ -35,6 +35,10 @@ typedef struct moves_s
 #define pb 1
 #define pa 1
 
+int	return_best_opt(int *mv, stacks_t temp, int *chunk);
+void    get_pos(stacks_t main, moves_t **cmd);
+
+
 
 void    init_cmd(moves_t **cmd, int i);
 

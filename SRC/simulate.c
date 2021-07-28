@@ -16,13 +16,13 @@ int put_last(stacks_t ***temp, moves_t *cmd)
         if (!cmd->ra)
         {
             ***temp = gen_moves(***temp, 0, 0, 1);
-            printf("\n\t(put last) nra: This amount of moves %d", cmd->rr + pb);
+            // printf("\n\t(put last) nra: This amount of moves %d", cmd->rr + pb);
             return (cmd->rr + pb);
         }
         else
         {
             ***temp = gen_moves(***temp, 0, cmd->ra, 1);
-            printf("\n\t(put last) ra: This amount of moves %d", cmd->rr - cmd->ra + pb);
+            // printf("\n\t(put last) ra: This amount of moves %d", cmd->rr - cmd->ra + pb);
             return (cmd->rr - cmd->ra + pb);
         }
     }
@@ -41,12 +41,12 @@ int put_last(stacks_t ***temp, moves_t *cmd)
 
 int special_cases(stacks_t **temp, moves_t *cmd, int place)
 {
-    printf("\n\t\t(special case)size %d\n", (*temp)->sizeB);
+    // printf("\n\t\t(special case)size %d\n", (*temp)->sizeB);
     // print_stacks(**temp);
     
     if (place == 0)
     {
-        printf("\n\t(special case) Place is 0 ra %d rra %d\n", cmd->ra, cmd->rra);
+        // printf("\n\t(special case) Place is 0 ra %d rra %d\n", cmd->ra, cmd->rra);
         if (cmd->ra)
             **temp = gen_moves(**temp, 0, cmd->ra, 1);
         else if (cmd->rra)
@@ -57,14 +57,14 @@ int special_cases(stacks_t **temp, moves_t *cmd, int place)
         else
             **temp = gen_moves(**temp, 1, 0, 1);
 
-        printf("\n\t(special case) total %d\n", cmd->ra + cmd->rra + pb);
+        // printf("\n\t(special case) total %d\n", cmd->ra + cmd->rra + pb);
         return (cmd->ra + cmd->rra + pb);
     }
     else if (place == (*temp)->sizeB)
     {
         if ((*temp)->sizeB <= 1)
         {
-            printf("\n\t\t Size == 1 \t%d", cmd->ra + cmd->rra + pb);
+            // printf("\n\t\t Size == 1 \t%d", cmd->ra + cmd->rra + pb);
             **temp = gen_moves(**temp, 0, cmd->ra, 0);
             **temp = gen_moves(**temp, 1, cmd->rra, 1);
             return (cmd->ra + cmd->rra + pb);
@@ -76,18 +76,22 @@ int special_cases(stacks_t **temp, moves_t *cmd, int place)
 
 int simulate_num2(stacks_t *temp, moves_t *cmd)
 {
-    init_cmd(&cmd, 1);
+    // init_cmd(&cmd, 1);
 
-    printf("\n\t(simulate num 2) Second simulate stack %d\n\n", cmd->pos_stackb);
+    // printf("\n\tCHECKKKKK THIS 4\n");
+    // print_stacks(*temp);
+
+    // printf("\n\t(simulate num 2) Second simulate stack %d\n\n", cmd->pos_stackb);
     // print_stacks(*temp);
     cmd->total = special_cases(&temp, cmd, cmd->pos_stackb);
-    
-    printf("\n\t(simulate num 2) Second simulate stack %d\n\n", cmd->total);
+    // printf("\n\t(simulate num 2) Second simulate stack %d\n\n", cmd->total);
+    printf("\n\t(simulate num 2) stack -> moves %d to push num %d to B\n", cmd->total, cmd[1].num);
+    // print_stacks(*temp);
     if (cmd->total != 0)
     {
-        printf("\n\t(simulate num 2) total = %d", cmd->total);
-        print_stacks(*temp);
-        sleep(2);
+        // printf("\n\t(simulate num 2) total = %d", cmd->total);
+        // print_stacks(*temp);
+        // sleep(2);
         return (cmd->total);
     }
     else if (cmd->pos_stackb >= temp->sizeB/2)
@@ -105,12 +109,15 @@ int simulate_num1(stacks_t *temp, moves_t *cmd)
     // printf("\n\t(simulate num 1) First simulate stack");
     // print_stacks(*temp);
     cmd->total = special_cases(&temp, cmd, cmd->pos_stackb);
-    printf("\n\t\t (simulate num 1) total after special cases %d\n", cmd->total);
+    // printf("\n\t\t (simulate num 1) total after special cases %d\n", cmd->total);
+    // sleep(2);
+    printf("\n\t(simulate num 1) stack -> moves %d to push num %d B\n", cmd->total, cmd[0].num);
+    // print_stacks(*temp);
     if (cmd->total != 0)
     {
-        printf("\n\t(simulate num 1) total = %d", cmd->total);
-        print_stacks(*temp);
-        sleep(2);
+        // printf("\n\t(simulate num 1) total = %d", cmd->total);
+        // print_stacks(*temp);
+        // sleep(2);
         return (cmd->total);    
     }
     else if (cmd->pos_stackb >= temp->sizeB/2)
