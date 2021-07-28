@@ -101,23 +101,26 @@ int check_four_opt(stacks_t main, int *chunks)
 
     mv[3] = simulate_next_s(temp, chunks, movesss);
     printf("\n\t(check four opt/end ) mv[0] %d mv[1] %d mv[2] %d mv[3] %d\n", mv[0], mv[1], mv[2], mv[3]);
-    
+
+    free(temp.stackA);
+    temp = pass_stacks_to_temp(main);
+
     return(return_best_opt(mv, temp, chunks));     
 }
 // ver tamanho do stackB, e em que index o numero deve ficar, e para que lado e mais rapido
 stacks_t push_chunk_to_b2(stacks_t main, int *chunks)
 {
     int counter;
-    int beg_or_end;
+    int option;
 
     counter = 0;
     while (counter < main.middle_size - 1)
     {
-        beg_or_end = 0;
-        beg_or_end = check_four_opt(main, chunks);
-        printf("\n\t(push chunk to b2) Got out of check four opt %d\n", beg_or_end);
-        if (beg_or_end == 1)
-            beg_or_end = 2; 
+        option = 0;
+        option = check_four_opt(main, chunks);
+        printf("\n\t(push chunk to b2) Got out of check four opt %d\n", option);
+        if (option == 1)
+            option = 2; 
         print_stacks(main);
         counter++;
         sleep(5);

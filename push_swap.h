@@ -30,6 +30,7 @@ typedef struct moves_s
     int num;
     int moves[2];
     int pos_stackb;
+    int opt[];
 } moves_t;
 
 #define pb 1
@@ -37,6 +38,8 @@ typedef struct moves_s
 
 int	return_best_opt(int *mv, stacks_t temp, int *chunk);
 void    get_pos(stacks_t main, moves_t **cmd);
+int check_four_opt(stacks_t main, int *chunks);
+int check_two_opt(stacks_t main, int *chunks);
 
 
 

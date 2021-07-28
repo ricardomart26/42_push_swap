@@ -43,7 +43,6 @@ int special_cases(stacks_t **temp, moves_t *cmd, int place)
 {
     // printf("\n\t\t(special case)size %d\n", (*temp)->sizeB);
     // print_stacks(**temp);
-    
     if (place == 0)
     {
         // printf("\n\t(special case) Place is 0 ra %d rra %d\n", cmd->ra, cmd->rra);
