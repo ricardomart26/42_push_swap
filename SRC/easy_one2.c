@@ -20,7 +20,7 @@ stacks_t pass_stacks_to_temp(stacks_t main)
     int x;
 
 
-    temp.stackA = malloc(sizeof(int) * main.sizeA);
+    temp.stackA = malloc(sizeof(int) * main.sizeA  + 1);
     // printf("\n\tCHECKKKKK THIS 1\n");    
     // print_stacks(main);
     
@@ -50,62 +50,119 @@ stacks_t pass_stacks_to_temp(stacks_t main)
     return (temp);
 }
 
-void    get_pos(stacks_t main, moves_t **cmd)
+moves_t    *get_pos(stacks_t main, moves_t *cmd)
 {
     if (main.sizeB != 0)
     {
-        cmd[0]->pos_stackb = where_to_putnbr2(cmd[0]->num, main.stackB, main.sizeB);
-        cmd[1]->pos_stackb = where_to_putnbr2(cmd[1]->num, main.stackB, main.sizeB);
+        cmd[0].pos_stackb = where_to_putnbr2(cmd[0].num, main.stackB, main.sizeB);
+        cmd[1].pos_stackb = where_to_putnbr2(cmd[1].num, main.stackB, main.sizeB);
     }
     else
     {
-        cmd[0]->pos_stackb = 0;
-        cmd[1]->pos_stackb = 0;
+        
+        cmd[0].pos_stackb = 0;
+        cmd[1].pos_stackb = 0;
     }
     // printf("\n\t(get pos) pos_num[0] %d pos_num[1] %d e ra[0] %d e ra[1] %d", cmd[0].pos_stackb, cmd[1].pos_stackb, cmd[0].ra, cmd[1].rra);
+    return (cmd);
+}
 
+void free_all_stacks_t(stacks_t *main)
+{
+    free(main->stackA);
+    main->stackA = NULL;
+    free(main->stackB);
+    main->stackB = NULL;
+}
+
+void free_all_moves_t(moves_t *cmd)
+{
+    free(cmd);
+    cmd = NULL;
 }
 
 int check_four_opt(stacks_t main, int *chunks)
 {
     moves_t *cmd;
     stacks_t temp;
+
     int movesss;
     int mv[4];
 
-    cmd = malloc(sizeof(moves_t) * 2);
+    cmd = malloc(sizeof(moves_t) * 2 + 1);
     movesss = 0;
 
-    temp = pass_stacks_to_temp(main);
     if ((!closer_to_beginning2(main, chunks, main.sizeA, &cmd[0])))
         perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
     if ((!closer_to_end2(main, chunks, &cmd[1])))
     	perror("\n\n\tCannot find chunk number in stackA\n"); // Encontrar primeiro numero dentro do stackA do final    
-    get_pos(main, &cmd); 
-    movesss = simulate_num1(&temp, &cmd[0]);
-
+    cmd = get_pos(main, cmd);
+    temp = pass_stacks_to_temp(main);
+    movesss = simulate_num1(&temp, cmd[0]);
+    
+    // print_stacks(temp);
+    // sleep(10);
     mv[0] = simulate_next_f(temp, chunks, movesss);
-    printf("\n\t(check four opt/simnf0) Finished simulating the first one of the first %d\n", mv[0]);
+    printf("\n\t(check four opt/simnextf0) Finished simulating the first one of the first %d\n", mv[0]);
 
+    printf("\n\tBEFORE THIS?\n");
     mv[1] = simulate_next_s(temp, chunks, movesss);
-    printf("\n\t(check four opt/simnfs1) Finished simulating the second one of the first %d\n", mv[1]);
+    printf("\n\t(check four opt/simnexts1) Finished simulating the second one of the first %d\n", mv[1]);
 
-    free(temp.stackA);
+    // printf("\n\t.:::WAIT1:::.\n");
+    // print_stacks(temp);
+    // sleep(5);
+
+    free_all_stacks_t(&temp);
     temp = pass_stacks_to_temp(main);
 
-    movesss = simulate_num2(&temp, &cmd[1]);
+    // printf("\n\t.:::WAIT2:::.\n");
+    // print_stacks(temp);
+    // sleep(5);
+    // if ((!closer_to_beginning2(main, chunks, main.sizeA, &cmd[0])))
+    //     perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
+    // if ((!closer_to_end2(main, chunks, &cmd[1])))
+    // 	perror("\n\n\tCannot find chunk number in stackA\n");
+    // printf("\n\tBEFORE THIS?\n");
+    // sleep(5);
+    
+    movesss = simulate_num2(&temp, cmd[1]);
     printf("\n\t(check four opt/simnum2) Finished simulating the simulate_num2 in check4opt %d\n", movesss);
     
     mv[2] = simulate_next_f(temp, chunks, movesss);
     printf("\n\t(check four opt/simnf2) Finished simulating the first one of the sec %d\n", mv[2]);
+    // sleep(5);
 
     mv[3] = simulate_next_s(temp, chunks, movesss);
     printf("\n\t(check four opt/end ) mv[0] %d mv[1] %d mv[2] %d mv[3] %d\n", mv[0], mv[1], mv[2], mv[3]);
+    // sleep(5);
 
-    free(temp.stackA);
+    free_all_stacks_t(&temp);
     temp = pass_stacks_to_temp(main);
 
     return(return_best_opt(mv, temp, chunks));     
+}
+
+
+stacks_t    do_opt(stacks_t main, int *chunks, int option)
+{
+    if (option == 0)
+        main = combo_opt0(main, chunks);
+    else if (option == 1)
+        main = combo_opt1(main, chunks);
+    else if (option == 2)
+        main = combo_opt2(main, chunks);
+    else if (option == 3)
+        main = combo_opt3(main, chunks);
+    else if (option == 4)
+        main = combo_opt4(main, chunks);
+    else if (option == 5)
+        main = combo_opt5(main, chunks);
+    else if (option == 6)
+        main = combo_opt6(main, chunks);
+    
+    return (main);
+
 }
 // ver tamanho do stackB, e em que index o numero deve ficar, e para que lado e mais rapido
 stacks_t push_chunk_to_b2(stacks_t main, int *chunks)
@@ -119,11 +176,12 @@ stacks_t push_chunk_to_b2(stacks_t main, int *chunks)
         option = 0;
         option = check_four_opt(main, chunks);
         printf("\n\t(push chunk to b2) Got out of check four opt %d\n", option);
-        if (option == 1)
-            option = 2; 
+        // exit(0);
+        main = do_opt(main, chunks, option);
         print_stacks(main);
         counter++;
-        sleep(5);
+        printf("\n\t(Finished simloop)\n");
+        sleep(2);
     }
     return (main);
 }

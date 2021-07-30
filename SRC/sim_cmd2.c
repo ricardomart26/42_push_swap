@@ -34,20 +34,20 @@ stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa)
     return (main);
 }
 
-moves_t **rr_sim(moves_t **cmd, int rr, int ra, int rb)
+moves_t *rr_sim(moves_t *cmd, int rr, int ra, int rb)
 {
-    (*cmd)->rr = rr;
-    (*cmd)->ra = ra;
-    (*cmd)->rb = rb;
-    (*cmd)->total = (*cmd)->rr + (*cmd)->ra + (*cmd)->rb;
+    cmd->rr = rr;
+    cmd->ra = ra;
+    cmd->rb = rb;
+    cmd->total = cmd->rr + cmd->ra + cmd->rb;
     return (cmd);
 }
 
-moves_t **rrr_sim(moves_t **cmd, int rrr, int rrb, int rra)
+moves_t *rrr_sim(moves_t *cmd, int rrr, int rrb, int rra)
 {
-    (*cmd)->rrr = rrr;
-    (*cmd)->rrb = rrb;
-    (*cmd)->rra = rra;
-    (*cmd)->total = (*cmd)->rrr + (*cmd)->rra + (*cmd)->rrb;
+    cmd->rrr = rrr;
+    cmd->rrb = rrb;
+    cmd->rra = rra;
+    cmd->total = cmd->rrr + cmd->rra + cmd->rrb;
     return (cmd);
 }

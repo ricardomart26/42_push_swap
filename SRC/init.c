@@ -1,10 +1,10 @@
 #include "../push_swap.h"
 
-void    init_cmd(moves_t **cmd, int i)
+void    init_cmd(moves_t *cmd)
 {
-    cmd[i]->rrb = 0;
-    cmd[i]->rr = 0;
-    cmd[i]->rrr = 0;
+    cmd->rrb = 0;
+    cmd->rr = 0;
+    cmd->rrr = 0;
     
 }
 
