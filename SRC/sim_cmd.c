@@ -2,6 +2,7 @@
 
 int do_rr_top(moves_t *cmd, stacks_t ***temp) // Dont know if it works
 {
+    printf("\n\tCHEGOU AQUI?????\n");
     if (cmd->rb == cmd->ra)
     {
         cmd = rr_sim(cmd, cmd->ra, 0, 0);
@@ -29,6 +30,8 @@ int do_rr_top(moves_t *cmd, stacks_t ***temp) // Dont know if it works
 
 int do_rrr_bottom(moves_t *cmd, stacks_t ***temp)
 {
+    printf("\n\tCHEGOU AQUI????? 2\n");
+
     if (cmd->rrb == cmd->rra)
     {
         cmd = rrr_sim(cmd, cmd->rra, 0, 0);
@@ -57,10 +60,17 @@ int do_rrr_bottom(moves_t *cmd, stacks_t ***temp)
 int move_bottom_of_stack(stacks_t **temp, int place, moves_t cmd)
 {
     int size;
+    printf("\n\tCHEGOU AQUI????? 3\n");
 
-    size = (*temp)->sizeB + 1;
-    // printf("\n\t(move bottom of stack) rra %d size %d", cmd->rra, size);
+    size = (*temp)->sizeB;
+    // printf("\n\t(move bottom of stack)SEE THIS rra %d rrb %d size %d", cmd.rra, cmd.rrb, size);
+    // sleep(2);
     cmd.rrb = size - place;
+    // printf("\n\t(move bottom of stack)SEE THIS rra %d rrb %d size %d", cmd.rra, cmd.rrb, size);
+    // sleep(2);
+    
+    // printf("\n\t(special cases) here? 2\n");
+
     if (cmd.ra)
     {
         **temp = gen_moves(**temp, 0, cmd.ra, 0);
@@ -79,11 +89,11 @@ int move_bottom_of_stack(stacks_t **temp, int place, moves_t cmd)
 
 int move_top_of_stack(stacks_t **temp, int place, moves_t cmd)
 {
-    int size;
-
-    size = (*temp)->sizeB + 1;
     // printf("\n\t(move top of stack) rra %d size %d", cmd->rra, size);
-    cmd.rrb = size - place;
+    cmd.rb = place;
+    printf("\n\tCHEGOU AQUI????? 4\n");
+
+    // printf("\n\t(special cases) here? 3\n");
     if (cmd.rra)
     {
         **temp = gen_moves(**temp, 1, cmd.rra, 0);

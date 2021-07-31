@@ -2,10 +2,8 @@
 
 void    init_cmd(moves_t *cmd)
 {
-    cmd->rrb = 0;
     cmd->rr = 0;
     cmd->rrr = 0;
-    
 }
 
 void    init_struct(stacks_t *main, int ac)

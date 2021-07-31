@@ -26,6 +26,7 @@ stacks_t rb_funct(stacks_t main, int option)
     int x;
     int temp;
 
+    sleep(1);
     temp = main.stackB[0];
     x = 0;
     size = main.sizeB - 1;

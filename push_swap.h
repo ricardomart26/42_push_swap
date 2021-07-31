@@ -17,7 +17,6 @@ typedef struct stacks_s
     int middle_size;
 } stacks_t;
 
-
 typedef struct moves_s
 {
     int ra;
@@ -35,7 +34,7 @@ typedef struct moves_s
 #define pa 1
 
 int	return_best_opt(int *mv, stacks_t temp, int *chunk);
-moves_t    *get_pos(stacks_t main, moves_t *cmd);
+moves_t    *get_pos(stacks_t main, moves_t *cmd, int help);
 int check_four_opt(stacks_t main, int *chunks);
 int check_two_opt(stacks_t main, int *chunks);
 
@@ -43,9 +42,6 @@ stacks_t combo_opt0(stacks_t main, int *chunks);
 stacks_t combo_opt1(stacks_t main, int *chunks);
 stacks_t combo_opt2(stacks_t main, int *chunks);
 stacks_t combo_opt3(stacks_t main, int *chunks);
-stacks_t combo_opt4(stacks_t main, int *chunks);
-stacks_t combo_opt5(stacks_t main, int *chunks);
-stacks_t combo_opt6(stacks_t main, int *chunks);
 
 void    init_cmd(moves_t *cmd);
 
