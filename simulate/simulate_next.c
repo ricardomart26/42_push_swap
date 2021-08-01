@@ -11,9 +11,8 @@ int simulate_next_f(stacks_t temp, int *chunks, int moves)
     if ((!closer_to_beginning2(temp, chunks, temp.sizeA, *(&cmd))))
         perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
 
-    cmd = get_pos(temp, cmd, 0);
+    cmd[0] = get_cmds(temp, cmd[0], temp.sizeB);
 
-    cmd->pos_stackb = where_to_putnbr2(cmd->num, temp.stackB, temp.sizeB);
     // printf("\n\tCHECK THIS CMD NUM %d and place %d\n", cmd.num, cmd.pos_stackb);
     temp2 = pass_stacks_to_temp(temp);
     moves += simulate_num1(&temp2, *cmd);
@@ -31,8 +30,7 @@ int simulate_next_s(stacks_t temp, int *chunks, int moves)
     if ((!closer_to_end2(temp, chunks, *(&cmd))))
     	perror("\n\n\tCannot find chunk number in stackA\n"); // Encontrar primeiro numero dentro do stackA do final
 
-    cmd = get_pos(temp, cmd, 0);
-    cmd->pos_stackb = where_to_putnbr2(cmd->num, temp.stackB, temp.sizeB);
+    cmd[0] = get_cmds(temp, cmd[0], temp.sizeB);
     temp2 = pass_stacks_to_temp(temp);
     // printf("\n\tCHECK THIS CMD NUM %d and place %d\n", cmd.num, cmd.pos_stackb);
     // print_stacks(temp2);

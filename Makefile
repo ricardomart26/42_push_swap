@@ -4,7 +4,7 @@ INCLUDE = -I push_swap.h
 
 LIB = -L ./Libft -l libft.a -static
 
-SRC = $(wildcard SRC/*.c)
+SRC = $(wildcard main/*.c) $(wildcard cmds_and_combos/*.c) $(wildcard utils/*.c) $(wildcard simulate/*.c)
 
 OBJS = $(SRC:.c=.o)
 

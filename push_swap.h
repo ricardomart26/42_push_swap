@@ -33,10 +33,20 @@ typedef struct moves_s
 #define pb 1
 #define pa 1
 
+void    moves_rrb(moves_t *cmd);
+void    moves_rb(moves_t *cmd);
+moves_t    get_cmds(stacks_t main, moves_t cmd, int size);
+
+
 int	return_best_opt(int *mv, stacks_t temp, int *chunk);
-moves_t    *get_pos(stacks_t main, moves_t *cmd, int help);
 int check_four_opt(stacks_t main, int *chunks);
 int check_two_opt(stacks_t main, int *chunks);
+
+stacks_t    do_opt(stacks_t main, int *chunks, int option);
+int real_num2(stacks_t *temp, moves_t cmd);
+int real_num1(stacks_t *temp, moves_t cmd);
+
+
 
 stacks_t combo_opt0(stacks_t main, int *chunks);
 stacks_t combo_opt1(stacks_t main, int *chunks);

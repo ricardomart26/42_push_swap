@@ -22,6 +22,7 @@ void    print_cmds(moves_t *cmd, int i)
     printf("\t**  rra  = %d **\n", cmd[i].rra);
     printf("\t**  rrb  = %d **\n", cmd[i].rrb);
     printf("\t**  rrr  = %d **\n", cmd[i].rrr);
+    printf("\t**  pos B = %d **\n", cmd[i].pos_stackb);
     printf("\t**  total = %d **\n", cmd[i].total);
     printf("\t****************\n");
 }
