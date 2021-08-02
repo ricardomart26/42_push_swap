@@ -76,33 +76,23 @@ stacks_t pa_funct(stacks_t main)
 stacks_t pb_funct(stacks_t main)
 {
     int number;
-    // printf("\n\t(pb_funct) WHATT Finished sim next f -> moves  to num \n");
-    
-    number = main.stackA[0];
-    // printf("\n\t(pb_funct 1) WHATT Finished sim next f -> moves  to num \n");
-    // print_stacks(main);
 
+    number = main.stackA[0];
     if (!main.stackA)
         perror("\n\tIN PB: main stack A esta vazio\n");
     if (main.sizeB == 0)
     {
-
         main.stackB = malloc(sizeof(int) + 1); // Posso fazer isto?
         main.stackB[0] = number;
-        // printf("\n\t(pb funct) pb funct size %d number %d\n", main.sizeB, number);
         main.stackA = organize_the_stack(main.stackA, main.sizeA, 0);
         main.sizeB++;
     }
     else
     {
-        // printf("\n\t(pb_funct 1) WHATT Finished sim next f -> moves  to num \n");
-
-        // printf("\n\tsizeB = %d", main.sizeB);
         main.stackB = push_to_p(main.stackB, &main.sizeB, number);
         main.stackA = organize_the_stack(main.stackA, main.sizeA, 1);
     }
     main.sizeA--;
-    // printf("\n\t(pb_funct END)\n");
 
     write(1, "pb \n", 5);
     return (main);

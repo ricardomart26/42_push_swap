@@ -70,9 +70,11 @@ moves_t *rrr_sim(moves_t *cmd, int rrr, int rrb, int rra);
 moves_t *rr_sim(moves_t *cmd, int rr, int ra, int rb);
 stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa);
 
-int move_bottom_of_stack(stacks_t **temp, int place, moves_t cmd);
-int move_top_of_stack(stacks_t **temp, int place, moves_t cmd);
-int special_cases(stacks_t **temp, moves_t cmd, int place);
+// int move_bottom_of_stack(stacks_t **temp, int place, moves_t cmd);
+// int move_top_of_stack(stacks_t **temp, int place, moves_t cmd);
+int num1(stacks_t **temp, moves_t cmd);
+int num2(stacks_t **temp, moves_t cmd);
+
 int simulate_num1(stacks_t *temp, moves_t cmd);
 
 int closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd);

@@ -57,65 +57,56 @@ int higgest_num(int *stack)
     return (i);
 }
 
-int special_cases(stacks_t **temp, moves_t cmd, int place)
-{
-    // print_stacks(**temp);
-    // print_cmds(&cmd, 0);
-    // sleep(3);
-    if (place == 0)
-    {
-        // if (cmd.num == 21)
-        // {
-            // print_stacks(**temp);
-            // sleep(5);
-            // exit(0);
-        // }
-        if (cmd.ra)
-            **temp = gen_moves(**temp, 0, cmd.ra, 1);
-        else if (cmd.rra)
-            **temp = gen_moves(**temp, 1, cmd.rra, 1);
-        else
-            **temp = gen_moves(**temp, 1, 0, 1);
-        return (cmd.ra + cmd.rra + pb);
-    }
-    else if (place == (*temp)->sizeB && cmd.num != (*temp)->lowest)
-    {
-        if ((*temp)->sizeB <= 1)
-        {
-            **temp = gen_moves(**temp, 0, cmd.ra, 0);
-            **temp = gen_moves(**temp, 1, cmd.rra, 1);
-            return (cmd.ra + cmd.rra + pb);
-        }
-        return (put_last(&temp, cmd));
-    }
-    return (0);
-}
+// int special_cases(stacks_t **temp, moves_t cmd, int place)
+// {
+//     if (place == 0)
+//     {
+//         // if (cmd.num == 21)
+//         // {
+//             // print_stacks(**temp);
+//             // sleep(5);
+//             // exit(0);
+//         // }
+//         if (cmd.ra)
+//             **temp = gen_moves(**temp, 0, cmd.ra, 1);
+//         else if (cmd.rra)
+//             **temp = gen_moves(**temp, 1, cmd.rra, 1);
+//         else
+//             **temp = gen_moves(**temp, 1, 0, 1);
+//         return (cmd.ra + cmd.rra + pb);
+//     }
+//     else if (place == (*temp)->sizeB && cmd.num != (*temp)->lowest)
+//     {
+//         if ((*temp)->sizeB <= 1)
+//         {
+//             **temp = gen_moves(**temp, 0, cmd.ra, 0);
+//             **temp = gen_moves(**temp, 1, cmd.rra, 1);
+//             return (cmd.ra + cmd.rra + pb);
+//         }
+//         return (put_last(&temp, cmd));
+//     }
+//     return (0);
+// }
 
 int simulate_num2(stacks_t *temp, moves_t cmd)
 {
     // init_cmd(&cmd);
-
-    cmd.total = special_cases(&temp, cmd, cmd.pos_stackb);
-    
+    cmd.total = num2(&temp, cmd);
+    // printf("\n\t\n");
     if (cmd.total != 0)
         return (cmd.total);
-    else if (cmd.pos_stackb >= temp->sizeB/2)
-        cmd.total = move_bottom_of_stack(&temp, cmd.pos_stackb, cmd); // Se o i for acima do meio entao tens que fazer rb
-    else if (cmd.pos_stackb <= temp->sizeB/2) // Se o i for acima do meio entao tens que fazer rrb
-        cmd.total = move_top_of_stack(&temp, cmd.pos_stackb, cmd);
-    return (cmd.total);
+    return (0);
+
 }
 
 int simulate_num1(stacks_t *temp, moves_t cmd)
 {
-    // init_cmd(&cmd);
-
-    cmd.total = special_cases(&temp, cmd, cmd.pos_stackb);
+    cmd.total = num1(&temp, cmd);
+    print_stacks(*temp);
+    // sleep(3);
+    // printf("\n\tteste\n");
     if (cmd.total != 0)
         return (cmd.total);
-    else if (cmd.pos_stackb >= temp->sizeB/2)
-        cmd.total = move_bottom_of_stack(&temp, cmd.pos_stackb, cmd); // Se o i for acima do meio entao tens que fazer rb
-    else if (cmd.pos_stackb <= temp->sizeB/2) // Se o i for acima do meio entao tens que fazer rrb
-        cmd.total = move_top_of_stack(&temp, cmd.pos_stackb, cmd);
-    return (cmd.total);
+    return (0);
+
 }

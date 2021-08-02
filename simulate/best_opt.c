@@ -1,25 +1,5 @@
 #include "../push_swap.h"
 
-//	printf("\n\t(sim_1_1)\n");
-
-
-// int	simulate_next_two(stacks_t temp, int *chunks, int moves)
-// {
-//     moves_t *cmd;
-	
-
-// 	cmd = malloc(sizeof(moves_t) + 1);
-
-// 	if ((!closer_to_beginning2(temp, chunks, temp.sizeA, *(&cmd))))
-//         perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-    
-// 	if ((!closer_to_end2(temp, chunks, *(&cmd))))
-//     	perror("\n\n\tCannot find chunk number in stackA\n");
-
-// }
-
-
-
 int check_two_opt(stacks_t temp, int *chunks)
 {
     int movesss;
@@ -27,27 +7,15 @@ int check_two_opt(stacks_t temp, int *chunks)
 
     movesss = 0;
     temp = pass_stacks_to_temp(temp);
-	// if ((!closer_to_beginning2(temp, chunks, temp.sizeA, &cmd[0])))
-    //     perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-    
-	// if ((!closer_to_end2(temp, chunks, &cmd[1])))
-    // 	perror("\n\n\tCannot find chunk number in stackA\n"); // Encontrar primeiro numero dentro do stackA do final    
-    
-	
-	// cmd[0].pos_stackb = where_to_putnbr2(cmd[0].num, temp.stackB, temp.sizeB);
-    // cmd[1].pos_stackb = where_to_putnbr2(cmd[1].num, temp.stackB, temp.sizeB);
-    mv[0] = simulate_next_f(temp, chunks, movesss);
-    // printf("\n\t(check two opt/simnf0) Finished simulating the first one of the first %d\n", mv[0]);
 
+    mv[0] = simulate_next_f(temp, chunks, movesss);
     mv[1] = simulate_next_s(temp, chunks, movesss);
-    // printf("\n\t(check two opt/simnfs1) Finished simulating the second one of the first %d\n", mv[1]);
 
 	if (mv[1] >= mv[0])
 		return (mv[1]);
 	else
 		return (mv[0]);
 }
-
 
 int sim_1_1(stacks_t temp, int *chunks)
 {

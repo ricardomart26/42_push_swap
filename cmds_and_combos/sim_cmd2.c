@@ -2,8 +2,6 @@
 
 stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa)
 {
-    // printf("\n\t(gen moves 1) done!\n");
-
     while (counter)
     {
         if (option == 0)

@@ -1,4 +1,4 @@
-CC = gcc -Wall -Werror -Wextra
+CC = gcc 
 
 INCLUDE = -I push_swap.h
 

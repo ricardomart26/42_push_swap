@@ -2,7 +2,6 @@
 
 void moves_rb(moves_t *cmd)
 {
-    cmd->rb = cmd->pos_stackb;
     if (cmd->ra == cmd->rb)
     {
         cmd->rr = cmd->ra;

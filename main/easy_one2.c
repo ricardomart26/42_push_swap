@@ -101,12 +101,11 @@ moves_t set_b(moves_t cmd, int rb, int rrb)
 {
     cmd.rb = rb;
     cmd.rrb = rrb;
-    if (rb != 0 && cmd.ra != 0)
+    if (cmd.rb != 0 && cmd.ra != 0)
         moves_rb(&cmd);
-    else if (rrb != 0 && cmd.rra != 0)
+    else if (cmd.rrb != 0 && cmd.rra != 0)
         moves_rrb(&cmd);
-    printf("\n\t(set b) rrb %d\n", cmd.rrb);
-    // sleep(2);
+
     return (cmd);
 }
 
@@ -114,6 +113,7 @@ int is_lowest_array(int x, int *array, int size)
 {
     int i;
 
+    i = 0;
     while (array[i] > x && i < size)
         i++;
 
@@ -133,71 +133,66 @@ int place_in_array(int *stack, int num)
     return (i);
 }
 
+moves_t best_way_to_put_nbr_in_stackB(stacks_t main, moves_t cmd, int size)
+{
+    int i;
+    int x;
+
+    x = 0;
+    while (cmd.num > main.stackB[size - 1])
+    {
+        // printf("\n\tcmd.num = %d > stackb last %d\n", cmd.num, main.stackB[size - 1]);
+        // sleep(2);
+        size--;
+        x++;
+    }
+    // printf("\n\tx = %d\n", x);
+    // sleep(3);
+    i = 0;
+    if (x == 0)
+        while (cmd.num < main.stackB[i])
+            i++;
+    // if (i != 0)
+    // {
+    //     printf("\n\ti = %d\n", i);
+    //     sleep(2);
+    // }
+    
+    if (i == 0 && x == 0)
+        cmd = set_b(cmd, 0, 0);
+    else if (i < x)
+        cmd = set_b(cmd, 0, x);
+    else if (i >= x)
+        cmd = set_b(cmd, i, 0);
+    // print_cmds(&cmd, 0);
+    // sleep(5);
+    return (cmd);
+}
+
 moves_t    get_cmds(stacks_t main, moves_t cmd, int size)
 {
     int max;
     int max_place;
-    int i;
 
-    // printf("\n\tsee this size %d\n", size);
     if (size > 1)
     {
         print_stacks(main);
-        // sleep(3);
         cmd.pos_stackb = 0;
         max = biggest_num(main.stackB, size);
-        printf("\n\t(get_cmds)max = %d\n", max);
-        sleep(1);
         max_place = place_in_array(main.stackB, max);
-        printf("\n\t(get_cmds)max_place = %d\n", max_place);
-        sleep(1);
-        printf("\n\t(get_cmds)num = %d\n", cmd.num);
-        sleep(1);
-        if (is_lowest_array(cmd.num, main.stackB, size) && cmd.num > max)
+        if (is_lowest_array(cmd.num, main.stackB, size) || cmd.num > max)
         {
-        
             if (max_place > main.middle_size)
                 cmd = set_b(cmd, 0, size - max_place);
             else if (max_place <= main.middle_size)
                 cmd = set_b(cmd, max_place, 0);
         }
         else
-        {
-            printf("\n\t(get_cmds)ENTROU AQUI\n");
-            i = 0;
-            while (cmd.num > main.stackB[i])
-                i++;
-            if (i == 0)
-            {
-                // printf("\n\t(get_cmds)stackB last %d\n", main.stackB[size - 1]);
-                while (cmd.num > main.stackB[size - 1])
-                {
-                    size--;
-                    i++;
-                }
-                if (i == 0)
-                    cmd = set_b(cmd, 0, 0);
-                else
-                {
-                    // printf
-                    cmd = set_b(cmd, 0, i);
-                }
-            }
-            else
-                cmd = set_b(cmd, i, 0); 
-        }
-        print_cmds(&cmd, 0);
-        // sleep(3);
-        // printf("\n\tWhere to putnbr %d\t\n", cmd.pos_stackb);
-        // if (cmd.pos_stackb > main.middle_size)
-        //     cmd = set_b(cmd, 0, size - cmd.pos_stackb);
-        // else if (cmd.pos_stackb <= main.middle_size)
-        //     cmd = set_b(cmd, cmd.pos_stackb, 0);
+            cmd = best_way_to_put_nbr_in_stackB(main, cmd, size);
         cmd.total = 0;
     }
     else
     {
-        // printf("\n\tENTROU AQUI\n");
         cmd.pos_stackb = 0;
         cmd.rb = 0;
         cmd.rrb = 0;
@@ -212,8 +207,12 @@ void free_all_stacks_t(stacks_t *main)
 {
     free(main->stackA);
     main->stackA = NULL;
-    free(main->stackB);
-    main->stackB = NULL;
+    if (main->sizeB)
+    {
+        free(main->stackB);
+        main->stackB = NULL;
+    }
+        
 }
 
 void free_all_moves_t(moves_t *cmd)
@@ -231,7 +230,6 @@ int check_four_opt(stacks_t main, int *chunks)
 
     cmd = malloc(sizeof(moves_t) * 2 + 1);
     movesss = 0;
-
     if ((!closer_to_beginning2(main, chunks, main.sizeA, &cmd[0])))
         perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
     if ((!closer_to_end2(main, chunks, &cmd[1])))
@@ -248,22 +246,19 @@ int check_four_opt(stacks_t main, int *chunks)
     mv[1] = simulate_next_s(temp, chunks, movesss);
 
     printf("\n\t**********FINISH NUM 1!**********\n");
-    // sleep(2);
-    free_all_stacks_t(&temp);
 
+    free_all_stacks_t(&temp);
     temp = pass_stacks_to_temp(main);
+
     cmd[1] = get_cmds(main, cmd[1], main.sizeB);
-    print_cmds(cmd, 1);
-    // sleep(2);
+    // print_cmds(cmd, 1);
     movesss = simulate_num2(&temp, cmd[1]);
-    printf("\n\t1\n");
     mv[2] = simulate_next_f(temp, chunks, movesss);
-    printf("\n\t2\n");    
     mv[3] = simulate_next_s(temp, chunks, movesss);
     
     printf("\n\t**********FINISH NUM 2!**********\n");
-    // sleep(2);
-    // printf("\n\t(check four opt/end ) mv[0] %d mv[1] %d mv[2] %d mv[3] %d\n", mv[0], mv[1], mv[2], mv[3]);
+
+    printf("\n\t(check four opt/end ) mv[0] %d mv[1] %d mv[2] %d mv[3] %d\n", mv[0], mv[1], mv[2], mv[3]);
     // sleep(3);
     free_all_stacks_t(&temp);
     temp = pass_stacks_to_temp(main);
@@ -292,7 +287,7 @@ stacks_t push_chunk_to_b2(stacks_t main, int *chunks)
         print_stacks(main);
         counter += 2;
 
-        sleep(5);
+        sleep(3);
     }
     return (main);
 }
