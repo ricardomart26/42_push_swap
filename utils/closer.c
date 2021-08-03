@@ -69,21 +69,26 @@ int closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd)
 {
     int i;
     int x;
+    int size1;
 
     i = 0;
     while (size--)
     {
         x = 0;
-        while (main.stackA[i] != chunk[x] && x + 1 < main.middle_size)
+        while (main.stackA[i] != chunk[x] && x < main.size_chunk)
+        {
+            printf("\n\tchunk[%d] %d\n", x, chunk[x]);
             x++;
-        if (x + 1 == main.middle_size)
+        }
+        if (x == main.size_chunk)
             i++;
         else
         {
             cmd->ra = i;
 			cmd->rra = 0;
             cmd->num = main.stackA[i];
-            // printf("\n\t(find closer to beginning) stack[%d] %d\n", i, main.stackA[i]);
+            printf("\n\t(find closer to beginning) stack[%d] %d\n", i, main.stackA[i]);
+            // sleep(2);
             break;
         }
     }
@@ -101,7 +106,7 @@ int closer_to_end2(stacks_t main, int *chunk, moves_t *cmd)
     while (size)
     {
         x = 0;
-        while (main.stackA[size] != chunk[x] && x < size)
+        while (main.stackA[size] != chunk[x] && x < main.size_chunk)
             x++;
         if (x == size)
             size--;

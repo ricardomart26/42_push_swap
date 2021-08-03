@@ -66,17 +66,20 @@ stacks_t rra_funct(stacks_t main, int option)
     return (main);
 }
 
+static int i = 0;
 
 stacks_t rrb_funct(stacks_t main, int option)
 {
     int size;
     int last;
-
+    i++;
     last = main.stackB[main.sizeB - 1];
     size = main.sizeB;
     while (size--)
         main.stackB[size] = main.stackB[size - 1];
     main.stackB[0] = last;
+    if (i == 20)
+        exit(0);
     if (option)
         write(1, "rrb \n", 6);
     return (main);

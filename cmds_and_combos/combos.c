@@ -7,7 +7,10 @@ stacks_t *do_rotate_x_times(stacks_t *main, int times, int option)
             *main = rra_funct(*main, 1);
     else if (option == 1)
         while (times--)
+        {
+            exit(0);
             *main = rrb_funct(*main, 1);
+        }
     if (option == 2)
         while (times--)
             *main = ra_funct(*main, 1);
@@ -74,7 +77,10 @@ stacks_t *combo2(stacks_t *main)
         main = do_rotate_x_times(main, cmd.ra, 4);
     *main = pb_funct(*main);
     while (main->stackB[main->sizeB - 1] != temp)
+    {
+        exit(0);
         *main = rrb_funct(*main, 1);
+    }
     // printf("\n\t(combo2 b) fourt pb\n");
     // printf("combo2");
     return (main);

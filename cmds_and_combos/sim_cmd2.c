@@ -2,6 +2,8 @@
 
 stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa)
 {
+    // if (counter > 20)
+    //     sleep(20);
     while (counter)
     {
         if (option == 0)

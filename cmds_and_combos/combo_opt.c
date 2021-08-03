@@ -15,8 +15,8 @@ stacks_t combo_opt0(stacks_t main, int *chunks)
         perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
 
     cmd[0] = get_cmds(main, cmd[0], main.sizeB);
-
     real_num1(&main, *cmd);
+
     return (main);    
 }
 
@@ -32,9 +32,10 @@ stacks_t combo_opt1(stacks_t main, int *chunks)
         perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
     
     cmd[0] = get_cmds(main, cmd[0], main.sizeB);
+    real_num1(&main, cmd[0]);
+    
     cmd[1] = get_cmds(main, cmd[1], main.sizeB);
     
-    real_num1(&main, cmd[0]);
     real_num2(&main, cmd[1]);
 
     return (main);
@@ -51,9 +52,9 @@ stacks_t combo_opt2(stacks_t main, int *chunks)
         perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
     
     cmd[0] = get_cmds(main, cmd[0], main.sizeB);
-    cmd[1] = get_cmds(main, cmd[1], main.sizeB);
-    
     real_num1(&main, cmd[0]);
+    
+    cmd[1] = get_cmds(main, cmd[1], main.sizeB);
     real_num2(&main, cmd[1]);
 
     return (main);

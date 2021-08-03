@@ -92,6 +92,9 @@ int simulate_num2(stacks_t *temp, moves_t cmd)
 {
     // init_cmd(&cmd);
     cmd.total = num2(&temp, cmd);
+    // printf("\n\t simulate second\n");
+    // print_stacks(*temp);
+    // sleep(3);
     // printf("\n\t\n");
     if (cmd.total != 0)
         return (cmd.total);
@@ -102,7 +105,8 @@ int simulate_num2(stacks_t *temp, moves_t cmd)
 int simulate_num1(stacks_t *temp, moves_t cmd)
 {
     cmd.total = num1(&temp, cmd);
-    print_stacks(*temp);
+    // printf("\n\t simulate first\n");
+    // print_stacks(*temp);
     // sleep(3);
     // printf("\n\tteste\n");
     if (cmd.total != 0)

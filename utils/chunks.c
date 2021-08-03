@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-void    get_attr_chunks(int **chunks, int sizeA, int *org)
+int    get_attr_chunks(int **chunks, int sizeA, int *org)
 {
     int i;
 
@@ -13,4 +13,5 @@ void    get_attr_chunks(int **chunks, int sizeA, int *org)
         org++;
     }
     (*chunks)[i] = '\0';
+    return (sizeA);
 }

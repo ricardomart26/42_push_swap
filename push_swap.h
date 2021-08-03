@@ -10,6 +10,7 @@ typedef struct stacks_s
     int *stackA;
     int *stackB;
     int sizeA;
+    int size_chunk;
     int sizeB;
     int ac;
     int lowest;
@@ -127,7 +128,7 @@ stacks_t *combo2(stacks_t *main);
 void    init_struct(stacks_t *main, int ac);
 
 void    print_stacks(stacks_t main);
-void    get_attr_chunks(int **chunks, int sizeA, int *org);
+int    get_attr_chunks(int **chunks, int sizeA, int *org);
 int *organize_array(int *stack, int size);
 
 #endif
