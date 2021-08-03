@@ -77,17 +77,26 @@ int closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd)
         x = 0;
         while (main.stackA[i] != chunk[x] && x < main.size_chunk)
         {
-            printf("\n\tchunk[%d] %d\n", x, chunk[x]);
+            // printf("\n\tchunk[%d] %d\n", x, chunk[x]);
+            // sleep(2);
             x++;
         }
         if (x == main.size_chunk)
+        {
+            // printf("\n\tNot in chunk stackA[%d] %d\n", i, main.stackA[i]);
+            // sleep(2);
             i++;
+        }
         else
         {
             cmd->ra = i;
 			cmd->rra = 0;
             cmd->num = main.stackA[i];
-            printf("\n\t(find closer to beginning) stack[%d] %d\n", i, main.stackA[i]);
+            if (cmd->num > 513)
+            {
+                printf("\n\tnum %d and why?\n");
+            }
+            // printf("\n\t(find closer to beginning) stack[%d] %d\n", i, main.stackA[i]);
             // sleep(2);
             break;
         }
@@ -108,15 +117,21 @@ int closer_to_end2(stacks_t main, int *chunk, moves_t *cmd)
         x = 0;
         while (main.stackA[size] != chunk[x] && x < main.size_chunk)
             x++;
-        if (x == size)
+        if (x == main.size_chunk)
             size--;
         else
         {
-			cmd->rra = main.sizeA - size;
+            printf("\n\tchunk %d\n", main.size_chunk);
+            sleep(2);
+			cmd->rra = main.size_chunk - size;
 			cmd->ra = 0;
             cmd->num = main.stackA[size];
+            if (cmd->num > 513)
+            {
+                printf("\n\tnum %d and why?\n");
+            }
             // printf("\t(find closer to end) 3 stack[%d] %d\n", main.sizeA - size, main.stackA[size]);
-            // sleep(5);
+            // sleep(2);
             return (size);
         }
     }

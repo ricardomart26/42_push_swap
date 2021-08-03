@@ -102,7 +102,15 @@ int num1(stacks_t **temp, moves_t cmd)
     // sleep(2);
     if (cmd.rr && !cmd.ra && !cmd.rb)
     {
+        
         **temp = gen_moves(**temp, 4, cmd.rr, 1);
+        if ((*temp)->stackB[0] > 513)
+        {
+            print_stacks(**temp);
+            print_cmds(&cmd, 0);
+            printf("\n\tO suposto e ser este numero %d\n", cmd.num);
+            sleep(3);
+        }
         return(cmd.rr + pb);
     }
     else if (cmd.rr)
@@ -111,6 +119,13 @@ int num1(stacks_t **temp, moves_t cmd)
         **temp = gen_moves(**temp, 0, cmd.ra, 0);
         **temp = gen_moves(**temp, 2, cmd.rb, 0);
         **temp = gen_moves(**temp, 3, cmd.rrb, 1);
+        if ((*temp)->stackB[0] > 513)
+        {
+            print_stacks(**temp);
+            print_cmds(&cmd, 0);
+            printf("\n\tO suposto e ser este numero %d\n", cmd.num);
+            sleep(3);
+        }
         return (cmd.rr + cmd.ra + cmd.rb + cmd.rrb + pb);
     }
     else if (!cmd.rr)
@@ -120,6 +135,13 @@ int num1(stacks_t **temp, moves_t cmd)
         **temp = gen_moves(**temp, 2, cmd.rb, 0);
         **temp = gen_moves(**temp, 3, cmd.rrb, 0);
         **temp = pb_funct(**temp);
+        if ((*temp)->stackB[0] > 513)
+        {
+            print_stacks(**temp);
+            print_cmds(&cmd, 0);
+            printf("\n\tO suposto e ser este numero %d\n", cmd.num);
+            sleep(3);
+        }
         // printf("\n\tteste 3\n");
         // print_stacks(**temp);
         // sleep(3);
@@ -135,6 +157,13 @@ int num2(stacks_t **temp, moves_t cmd)
     if (cmd.rrr && !cmd.rra && !cmd.rrb)
     {
         **temp = gen_moves(**temp, 5, cmd.rrr, 1);
+        if ((*temp)->stackB[0] > 513)
+        {
+            print_stacks(**temp);
+            print_cmds(&cmd, 0);
+            printf("\n\tO suposto e ser este numero %d\n", cmd.num);
+            sleep(3);
+        }
         return(cmd.rrr + pb);
     }
     else if (cmd.rrr)
@@ -143,6 +172,13 @@ int num2(stacks_t **temp, moves_t cmd)
         **temp = gen_moves(**temp, 1, cmd.rra, 0);
         **temp = gen_moves(**temp, 3, cmd.rrb, 0);
         **temp = gen_moves(**temp, 2, cmd.rb, 1);
+        if ((*temp)->stackB[0] > 513)
+        {
+            print_stacks(**temp);
+            print_cmds(&cmd, 0);
+            printf("\n\tO suposto e ser este numero %d\n", cmd.num);
+            sleep(3);
+        }
         return (cmd.rrr + cmd.rra + cmd.rb + cmd.rrb + pb);
     }
     else if (!cmd.rrr)
@@ -150,6 +186,13 @@ int num2(stacks_t **temp, moves_t cmd)
         **temp = gen_moves(**temp, 1, cmd.rra, 0);
         **temp = gen_moves(**temp, 2, cmd.rb, 0);
         **temp = gen_moves(**temp, 3, cmd.rrb, 1);
+        if ((*temp)->stackB[0] > 513)
+        {
+            print_stacks(**temp);
+            print_cmds(&cmd, 0);
+            printf("\n\tO suposto e ser este numero %d\n", cmd.num);
+            sleep(3);
+        }
         return (cmd.rra + cmd.rb + cmd.rrb + pb);
     }
     return (0);

@@ -38,6 +38,10 @@ void    moves_rrb(moves_t *cmd);
 void    moves_rb(moves_t *cmd);
 moves_t    get_cmds(stacks_t main, moves_t cmd, int size);
 
+moves_t place_to_put_nbr(stacks_t main, moves_t cmd, int size);
+
+
+void free_all_stacks_t(stacks_t *main);
 
 int	return_best_opt(int *mv, stacks_t temp, int *chunk);
 int check_four_opt(stacks_t main, int *chunks);
@@ -46,6 +50,10 @@ int check_two_opt(stacks_t main, int *chunks);
 stacks_t    do_opt(stacks_t main, int *chunks, int option);
 int real_num2(stacks_t *temp, moves_t cmd);
 int real_num1(stacks_t *temp, moves_t cmd);
+
+int place_in_array(int *stack, int num);
+int is_lowest_array(int x, int *array, int size);
+int biggest_num(int *stack, int size);
 
 
 

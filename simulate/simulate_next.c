@@ -1,5 +1,6 @@
 #include "../push_swap.h"
 
+
 int simulate_next_f(stacks_t temp, int *chunks, int moves)
 {
     moves_t *cmd;
