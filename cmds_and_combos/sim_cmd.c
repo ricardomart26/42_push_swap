@@ -192,7 +192,7 @@ int num2(stacks_t **temp, moves_t cmd)
             print_cmds(&cmd, 0);
             printf("\n\tO suposto e ser este numero %d\n", cmd.num);
             sleep(3);
-        }
+        } 
         return (cmd.rra + cmd.rb + cmd.rrb + pb);
     }
     return (0);
