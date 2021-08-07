@@ -30,6 +30,12 @@ stacks_t pass_stacks_to_temp(stacks_t main)
     return (temp);
 }
 
+void    free_all_cmd(moves_t **cmd)
+{
+    free(cmd[0]);
+    free(cmd[1]);
+}
+
 int check_four_opt(stacks_t main, int *chunks)
 {
     moves_t *cmd;
@@ -39,50 +45,22 @@ int check_four_opt(stacks_t main, int *chunks)
 
     cmd = malloc(sizeof(moves_t) * 2 + 1);
     movesss = 0;
-
-    printf("\n\t(check four opt) getting first number stats\n");
-    if ((!closer_to_beginning2(main, chunks, main.size_chunk, &cmd[0])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-    printf("\n\t(check four opt) getting second number stats\n");
-    
-    if ((!closer_to_end2(main, chunks, &cmd[1])))
-    	perror("\n\n\tCannot find chunk number in stackA\n"); // Encontrar primeiro numero dentro do stackA do final    
     
     temp = pass_stacks_to_temp(main);
     
-    printf("\n\t(check four opt) Getting comands for first num...\n");
-    sleep(2);
-    cmd[0] = get_cmds(main, cmd[0], temp.sizeB);
-    printf("\n\t(check four opt) cmds for first num...\n");
-    sleep(1);
-    print_stacks(main);
-    print_cmds(cmd, 1);
-    sleep(3);
-
-    printf("\n\t(check four opt)\n");
-    movesss = simulate_num1(&temp, cmd[0]);
-    mv[0] = simulate_next_f(temp, chunks, movesss);
+    movesss = simulate_num1(&temp, cmd[0], chunks, 1);
+    mv[0] = simulate_next_f(temp, chunks, movesss, 0);
     
-    mv[1] = simulate_next_s(temp, chunks, movesss);
+    mv[1] = simulate_next_s(temp, chunks, movesss, 0);
 
     printf("\n\t**********FINISH NUM 1!**********\n");
 
     free_all_stacks_t(&temp);
     temp = pass_stacks_to_temp(main);
-
-    printf("\n\t(check four opt) Getting commands for second num...\n");
-    sleep(2);
-    cmd[1] = get_cmds(main, cmd[1], temp.sizeB);
-    printf("\n\t(check four opt) cmds for second num...\n");
-    sleep(1);
-    print_stacks(main);
-    print_cmds(cmd, 1);
-    sleep(3);
     
-    printf("\n\t(check four opt)Simulating second num\n");
-    movesss = simulate_num2(&temp, cmd[1]);
-    mv[2] = simulate_next_f(temp, chunks, movesss);
-    mv[3] = simulate_next_s(temp, chunks, movesss);
+    movesss = simulate_num2(&temp, cmd[1], chunks, 1);
+    mv[2] = simulate_next_f(temp, chunks, movesss, 1);
+    mv[3] = simulate_next_s(temp, chunks, movesss, 1);
     
     printf("\n\t**********FINISH NUM 2!**********\n");
 
@@ -91,6 +69,7 @@ int check_four_opt(stacks_t main, int *chunks)
 
     free_all_stacks_t(&temp);
     temp = pass_stacks_to_temp(main);
+    // free_all_cmd(&cmd);
     return(return_best_opt(mv, temp, chunks));     
 }
 
@@ -101,7 +80,7 @@ stacks_t push_chunk_to_b2(stacks_t main, int *chunks)
     int option;
 
     counter = 0;
-    while (counter < main.middle_size - 1)
+    while (counter < main.size_chunk - 1)
     {
         option = 0;
         option = check_four_opt(main, chunks);

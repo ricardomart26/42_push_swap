@@ -43,7 +43,7 @@ int biggest_num(int *stack, int size)
     {
         while (temp > stack[i] && i < size - 1)
         {
-            printf("\n\ttemp %d stack[%d + 1] %d\n", temp, i, stack[i]);
+            // printf("\n\ttemp %d stack[%d + 1] %d\n", temp, i, stack[i]);
             // sleep(1);
             i++;
         }

@@ -19,9 +19,15 @@ moves_t place_to_put_nbr(stacks_t main, moves_t cmd, int size)
     int temp;
 
     diff = 0;
-    if (main.sizeB > 1)
+    i = 0;
+    while (i < size)
     {
-        while (i < size)
+        if (cmd.num > main.stackB[0] && cmd.num < main.stackB[size - 1] && i == 0)
+        {
+            cmd.pos_stackb = 0;
+            break;
+        }
+        else
         {
             if (main.stackB[i] > cmd.num)
                 temp = main.stackB[i] - cmd.num;   
@@ -31,19 +37,23 @@ moves_t place_to_put_nbr(stacks_t main, moves_t cmd, int size)
                 diff = temp;
             else if (temp < diff)
             {
-                cmd.pos_stackb = i;
-                
-                temp = diff;
-            }   
+                // printf("\n\t(place to put nbr) place %d && temp  %d && diff of %d and %d = %d\n", i, temp, cmd.num, main.stackB[i], diff);
+                // sleep(3);
+                if (main.stackB[i] > cmd.num)
+                    cmd.pos_stackb = i + 1;   
+                else if (main.stackB[i] < cmd.num)
+                    cmd.pos_stackb = i;
+                diff = temp;
+            }
             i++;
         }
     }
-    printf("\n\t(place to put nbr) num %d place %d lowest diff num %d\n", cmd.num, cmd.pos_stackb, main.stackB[cmd.pos_stackb]);
-    if (cmd.pos_stackb > main.middle_size)
+    // printf("\n\t(place to put nbr) num %d place %d lowest diff num %d\n", cmd.num, cmd.pos_stackb, main.stackB[cmd.pos_stackb]);
+    // sleep(3);
+    if (cmd.pos_stackb > main.sizeB/2)
         cmd = set_b(cmd, 0, size - cmd.pos_stackb);
-    else if (cmd.pos_stackb < main.middle_size)
+    else if (cmd.pos_stackb <= main.sizeB/2)
         cmd = set_b(cmd, cmd.pos_stackb, 0);
-
     return (cmd);
 }   
 
@@ -51,30 +61,48 @@ moves_t    get_cmds(stacks_t main, moves_t cmd, int size)
 {
     int max;
     int max_place;
+    int option = 0;
 
+    if (cmd.num == 546)
+    {
+        printf("\n\tNUMERO 546 %d\n", cmd.num);
+        sleep(2);
+        option = 1;
+    }
     if (size > 1)
     {
-        print_stacks(main);
-        cmd.pos_stackb = 0;
         max = biggest_num(main.stackB, size);
         max_place = place_in_array(main.stackB, max);
-
-        print_stacks(main);
-        printf("\n\tmax place %d max %d\n", max_place, max);
-        sleep(3);
+        printf("\n\tmax %d and max_place %d size - 1 %d\n", max, max_place, size - 1);
+        // print_stacks(main);
+        // sleep(2);
         if (is_lowest_array(cmd.num, main.stackB, size) || cmd.num > max)
         {
-            if (max_place == 0)
+            if (option == 1)
+            {
+                printf("\n\tCHEGOU AQUI? %d\n", cmd.num);
+                sleep(2);
+            }
+            if (cmd.num <= max)
+            {
+                if (max_place > main.sizeB/2)
+                    cmd = set_b(cmd, 0, size - max_place);
+                else if (max_place <= main.sizeB/2)
+                    cmd = set_b(cmd, max_place, 0);
+            }
+            else if (max_place == 0)
                 set_b(cmd, 0, 0);
-            else if (max_place > main.middle_size)
-                cmd = set_b(cmd, 0, size - max_place);
-            else if (max_place <= main.middle_size)
+            else if (max_place == size - 1 && cmd.num > max)
+            {
+                printf("\n\tENTROU AQUI? %d\n", cmd.num);
+                print_stacks(main);
+                sleep(5);
+                set_b(cmd, 0, 1);
+            }
+            else if (max_place > main.sizeB/2)
+                cmd = set_b(cmd, 0, size - max_place + 1);
+            else if (max_place <= main.sizeB/2)
                 cmd = set_b(cmd, max_place, 0);
-            
-            // printf("\n\t(get_cmds) after setting the comands, lowest or higgest %d\n", cmd.num);
-            // print_cmds(&cmd, 0);
-            // print_stacks(main);
-            // sleep(8);
         }
         else
             cmd = place_to_put_nbr(main, cmd, main.sizeB);

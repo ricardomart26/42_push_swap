@@ -8,8 +8,8 @@ int check_two_opt(stacks_t temp, int *chunks)
     movesss = 0;
     temp = pass_stacks_to_temp(temp);
 
-    mv[0] = simulate_next_f(temp, chunks, movesss);
-    mv[1] = simulate_next_s(temp, chunks, movesss);
+    mv[0] = simulate_next_f(temp, chunks, movesss, 2);
+    mv[1] = simulate_next_s(temp, chunks, movesss, 2);
 
 	if (mv[1] >= mv[0])
 		return (mv[1]);
@@ -22,18 +22,11 @@ int sim_1_1(stacks_t temp, int *chunks)
 	int moves;
     moves_t *cmd;
 
-	cmd = malloc(sizeof(moves_t) + 1);
-	if ((!closer_to_beginning2(temp, chunks, temp.sizeA, *(&cmd))))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
+	cmd = malloc(sizeof(moves_t) * 2 + 1);
 
-    cmd[0] = get_cmds(temp, cmd[0], temp.sizeB);
-	moves = simulate_num1(&temp, cmd[0]);
+	moves = simulate_num1(&temp, cmd[0], chunks, 2);
 
-	if ((!closer_to_beginning2(temp, chunks, temp.sizeA, *(&cmd))))
-        perror("\n\n\tCannot find first number in chunk\n");
-
-    cmd[0] = get_cmds(temp, cmd[0], temp.sizeB);
-	moves += simulate_num1(&temp, cmd[0]);
+	moves += simulate_num1(&temp, cmd[1], chunks, 2);
 
 	moves += check_two_opt(temp, chunks);
 	
@@ -46,17 +39,9 @@ int sim_1_2(stacks_t temp, int *chunks)
     moves_t *cmd;
 
 	cmd = malloc(sizeof(moves_t) * 2  + 1);
-	if ((!closer_to_beginning2(temp, chunks, temp.sizeA, &cmd[0])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
 
-	if ((!closer_to_end2(temp, chunks, &cmd[1])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-
-    cmd[0] = get_cmds(temp, cmd[0], temp.sizeB);
-    cmd[1] = get_cmds(temp, cmd[1], temp.sizeB);
-	
-	moves = simulate_num1(&temp, cmd[0]);
-	moves = simulate_num2(&temp, cmd[1]);
+	moves = simulate_num1(&temp, cmd[0], chunks, 2);
+	moves = simulate_num2(&temp, cmd[1], chunks, 2);
 
 	moves += check_two_opt(temp, chunks);
 	return (moves);
@@ -67,18 +52,10 @@ int sim_2_1(stacks_t temp, int *chunks)
 	int moves;
     moves_t *cmd;
 
-	cmd = malloc(sizeof(moves_t) * 2  + 1);
-	if ((!closer_to_beginning2(temp, chunks, temp.sizeA, *(&cmd))))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
+	cmd = malloc(sizeof(moves_t) * 2 + 1);
 
-	if ((!closer_to_end2(temp, chunks, &cmd[1])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-
-    cmd[0] = get_cmds(temp, cmd[0], temp.sizeB);
-    cmd[1] = get_cmds(temp, cmd[1], temp.sizeB);
-
-	moves = simulate_num2(&temp, cmd[1]);
-	moves = simulate_num1(&temp, cmd[0]);
+	moves = simulate_num2(&temp, cmd[1], chunks, 2);
+	moves = simulate_num1(&temp, cmd[0], chunks, 2);
 
 	moves += check_two_opt(temp, chunks);
 	
@@ -90,18 +67,10 @@ int sim_2_2(stacks_t temp, int *chunks)
 	int moves;
     moves_t *cmd;
 
-	cmd = malloc(sizeof(moves_t) + 1);
-	if ((!closer_to_end2(temp, chunks, *(&cmd))))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
+	cmd = malloc(sizeof(moves_t) * 2 + 1);
 
-    cmd[0] = get_cmds(temp, cmd[0], temp.sizeB);
-    moves = simulate_num2(&temp, cmd[0]);
-
-	if ((!closer_to_end2(temp, chunks, *(&cmd))))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-
-    cmd[0] = get_cmds(temp, cmd[0], temp.sizeB);
-	moves = simulate_num2(&temp, cmd[0]);
+    moves = simulate_num2(&temp, cmd[0], chunks, 2);
+	moves = simulate_num2(&temp, cmd[1], chunks, 2);
 
 	moves += check_two_opt(temp, chunks);	
 	return (moves);

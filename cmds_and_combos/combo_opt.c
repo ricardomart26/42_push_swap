@@ -4,19 +4,12 @@ stacks_t combo_opt0(stacks_t main, int *chunks)
 {
     moves_t *cmd;
 
-    cmd = malloc(sizeof(moves_t) + 1);
-    if ((!closer_to_beginning2(main, chunks, main.sizeA, &cmd[0])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-    
-    cmd[0] = get_cmds(main, cmd[0], main.sizeB);
-    real_num1(&main, *cmd);
+    cmd = malloc(sizeof(moves_t) * 2 + 1);
 
-    if ((!closer_to_beginning2(main, chunks, main.sizeA, &cmd[0])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
+    real_num1(&main, cmd[0], chunks);
+    real_num1(&main, cmd[1], chunks);
 
-    cmd[0] = get_cmds(main, cmd[0], main.sizeB);
-    real_num1(&main, *cmd);
-
+    free(cmd);
     return (main);    
 }
 
@@ -26,18 +19,10 @@ stacks_t combo_opt1(stacks_t main, int *chunks)
 
     cmd = malloc(sizeof(moves_t) * 2 + 1);
 
-    if ((!closer_to_beginning2(main, chunks, main.sizeA, &cmd[0])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-    if ((!closer_to_end2(main, chunks, &cmd[1])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-    
-    cmd[0] = get_cmds(main, cmd[0], main.sizeB);
-    real_num1(&main, cmd[0]);
-    
-    cmd[1] = get_cmds(main, cmd[1], main.sizeB);
-    
-    real_num2(&main, cmd[1]);
+    real_num1(&main, cmd[0], chunks);
+    real_num2(&main, cmd[1], chunks);
 
+    free(cmd);
     return (main);
 }
 
@@ -46,17 +31,11 @@ stacks_t combo_opt2(stacks_t main, int *chunks)
     moves_t *cmd;
 
     cmd = malloc(sizeof(moves_t) * 2 + 1);
-    if ((!closer_to_beginning2(main, chunks, main.sizeA, &cmd[0])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-    if ((!closer_to_end2(main, chunks, &cmd[1])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
     
-    cmd[0] = get_cmds(main, cmd[0], main.sizeB);
-    real_num1(&main, cmd[0]);
-    
-    cmd[1] = get_cmds(main, cmd[1], main.sizeB);
-    real_num2(&main, cmd[1]);
+    real_num1(&main, cmd[0], chunks);
+    real_num2(&main, cmd[1], chunks);
 
+    free(cmd);
     return (main);
 }
 
@@ -64,18 +43,11 @@ stacks_t combo_opt3(stacks_t main, int *chunks)
 {
     moves_t *cmd;
 
-    cmd = malloc(sizeof(moves_t) + 1);
-    if ((!closer_to_end2(main, chunks, &cmd[0])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
+    cmd = malloc(sizeof(moves_t) * 2 + 1);
     
-    cmd[0] = get_cmds(main, cmd[0], main.sizeB);
-    real_num2(&main, *cmd);
+    real_num2(&main, cmd[0], chunks);
+    real_num2(&main, cmd[1], chunks);
 
-    if ((!closer_to_end2(main, chunks, &cmd[0])))
-        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-
-    cmd[0] = get_cmds(main, cmd[0], main.sizeB);
-    real_num2(&main, *cmd);
-
+    free(cmd);
     return (main);
 }

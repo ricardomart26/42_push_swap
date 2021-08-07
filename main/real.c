@@ -1,26 +1,31 @@
 #include "../push_swap.h"
 
 
-int real_num2(stacks_t *temp, moves_t cmd)
+int real_num2(stacks_t *temp, moves_t cmd, int *chunk)
 {
+    if ((!closer_to_end2(*temp, chunk, &cmd)))
+        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
+    
+    cmd = get_cmds(*temp, cmd, temp->sizeB);
+    
     cmd.total = num2(&temp, cmd);
-    if (cmd.total != 0)
-        return (cmd.total);
-    return (0);
+    return (cmd.total);
 }
 
-int real_num1(stacks_t *temp, moves_t cmd)
+int real_num1(stacks_t *temp, moves_t cmd, int *chunk)
 {
-    cmd.total = num1(&temp, cmd);
-    if (cmd.total != 0)
-        return (cmd.total);
-    return (0);
+    if ((!closer_to_beginning2(*temp, chunk, temp->sizeA, &cmd)))
+        perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
 
+    cmd = get_cmds(*temp, cmd, temp->sizeB);
+
+    cmd.total = num1(&temp, cmd);
+    return (cmd.total);
 }
 
 stacks_t    do_opt(stacks_t main, int *chunks, int option)
 {
-    // printf("\n\t(do opt) Got here option %d\n", option);
+    printf("\n\t(do opt) Got here option %d\n", option);
     if (option == 0)
         main = combo_opt0(main, chunks);
     else if (option == 1)
