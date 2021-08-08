@@ -12,6 +12,6 @@ void    init_struct(stacks_t *main, int ac)
     main->stackA = calloc(ac - 1, sizeof(int));
     if (!main->stackA)
         return ;
-    main->sizeA = ac - 1;
+    main->sizeA = main->ac;
     main->sizeB = 0;
 }

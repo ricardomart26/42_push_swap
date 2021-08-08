@@ -9,7 +9,7 @@ stacks_t get_av(stacks_t main, char **av)
     {
         main.stackA[x - 1] = ft_atoi(av[x]);
         x++;
-    }    
+    }
     return (main);
 }
 

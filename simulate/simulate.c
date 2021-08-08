@@ -59,52 +59,40 @@
 
 
 
-int simulate_num2(stacks_t *temp, moves_t cmd, int *chunks, int i)
+int simulate_num2(stacks_t *temp, moves_t cmd, int *chunks)
 {
-    if (i == 1)
-    {
-        printf("\n\t(simulate num 2) Starting simulate check four opt 2\n");
-        print_stacks(*temp);
-    }
-    else if (i == 2)
-    {
-        printf("\n\t(simulate num 2) Starting simulate sim cmd 2\n");
-        print_stacks(*temp);
-        
-    }
+
     if ((!closer_to_end2(*temp, chunks, &cmd)))
     	perror("\n\n\tCannot find chunk number in stackA\n"); // Encontrar primeiro numero dentro do stackA do final    
     cmd = get_cmds(*temp, cmd, temp->sizeB);
-    
+    printf("\n\t(simulate num 2)Before 2 , num is %d", cmd.num);
+    print_stacks(*temp);
+    print_cmds(cmd);
+    // sleep(1);
     cmd.total = num2(&temp, cmd);
-    printf("\n\t(simulate num 2)Done simulate 2\n");
-    // print_stacks(*temp);
-    // sleep(3);
+
+    printf("\n\t(simulate num 2)After 2");
+    print_stacks(*temp);
+    // sleep(1);
     
     return (cmd.total);
 }
 
-int simulate_num1(stacks_t *temp, moves_t cmd, int *chunks, int i)
+int simulate_num1(stacks_t *temp, moves_t cmd, int *chunks)
 {
-    if (i == 1)
-    {
-        printf("\n\t(simulate num 1) Starting simulate check four opt 1\n");
-        print_stacks(*temp);
-    }
-    else if (i == 2)
-    {
-        printf("\n\t(simulate num 2) Starting simulate sim cmd 1\n");
-        print_stacks(*temp);
-        
-    }
-    if ((!closer_to_beginning2(*temp, chunks, temp->size_chunk, &cmd)))
+    if ((!closer_to_beginning2(*temp, chunks, temp->sizeA, &cmd)))
         perror("\n\n\tCannot find first number in chunk\n"); // Encontrar primeiro numero dentro do stackA do inicio
-    
     cmd = get_cmds(*temp, cmd, temp->sizeB);
+    printf("\n\t(simulate num 1)Before 1, num is %d", cmd.num);
+    print_stacks(*temp);
+    print_cmds(cmd);
+    // sleep(1);
+
     cmd.total = num1(&temp, cmd);
-    printf("\n\t(simulate num 1)Done simulate 1\n");
-    // print_stacks(*temp);
-    // sleep(3);
+
+    printf("\n\t(simulate num 1)after");
+    print_stacks(*temp);
+    // sleep(1);
 
     return (cmd.total);
 }

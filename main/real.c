@@ -25,6 +25,8 @@ int real_num1(stacks_t *temp, moves_t cmd, int *chunk)
 
 stacks_t    do_opt(stacks_t main, int *chunks, int option)
 {
+    moves_t cmd;
+
     printf("\n\t(do opt) Got here option %d\n", option);
     if (option == 0)
         main = combo_opt0(main, chunks);
@@ -34,6 +36,10 @@ stacks_t    do_opt(stacks_t main, int *chunks, int option)
         main = combo_opt2(main, chunks);
     else if (option == 3)
         main = combo_opt3(main, chunks);
+    else if (option == 4)
+        simulate_num1(&main, cmd, chunks);
+    else if (option == 5)
+        simulate_num2(&main, cmd, chunks);
 
     return (main);
 }

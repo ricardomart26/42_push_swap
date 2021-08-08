@@ -77,8 +77,8 @@ int num1(stacks_t **temp, moves_t cmd)
 
 int num2(stacks_t **temp, moves_t cmd)
 {
-    print_cmds(&cmd, 0);
-    print_stacks(**temp);
+    // print_cmds(&cmd, 0);
+    // print_stacks(**temp);
     if (cmd.rrr && !cmd.rra && !cmd.rrb)
     {
         **temp = gen_moves(**temp, 5, cmd.rrr, 1);

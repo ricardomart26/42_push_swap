@@ -66,14 +66,15 @@ stacks_t combo_opt3(stacks_t main, int *chunks);
 
 void    init_cmd(moves_t *cmd);
 
-int simulate_num2(stacks_t *temp, moves_t cmd, int *chunks, int i);
+int simulate_num1(stacks_t *temp, moves_t cmd, int *chunks);
+int simulate_num2(stacks_t *temp, moves_t cmd, int *chunks);
 stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa);
 int where_to_putnbr2(int x, int *stackB, int size);
-int simulate_next_f(stacks_t temp, int *chunks, int moves, int i);
-int simulate_next_s(stacks_t temp, int *chunks, int moves, int i);
+int simulate_next_f(stacks_t temp, int *chunks, int moves);
+int simulate_next_s(stacks_t temp, int *chunks, int moves);
 stacks_t pass_stacks_to_temp(stacks_t main);
 
-void    print_cmds(moves_t *cmd, int i);
+void    print_cmds(moves_t cmd);
 
 int do_rr_top(moves_t *cmd, stacks_t ***temp); // Dont know if it works
 int do_rrr_bottom(moves_t *cmd, stacks_t ***temp); // Dont know if it works
@@ -84,7 +85,6 @@ stacks_t   gen_moves(stacks_t main, int option, int counter, int pb_pa);
 // int move_bottom_of_stack(stacks_t **temp, int place, moves_t cmd);
 // int move_top_of_stack(stacks_t **temp, int place, moves_t cmd);
 
-int simulate_num1(stacks_t *temp, moves_t cmd, int *chunks, int i);
 
 int closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd);
 int closer_to_end2(stacks_t main, int *chunk, moves_t *cmd);

@@ -8,8 +8,8 @@ int check_two_opt(stacks_t temp, int *chunks)
     movesss = 0;
     temp = pass_stacks_to_temp(temp);
 
-    mv[0] = simulate_next_f(temp, chunks, movesss, 2);
-    mv[1] = simulate_next_s(temp, chunks, movesss, 2);
+    mv[0] = simulate_next_f(temp, chunks, movesss);
+    mv[1] = simulate_next_s(temp, chunks, movesss);
 
 	if (mv[1] >= mv[0])
 		return (mv[1]);
@@ -24,12 +24,10 @@ int sim_1_1(stacks_t temp, int *chunks)
 
 	cmd = malloc(sizeof(moves_t) * 2 + 1);
 
-	moves = simulate_num1(&temp, cmd[0], chunks, 2);
-
-	moves += simulate_num1(&temp, cmd[1], chunks, 2);
-
-	moves += check_two_opt(temp, chunks);
+	moves = simulate_num1(&temp, cmd[0], chunks);
+	moves += simulate_num1(&temp, cmd[1], chunks);
 	
+	moves += check_two_opt(temp, chunks);	
 	return (moves);
 }
 
@@ -40,8 +38,8 @@ int sim_1_2(stacks_t temp, int *chunks)
 
 	cmd = malloc(sizeof(moves_t) * 2  + 1);
 
-	moves = simulate_num1(&temp, cmd[0], chunks, 2);
-	moves = simulate_num2(&temp, cmd[1], chunks, 2);
+	moves = simulate_num1(&temp, cmd[0], chunks);
+	moves += simulate_num2(&temp, cmd[1], chunks);
 
 	moves += check_two_opt(temp, chunks);
 	return (moves);
@@ -54,8 +52,8 @@ int sim_2_1(stacks_t temp, int *chunks)
 
 	cmd = malloc(sizeof(moves_t) * 2 + 1);
 
-	moves = simulate_num2(&temp, cmd[1], chunks, 2);
-	moves = simulate_num1(&temp, cmd[0], chunks, 2);
+	moves = simulate_num2(&temp, cmd[1], chunks);
+	moves += simulate_num1(&temp, cmd[0], chunks);
 
 	moves += check_two_opt(temp, chunks);
 	
@@ -69,8 +67,8 @@ int sim_2_2(stacks_t temp, int *chunks)
 
 	cmd = malloc(sizeof(moves_t) * 2 + 1);
 
-    moves = simulate_num2(&temp, cmd[0], chunks, 2);
-	moves = simulate_num2(&temp, cmd[1], chunks, 2);
+    moves = simulate_num2(&temp, cmd[0], chunks);
+	moves += simulate_num2(&temp, cmd[1], chunks);
 
 	moves += check_two_opt(temp, chunks);	
 	return (moves);
@@ -84,7 +82,6 @@ int	see_best_opt(int i, int x, stacks_t temp, int *chunks)
 	stacks_t temp2;
 	
     temp2 = pass_stacks_to_temp(temp);	
-	print_stacks(temp2);
 
 	if (i == 0)
 		moves = sim_1_1(temp2, chunks);
@@ -120,10 +117,8 @@ int	return_best_opt(int *mv, stacks_t temp, int *chunks)
 	int value;
 
 	i = 0;
-
 	if (mv[0] == 0 || mv[1] == 0 || mv[2] == 0 || mv[3] == 0)
-		perror("\n\t(return best opt) One of the val is equal to 0 \n");
-	
+		perror("\n\t(return best opt) One of the val is equal to 0 \n");	
 	while (1)
 	{
 		if (i == 3)
