@@ -14,7 +14,6 @@ moves_t set_b(moves_t cmd, int rb, int rrb)
 moves_t place_to_put_nbr(stacks_t main, moves_t cmd, int size)
 {
     int i;
-    int x;
     int diff;
     int temp;
 
@@ -30,15 +29,11 @@ moves_t place_to_put_nbr(stacks_t main, moves_t cmd, int size)
         else
         {
             // printf("\n\tim here\n");
-            temp = 0;
             if (main.stackB[i] > cmd.num)
                 temp = main.stackB[i] - cmd.num;   
             else if (main.stackB[i] < cmd.num)
             {
-                // printf("\n\t%d = %d - %d", cmd.num - main.stackB[i], cmd.num, main.stackB[i]);
                 temp = cmd.num - main.stackB[i];
-                // printf("\n\ttemp is %d\n", temp);
-                // sleep(3);
             }
             if (i == 0)
             {
@@ -51,14 +46,13 @@ moves_t place_to_put_nbr(stacks_t main, moves_t cmd, int size)
             }
             else if (temp < diff)
             {
-                printf("\nThe %d is closer to %d than %d the diff is %d and temp is %d\t", main.stackB[i], cmd.num, main.stackB[x], diff, temp);
-                sleep(2);
+                // printf("\nThe %d is closer to %d than %d the diff is %d and temp is %d\t", main.stackB[i], cmd.num, main.stackB[x], diff, temp);
+                // sleep(2);
                 if (main.stackB[i] > cmd.num)
                     cmd.pos_stackb = i + 1;   
                 else if (main.stackB[i] < cmd.num)
                     cmd.pos_stackb = i;
                 diff = temp;
-                x = i;
             }
             i++;
         }
@@ -91,7 +85,10 @@ moves_t    get_cmds(stacks_t main, moves_t cmd, int size)
                     cmd = set_b(cmd, max_place, 0);
             }
             else if (max_place == 0)
+            {
+                printf("\n\tEntrou AQUI?\n");
                 set_b(cmd, 0, 0);
+            }
             else if (max_place == size - 1 && cmd.num > max)
                 set_b(cmd, 0, 1);
             else if (max_place > main.sizeB/2)

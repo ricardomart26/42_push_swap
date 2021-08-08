@@ -59,11 +59,26 @@
 
 
 
+// void    reset_cmd(moves_t *cmd)
+// {
+//     cmd->num = 0;
+//     cmd->pos_stackb = 0;
+//     cmd->ra = 0;
+//     cmd->rb = 0;
+//     cmd->rr = 0;
+//     cmd->rra = 0;
+//     cmd->rrb = 0;
+//     cmd->rrr = 0;
+//     cmd->total = 0;
+// }
+
 int simulate_num2(stacks_t *temp, moves_t cmd, int *chunks)
 {
-
+    // reset_cmd(&cmd);
     if ((!closer_to_end2(*temp, chunks, &cmd)))
     	perror("\n\n\tCannot find chunk number in stackA\n"); // Encontrar primeiro numero dentro do stackA do final    
+    print_cmds(cmd);
+    
     cmd = get_cmds(*temp, cmd, temp->sizeB);
     printf("\n\t(simulate num 2)Before 2 , num is %d", cmd.num);
     print_stacks(*temp);

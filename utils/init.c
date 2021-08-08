@@ -2,7 +2,14 @@
 
 void    init_cmd(moves_t *cmd)
 {
+    cmd->num = 0;
+    cmd->pos_stackb = 0;
+    cmd->total = 0;
+    cmd->ra = 0;
+    cmd->rb = 0;
     cmd->rr = 0;
+    cmd->rra = 0;
+    cmd->rrb = 0;
     cmd->rrr = 0;
 }
 

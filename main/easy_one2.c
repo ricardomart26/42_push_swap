@@ -54,17 +54,22 @@ int do_end(stacks_t temp, moves_t *cmd, int *chunks)
 
 int check_four_opt(stacks_t main, int *chunks)
 {
-    moves_t *cmd;
+    moves_t  *cmd;
     stacks_t temp;
     int movesss;
     int mv[4];
 
-    cmd = malloc(sizeof(moves_t) * 2 + 1);
+    cmd = calloc(2, sizeof(moves_t));
+    // init_cmd(cmd);
+    print_cmds(*cmd);
+    print_cmds(cmd[1]);
+    sleep(3);
     movesss = 0;
+    
     temp = pass_stacks_to_temp(main);
-
     // printf("\n\t\t size_chunk - 1 %d && sizeB %d\n\n", temp.size_chunk - 1, temp.sizeB);
     // sleep(2);
+    
     if (temp.size_chunk - 1 == temp.sizeB)
     {
         movesss = do_end(temp, cmd, chunks);
@@ -72,7 +77,6 @@ int check_four_opt(stacks_t main, int *chunks)
         sleep(2);
         return (movesss);
     }
-
     
     movesss = simulate_num1(&temp, cmd[0], chunks);
 
@@ -94,7 +98,8 @@ int check_four_opt(stacks_t main, int *chunks)
 
     free_all_stacks_t(&temp);
     temp = pass_stacks_to_temp(main);
-    return(return_best_opt(mv, temp, chunks));     
+
+    return(return_best_opt(mv, temp, chunks));
 }
 
 // ver tamanho do stackB, e em que index o numero deve ficar, e para que lado e mais rapido
