@@ -5,7 +5,7 @@ stacks_t pass_stacks_to_temp(stacks_t main)
     stacks_t temp;
     int x;
 
-    temp.stackA = malloc(sizeof(int) * main.sizeA  + 1);
+    temp.stackA = malloc(sizeof(int) * main.sizeA + 1);
     temp.lowest = main.lowest;
     temp.size_chunk = main.size_chunk;
     temp.middle_size = main.middle_size;
@@ -30,13 +30,7 @@ stacks_t pass_stacks_to_temp(stacks_t main)
     return (temp);
 }
 
-void    free_all_cmd(moves_t **cmd)
-{
-    free(cmd[0]);
-    free(cmd[1]);
-}
-
-int do_end(stacks_t temp, moves_t *cmd, int *chunks)
+int do_end(stacks_t temp, int *chunks)
 {
     int mv[2];
 
@@ -54,25 +48,24 @@ int do_end(stacks_t temp, moves_t *cmd, int *chunks)
 
 int check_four_opt(stacks_t main, int *chunks)
 {
-    moves_t  *cmd;
+    moves_t  cmd;
     stacks_t temp;
     int movesss;
     int mv[4];
 
-    cmd = calloc(2, sizeof(moves_t));
+    init_cmd(&cmd);
     movesss = 0;
     temp = pass_stacks_to_temp(main);
     
     if (temp.size_chunk == temp.sizeB)
     {
-        movesss = do_end(temp, cmd, chunks);
+        movesss = do_end(temp, chunks);
         printf("\n\t\t movesss %d\n\n", movesss);
         sleep(2);
         return (movesss);
     }
-    
-    movesss = simulate_num1(&temp, cmd[0], chunks, 0);
 
+    movesss = simulate_num1(&temp, cmd, chunks, 0);
     mv[0] = simulate_next_f(temp, chunks, movesss);
     mv[1] = simulate_next_s(temp, chunks, movesss);
 
@@ -80,7 +73,7 @@ int check_four_opt(stacks_t main, int *chunks)
     free_all_stacks_t(&temp);
     temp = pass_stacks_to_temp(main);
     
-    movesss = simulate_num2(&temp, cmd[1], chunks, 0);
+    movesss = simulate_num2(&temp, cmd, chunks, 0);
     mv[2] = simulate_next_f(temp, chunks, movesss);
     mv[3] = simulate_next_s(temp, chunks, movesss);
 
@@ -91,6 +84,7 @@ int check_four_opt(stacks_t main, int *chunks)
 
     free_all_stacks_t(&temp);
     temp = pass_stacks_to_temp(main);
+    printf("\n\t(check four opt final) mv[0] %d mv[1] %d mv[2] %d mv[3] %d\n", mv[0], mv[1], mv[2], mv[3]);
 
     return(return_best_opt(mv, temp, chunks));
 }

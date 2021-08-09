@@ -96,13 +96,13 @@ int	see_best_opt(int i, int x, stacks_t temp, int *chunks)
 
 	moves2 = 0;
  	if (x == 0)
-		moves2 = sim_1_1(temp, chunks);
+		moves2 = sim_1_1(temp2, chunks);
 	else if (x == 1)
-		moves2 = sim_1_2(temp, chunks);
+		moves2 = sim_1_2(temp2, chunks);
 	else if (x == 2)
-		moves2 = sim_2_1(temp, chunks);
+		moves2 = sim_2_1(temp2, chunks);
 	else if (x == 3)
-		moves2 = sim_2_2(temp, chunks);
+		moves2 = sim_2_2(temp2, chunks);
 	
 	if (moves >= moves2)
 		return (x);

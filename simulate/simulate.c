@@ -89,6 +89,7 @@ int simulate_num2(stacks_t *temp, moves_t cmd, int *chunks, int opt)
 
     printf("\n\t(simulate num 2)After 2");
     print_stacks(*temp);
+    
     return (cmd.total);
 }
 
@@ -100,7 +101,7 @@ int simulate_num1(stacks_t *temp, moves_t cmd, int *chunks, int opt)
     printf("\n\t(simulate num 1)Before 1, num is %d", cmd.num);
     print_stacks(*temp);
     print_cmds(cmd);
-    // sleep(1);
+    
     if (opt)
         cmd.total = num1(&temp, cmd);
     else
@@ -108,7 +109,6 @@ int simulate_num1(stacks_t *temp, moves_t cmd, int *chunks, int opt)
 
     printf("\n\t(simulate num 1)after");
     print_stacks(*temp);
-    // sleep(1);
-
+    
     return (cmd.total);
 }

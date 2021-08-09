@@ -28,6 +28,14 @@ stacks_t   gen_moves_fake(stacks_t main, int option, int counter, int pb_pa)
 
 stacks_t   gen_moves_real(stacks_t main, int option, int counter, int pb_pa)
 {
+    if (counter > 20)
+    {
+
+        print_stacks(main);
+        printf("\n\toption %d\n", option);
+        sleep(2);
+        exit(0);
+    }
     while (counter)
     {
         if (option == 0)
