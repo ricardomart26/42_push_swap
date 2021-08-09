@@ -93,7 +93,7 @@ int check_four_opt(stacks_t main, int *chunks)
 
     printf("\n\t**********FINISH NUM 2!**********\n");
 
-    printf("\n\t(check four opt final ) mv[0] %d mv[1] %d mv[2] %d mv[3] %d\n", mv[0], mv[1], mv[2], mv[3]);
+    printf("\n\t(check four opt final) mv[0] %d mv[1] %d mv[2] %d mv[3] %d\n", mv[0], mv[1], mv[2], mv[3]);
     sleep(2);
 
     free_all_stacks_t(&temp);
