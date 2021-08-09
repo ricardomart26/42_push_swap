@@ -24,8 +24,8 @@ int sim_1_1(stacks_t temp, int *chunks)
 
 	cmd = malloc(sizeof(moves_t) * 2 + 1);
 
-	moves = simulate_num1(&temp, cmd[0], chunks);
-	moves += simulate_num1(&temp, cmd[1], chunks);
+	moves = simulate_num1(&temp, cmd[0], chunks, 0);
+	moves += simulate_num1(&temp, cmd[1], chunks, 0);
 	
 	moves += check_two_opt(temp, chunks);	
 	return (moves);
@@ -38,8 +38,8 @@ int sim_1_2(stacks_t temp, int *chunks)
 
 	cmd = malloc(sizeof(moves_t) * 2  + 1);
 
-	moves = simulate_num1(&temp, cmd[0], chunks);
-	moves += simulate_num2(&temp, cmd[1], chunks);
+	moves = simulate_num1(&temp, cmd[0], chunks, 0);
+	moves += simulate_num2(&temp, cmd[1], chunks, 0);
 
 	moves += check_two_opt(temp, chunks);
 	return (moves);
@@ -52,8 +52,8 @@ int sim_2_1(stacks_t temp, int *chunks)
 
 	cmd = malloc(sizeof(moves_t) * 2 + 1);
 
-	moves = simulate_num2(&temp, cmd[1], chunks);
-	moves += simulate_num1(&temp, cmd[0], chunks);
+	moves = simulate_num2(&temp, cmd[1], chunks, 0);
+	moves += simulate_num1(&temp, cmd[0], chunks, 0);
 
 	moves += check_two_opt(temp, chunks);
 	
@@ -67,8 +67,8 @@ int sim_2_2(stacks_t temp, int *chunks)
 
 	cmd = malloc(sizeof(moves_t) * 2 + 1);
 
-    moves = simulate_num2(&temp, cmd[0], chunks);
-	moves += simulate_num2(&temp, cmd[1], chunks);
+    moves = simulate_num2(&temp, cmd[0], chunks, 0);
+	moves += simulate_num2(&temp, cmd[1], chunks, 0);
 
 	moves += check_two_opt(temp, chunks);	
 	return (moves);

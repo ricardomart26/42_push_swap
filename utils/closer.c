@@ -12,7 +12,7 @@ int closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd)
         x = 0;
         while (main.stackA[i] != chunk[x] && x < main.size_chunk + 1)
         {
-            printf("\n\t(beg) Is %d inside of chunk[%d] %d", main.stackA[i], x, chunk[x]);
+            // printf("\n\t(beg) Is %d inside of chunk[%d] %d", main.stackA[i], x, chunk[x]);
             x++;
         }
         if (x == main.size_chunk + 1)
@@ -44,7 +44,7 @@ int closer_to_end2(stacks_t main, int *chunk, moves_t *cmd)
         x = 0;
         while (main.stackA[size] != chunk[x] && x < main.size_chunk + 1)
         {
-            printf("\n\t(end) Is %d inside of chunk[%d] %d", main.stackA[size], x, chunk[x]);
+            // printf("\n\t(end) Is %d inside of chunk[%d] %d", main.stackA[size], x, chunk[x]);
             x++;
         }
         if (x == main.size_chunk + 1)

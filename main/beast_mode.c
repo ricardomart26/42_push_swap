@@ -17,7 +17,7 @@ stacks_t beast_mode(stacks_t main)
         // So e preciso saber a primeira chunk, e nao a segunda?
         get_attr_chunks(&chunks, main.middle_size, org); // Receber a chunk1 e a chunk 2
         print_array(chunks, main.sizeA/2);
-        main = push_chunk_to_b(main, chunks); // Empurrar a chunk para o stackB
+        main = push_chunk_to_b2(main, chunks); // Empurrar a chunk para o stackB
     }
     return (main);
 }

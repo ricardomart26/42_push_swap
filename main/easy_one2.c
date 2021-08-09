@@ -60,17 +60,10 @@ int check_four_opt(stacks_t main, int *chunks)
     int mv[4];
 
     cmd = calloc(2, sizeof(moves_t));
-    // init_cmd(cmd);
-    print_cmds(*cmd);
-    print_cmds(cmd[1]);
-    sleep(3);
     movesss = 0;
-    
     temp = pass_stacks_to_temp(main);
-    // printf("\n\t\t size_chunk - 1 %d && sizeB %d\n\n", temp.size_chunk - 1, temp.sizeB);
-    // sleep(2);
     
-    if (temp.size_chunk - 1 == temp.sizeB)
+    if (temp.size_chunk == temp.sizeB)
     {
         movesss = do_end(temp, cmd, chunks);
         printf("\n\t\t movesss %d\n\n", movesss);
@@ -78,7 +71,7 @@ int check_four_opt(stacks_t main, int *chunks)
         return (movesss);
     }
     
-    movesss = simulate_num1(&temp, cmd[0], chunks);
+    movesss = simulate_num1(&temp, cmd[0], chunks, 0);
 
     mv[0] = simulate_next_f(temp, chunks, movesss);
     mv[1] = simulate_next_s(temp, chunks, movesss);
@@ -87,7 +80,7 @@ int check_four_opt(stacks_t main, int *chunks)
     free_all_stacks_t(&temp);
     temp = pass_stacks_to_temp(main);
     
-    movesss = simulate_num2(&temp, cmd[1], chunks);
+    movesss = simulate_num2(&temp, cmd[1], chunks, 0);
     mv[2] = simulate_next_f(temp, chunks, movesss);
     mv[3] = simulate_next_s(temp, chunks, movesss);
 
@@ -113,7 +106,7 @@ stacks_t push_chunk_to_b2(stacks_t main, int *chunks)
     {
         option = 0;
         option = check_four_opt(main, chunks);
-
+        
         printf("\n\t(Finished sim)");
         main = do_opt(main, chunks, option);
         

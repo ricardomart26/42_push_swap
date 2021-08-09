@@ -75,7 +75,9 @@ moves_t    get_cmds(stacks_t main, moves_t cmd, int size)
         max = biggest_num(main.stackB, size);
         max_place = place_in_array(main.stackB, max);
         printf("\n\tmax %d and max_place %d size - 1 %d num %d\n", max, max_place, size - 1, cmd.num);
-        if (is_lowest_array(cmd.num, main.stackB, size) || cmd.num > max && size != main.size_chunk)
+        printf("\n\t(check4opt)size_chunk %d && sizeB %d\n", main.size_chunk, main.sizeB);
+        
+        if ((is_lowest_array(cmd.num, main.stackB, size) || cmd.num > max) && size != main.size_chunk + 1)
         {
             if (cmd.num <= max)
             {
@@ -86,17 +88,20 @@ moves_t    get_cmds(stacks_t main, moves_t cmd, int size)
             }
             else if (max_place == 0)
             {
-                printf("\n\tEntrou AQUI?\n");
+                printf("\n\tEntrou AQUI? 0\n");
                 set_b(cmd, 0, 0);
             }
             else if (max_place == size - 1 && cmd.num > max)
+            {
+                printf("\n\tEntrou AQUI? 1\n");
                 set_b(cmd, 0, 1);
+            }
             else if (max_place > main.sizeB/2)
-                cmd = set_b(cmd, 0, (size - max_place) + 1);
+                cmd = set_b(cmd, 0, size - max_place);
             else if (max_place <= main.sizeB/2)
                 cmd = set_b(cmd, max_place, 0);
         }
-        else if (size != main.size_chunk)
+        else if (size != main.size_chunk + 1)
             cmd = place_to_put_nbr(main, cmd, main.sizeB);
         cmd.total = 0;
     }

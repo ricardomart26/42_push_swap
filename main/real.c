@@ -37,9 +37,9 @@ stacks_t    do_opt(stacks_t main, int *chunks, int option)
     else if (option == 3)
         main = combo_opt3(main, chunks);
     else if (option == 4)
-        simulate_num1(&main, cmd, chunks);
+        simulate_num1(&main, cmd, chunks, 1);
     else if (option == 5)
-        simulate_num2(&main, cmd, chunks);
+        simulate_num2(&main, cmd, chunks, 1);
 
     return (main);
 }
