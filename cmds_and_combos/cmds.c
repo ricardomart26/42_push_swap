@@ -47,7 +47,7 @@ int    *push_to_p(int *stack, int *size, int number)
     return (stack);
 }
 
-stacks_t pa_funct(stacks_t main)
+stacks_t pa_funct(stacks_t main, int opt)
 {
     int number;
 
@@ -68,12 +68,14 @@ stacks_t pa_funct(stacks_t main)
         main.stackB = organize_the_stack(main.stackB, main.sizeB, 1);
     }
     main.sizeB--;
-    write(1, "pa \n", 5);
-        return (main);
+
+    if (opt)    
+        write(1, "pa \n", 5);
+    return (main);
 
 }
 
-stacks_t pb_funct(stacks_t main)
+stacks_t pb_funct(stacks_t main, int opt)
 {
     int number;
 
@@ -94,6 +96,7 @@ stacks_t pb_funct(stacks_t main)
     }
     main.sizeA--;
 
-    write(1, "pb \n", 5);
+    if (opt)
+        write(1, "pb \n", 5);
     return (main);
 }

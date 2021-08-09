@@ -41,11 +41,12 @@ stacks_t rb_funct(stacks_t main, int option)
 }
 
 
-stacks_t rr_funct(stacks_t main)
+stacks_t rr_funct(stacks_t main, int opt)
 {
     main = ra_funct(main, 0);
     main = rb_funct(main, 0);
-    write(1, "rr ", 4);
+    if (opt)
+        write(1, "rr ", 4);
     return (main);
 }
 

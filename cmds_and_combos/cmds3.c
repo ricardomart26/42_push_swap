@@ -1,10 +1,11 @@
 #include "../push_swap.h"
 
-stacks_t rrr_funct(stacks_t main)
+stacks_t rrr_funct(stacks_t main, int opt)
 {
     main = rra_funct(main, 0);
     main = rrb_funct(main, 0);
-    write(1, "rrr ", 4);
+    if (opt)
+        write(1, "rrr ", 4);
     return (main);
 }
 

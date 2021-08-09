@@ -7,6 +7,7 @@ stacks_t combo_opt0(stacks_t main, int *chunks)
     cmd = malloc(sizeof(moves_t) * 2 + 1);
 
     real_num1(&main, cmd[0], chunks);
+
     real_num1(&main, cmd[1], chunks);
 
     free(cmd);
