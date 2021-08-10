@@ -20,12 +20,9 @@ int check_two_opt(stacks_t temp, int *chunks)
 int sim_1_1(stacks_t temp, int *chunks)
 {
 	int moves;
-    moves_t *cmd;
 
-	cmd = malloc(sizeof(moves_t) * 2 + 1);
-
-	moves = simulate_num1(&temp, cmd[0], chunks, 0);
-	moves += simulate_num1(&temp, cmd[1], chunks, 0);
+	moves = simulate_num1(&temp, chunks, 0);
+	moves += simulate_num1(&temp, chunks, 0);
 	
 	moves += check_two_opt(temp, chunks);	
 	return (moves);
@@ -34,12 +31,9 @@ int sim_1_1(stacks_t temp, int *chunks)
 int sim_1_2(stacks_t temp, int *chunks)
 {
 	int moves;
-    moves_t *cmd;
 
-	cmd = malloc(sizeof(moves_t) * 2  + 1);
-
-	moves = simulate_num1(&temp, cmd[0], chunks, 0);
-	moves += simulate_num2(&temp, cmd[1], chunks, 0);
+	moves = simulate_num1(&temp, chunks, 0);
+	moves += simulate_num2(&temp, chunks, 0);
 
 	moves += check_two_opt(temp, chunks);
 	return (moves);
@@ -48,12 +42,9 @@ int sim_1_2(stacks_t temp, int *chunks)
 int sim_2_1(stacks_t temp, int *chunks)
 {
 	int moves;
-    moves_t *cmd;
 
-	cmd = malloc(sizeof(moves_t) * 2 + 1);
-
-	moves = simulate_num2(&temp, cmd[1], chunks, 0);
-	moves += simulate_num1(&temp, cmd[0], chunks, 0);
+	moves = simulate_num2(&temp, chunks, 0);
+	moves += simulate_num1(&temp, chunks, 0);
 
 	moves += check_two_opt(temp, chunks);
 	
@@ -63,12 +54,9 @@ int sim_2_1(stacks_t temp, int *chunks)
 int sim_2_2(stacks_t temp, int *chunks)
 {
 	int moves;
-    moves_t *cmd;
 
-	cmd = malloc(sizeof(moves_t) * 2 + 1);
-
-    moves = simulate_num2(&temp, cmd[0], chunks, 0);
-	moves += simulate_num2(&temp, cmd[1], chunks, 0);
+    moves = simulate_num2(&temp, chunks, 0);
+	moves += simulate_num2(&temp, chunks, 0);
 
 	moves += check_two_opt(temp, chunks);	
 	return (moves);
@@ -134,7 +122,7 @@ int	return_best_opt(int *mv, stacks_t temp, int *chunks)
 			{
 				if (value != mv[x + 1] && x + 1 != 4)
 					x++;
-				else
+				else if (temp.sizeA > 5)
 				{
 					i = see_best_opt(i, x, temp, chunks);
 					break;

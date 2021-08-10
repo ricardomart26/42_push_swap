@@ -53,8 +53,8 @@ int check_four_opt(stacks_t main, int *chunks);
 int check_two_opt(stacks_t main, int *chunks);
 
 stacks_t    do_opt(stacks_t main, int *chunks, int option);
-int real_num2(stacks_t *temp, moves_t cmd, int *chunks);
-int real_num1(stacks_t *temp, moves_t cmd, int *chunks);
+int real_num2(stacks_t *temp, int *chunks);
+int real_num1(stacks_t *temp, int *chunks);
 
 int place_in_array(int *stack, int num);
 int is_lowest_array(int x, int *array, int size);
@@ -71,8 +71,8 @@ void    init_cmd(moves_t *cmd);
 stacks_t push_chunk_to_b2(stacks_t main, int *chunks);
 
 
-int simulate_num1(stacks_t *temp, moves_t cmd, int *chunks, int opt);
-int simulate_num2(stacks_t *temp, moves_t cmd, int *chunks, int opt);
+int simulate_num1(stacks_t *temp, int *chunks, int opt);
+int simulate_num2(stacks_t *temp, int *chunks, int opt);
 stacks_t   gen_moves_fake(stacks_t main, int option, int counter, int pb_pa);
 stacks_t   gen_moves_real(stacks_t main, int option, int counter, int pb_pa);
 
