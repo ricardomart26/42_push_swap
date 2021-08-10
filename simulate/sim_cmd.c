@@ -28,14 +28,13 @@ stacks_t   gen_moves_fake(stacks_t main, int option, int counter, int pb_pa)
 
 stacks_t   gen_moves_real(stacks_t main, int option, int counter, int pb_pa)
 {
-    if (counter > 20)
-    {
-
-        print_stacks(main);
-        printf("\n\toption %d\n", option);
-        sleep(2);
-        exit(0);
-    }
+    // if (counter > 20)
+    // {
+    //     print_stacks(main);
+    //     printf("\n\toption %d\n", option);
+    //     sleep(2);
+    //     exit(0);
+    // }
     while (counter)
     {
         if (option == 0)
@@ -61,23 +60,23 @@ stacks_t   gen_moves_real(stacks_t main, int option, int counter, int pb_pa)
 }
 
 
-moves_t *rr_sim(moves_t *cmd, int rr, int ra, int rb)
-{
-    cmd->rr = rr;
-    cmd->ra = ra;
-    cmd->rb = rb;
-    cmd->total = cmd->rr + cmd->ra + cmd->rb;
-    return (cmd);
-}
+// moves_t *rr_sim(moves_t *cmd, int rr, int ra, int rb)
+// {
+//     cmd->rr = rr;
+//     cmd->ra = ra;
+//     cmd->rb = rb;
+//     cmd->total = cmd->rr + cmd->ra + cmd->rb;
+//     return (cmd);
+// }
 
-moves_t *rrr_sim(moves_t *cmd, int rrr, int rrb, int rra)
-{
-    cmd->rrr = rrr;
-    cmd->rrb = rrb;
-    cmd->rra = rra;
-    cmd->total = cmd->rrr + cmd->rra + cmd->rrb;
-    return (cmd);
-}
+// moves_t *rrr_sim(moves_t *cmd, int rrr, int rrb, int rra)
+// {
+//     cmd->rrr = rrr;
+//     cmd->rrb = rrb;
+//     cmd->rra = rra;
+//     cmd->total = cmd->rrr + cmd->rra + cmd->rrb;
+//     return (cmd);
+// }
 
 int num1(stacks_t **temp, moves_t cmd)
 {

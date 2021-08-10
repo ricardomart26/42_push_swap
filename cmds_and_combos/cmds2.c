@@ -46,7 +46,7 @@ stacks_t rr_funct(stacks_t main, int opt)
     main = ra_funct(main, 0);
     main = rb_funct(main, 0);
     if (opt)
-        write(1, "rr ", 4);
+        write(1, "rr \n", 5);
     return (main);
 }
 

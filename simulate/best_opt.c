@@ -69,6 +69,9 @@ int	see_best_opt(int i, int x, stacks_t temp, int *chunks)
 	int moves2;
 	stacks_t temp2;
 	
+	// printf("\n\tOIIIIIIIIII\n");
+    if (temp.sizeA - 2 != 3)
+		return (i);
     temp2 = pass_stacks_to_temp(temp);	
 
 	if (i == 0)
@@ -120,7 +123,8 @@ int	return_best_opt(int *mv, stacks_t temp, int *chunks)
 			x = i;
 			while (x != 4)
 			{
-				if (value != mv[x + 1] && x + 1 != 4)
+
+				if (value != mv[x + 1] && x + 1 != 5)
 					x++;
 				else if (temp.sizeA > 5)
 				{
@@ -132,5 +136,6 @@ int	return_best_opt(int *mv, stacks_t temp, int *chunks)
 		}
 		i++;
 	}
+
 	return (i);
 }

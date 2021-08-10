@@ -16,6 +16,8 @@ int    *organize_the_stack(int *stack, int size, int opt)
     {
         stack[x] = stack[x + 1];
         x++;
+        // printf("\n\t(Organize array 2) FUCK YOU %d %d\n", stack[x], x);
+
     }
     // printf("\n\t(Organize array 2) FUCK YOU %d %d\n", stack[x], x);
 
@@ -63,7 +65,6 @@ stacks_t pa_funct(stacks_t main, int opt)
     }
     else
     {
-        // printf("\n\tsizeB = %d", main.sizeB);
         main.stackA = push_to_p(main.stackA, &main.sizeA, number);
         main.stackB = organize_the_stack(main.stackB, main.sizeB, 1);
     }

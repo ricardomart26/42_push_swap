@@ -1,7 +1,7 @@
 #include "../push_swap.h"
 
 
-int real_num2(stacks_t *temp, int *chunk)
+int real_num2(stacks_t *temp,  int *chunk)
 {
     moves_t cmd;
 
@@ -35,7 +35,7 @@ stacks_t    do_opt(stacks_t main, int *chunks, int option)
 {
     moves_t cmd;
 
-    printf("\n\t(do opt) Got here option %d\n", option);
+    // printf("\n\t(do opt) Got here option %d\n", option);
     if (option == 0)
         main = combo_opt0(main, chunks);
     else if (option == 1)

@@ -66,8 +66,6 @@ stacks_t combo_opt2(stacks_t main, int *chunks);
 stacks_t combo_opt3(stacks_t main, int *chunks);
 
 void    init_cmd(moves_t *cmd);
-
-
 stacks_t push_chunk_to_b2(stacks_t main, int *chunks);
 
 
@@ -118,9 +116,9 @@ stacks_t rrb_funct(stacks_t main, int option);
 stacks_t rrr_funct(stacks_t main, int opt);
 
 /* cmds3 */
-stacks_t sa(stacks_t main, int option);
-stacks_t sb(stacks_t main, int option);
-stacks_t ss(stacks_t main);
+stacks_t sa_funct(stacks_t main, int option);
+stacks_t sb_funct(stacks_t main, int option);
+stacks_t ss_funct(stacks_t main);
 
 int ft_strlen(char *str);
 int ft_atoi(char *str);
@@ -136,6 +134,7 @@ stacks_t *combo1(stacks_t *main);
 stacks_t *combo2(stacks_t *main);
 
 void    init_struct(stacks_t *main, int ac);
+int lowest_num(int *stack, int size);
 
 void    print_stacks(stacks_t main);
 int    get_attr_chunks(int **chunks, int sizeA, int *org);

@@ -5,7 +5,7 @@ stacks_t rrr_funct(stacks_t main, int opt)
     main = rra_funct(main, 0);
     main = rrb_funct(main, 0);
     if (opt)
-        write(1, "rrr ", 4);
+        write(1, "rrr \n", 5);
     return (main);
 }
 
