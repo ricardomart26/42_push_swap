@@ -67,9 +67,9 @@ int lowest_num(int *stack, int size)
 
     while (i < size)
     {
-        while (temp < stack[i] && i < size)
+        while (temp <= stack[i] && i < size)
             i++;
-        if (temp > stack[i])
+        if (temp > stack[i] && i != size)
             temp = stack[i];
         i++;
     }

@@ -2,7 +2,6 @@
 
 moves_t set_b(moves_t cmd, int rb, int rrb)
 {
-    // printf("\n\t(set b) rb %d rrb %d ra %d rra %d\n", rb, rrb, cmd.ra, cmd.rra);
     cmd.rb = rb;
     cmd.rrb = rrb;
     if (cmd.rb != 0 && cmd.ra != 0)
@@ -14,7 +13,6 @@ moves_t set_b(moves_t cmd, int rb, int rrb)
         cmd.rrr = 0;
         cmd.rr = 0;
     }
-    // printf("\n\t(set b) rr %d rrr %d\n", cmd.rr, cmd.rrr);
     return (cmd);
 }
 
@@ -35,7 +33,6 @@ moves_t place_to_put_nbr(stacks_t main, moves_t cmd, int size)
         }
         else
         {
-            // printf("\n\tim here\n");
             if (main.stackB[i] > cmd.num)
                 temp = main.stackB[i] - cmd.num;   
             else if (main.stackB[i] < cmd.num)
@@ -71,31 +68,19 @@ moves_t    get_cmds(stacks_t main, moves_t cmd, int size)
 {
     int max;
     int max_place;
-    int option = 0;
+    int option;
 
+    option = 0;
     if (size > 1)
     {
         max = biggest_num(main.stackB, size);
         max_place = place_in_array(main.stackB, max);
-        // printf("\n\tmax %d and max_place %d size - 1 %d num %d\n", max, max_place, size - 1, cmd.num);
-        // printf("\n\t(check4opt)size_chunk %d && sizeB %d\n", main.size_chunk, main.sizeB);
-        // print_stacks(main); 
         if ((is_lowest_array(cmd.num, main.stackB, size) || cmd.num > max))
         {
-            // if (cmd.num <= max)
-            // {
-            //     if (max_place > main.sizeB/2)
-            //         cmd = set_b(cmd, 0, size - max_place);
-            //     else if (max_place <= main.sizeB/2)
-            //         cmd = set_b(cmd, max_place, 0);
-            // }
             if (max_place == 0)
                 set_b(cmd, 0, 0);
             else if (max_place == size - 1 && cmd.num > max)
-            {
-                // printf("\n\tENTROU AQUI?\n");
                 cmd = set_b(cmd, 0, 1);
-            }
             else if (max_place > main.sizeB/2)
                 cmd = set_b(cmd, 0, size - max_place);
             else if (max_place <= main.sizeB/2)

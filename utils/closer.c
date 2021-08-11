@@ -4,7 +4,6 @@ int closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd)
 {
     int i;
     int x;
-    int size1;
 
     i = 0;
     while (size + 1)

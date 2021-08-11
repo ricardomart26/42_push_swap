@@ -60,10 +60,9 @@ int place_in_array(int *stack, int num);
 int is_lowest_array(int x, int *array, int size);
 int biggest_num(int *stack, int size);
 
-stacks_t combo_opt0(stacks_t main, int *chunks);
-stacks_t combo_opt1(stacks_t main, int *chunks);
-stacks_t combo_opt2(stacks_t main, int *chunks);
-stacks_t combo_opt3(stacks_t main, int *chunks);
+stacks_t combo_opt(stacks_t main, int *chunks, int option);
+
+void    error_mes();
 
 void    init_cmd(moves_t *cmd);
 stacks_t push_chunk_to_b2(stacks_t main, int *chunks);
@@ -78,13 +77,12 @@ int where_to_putnbr2(int x, int *stackB, int size);
 int simulate_next_f(stacks_t temp, int *chunks, int moves);
 int simulate_next_s(stacks_t temp, int *chunks, int moves);
 stacks_t pass_stacks_to_temp(stacks_t main);
+void	do_only3(stacks_t *main);
 
 void    print_cmds(moves_t cmd);
 
 int do_rr_top(moves_t *cmd, stacks_t ***temp); // Dont know if it works
 int do_rrr_bottom(moves_t *cmd, stacks_t ***temp); // Dont know if it works
-moves_t *rrr_sim(moves_t *cmd, int rrr, int rrb, int rra);
-moves_t *rr_sim(moves_t *cmd, int rr, int ra, int rb);
 
 int closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd);
 int closer_to_end2(stacks_t main, int *chunk, moves_t *cmd);
@@ -94,7 +92,7 @@ stacks_t get_av(stacks_t main, char **av);
 stacks_t    do_easy_one2(stacks_t main);
 stacks_t    do_not_so_easy_one(stacks_t main);
 stacks_t    beast_mode(stacks_t main);
-stacks_t    peanuts(stacks_t main, int size);
+stacks_t    peanuts(stacks_t main);
 
 void        print_array(int *stack, int size);
 stacks_t    push_chunk_to_b(stacks_t main, int *chunks);
@@ -121,7 +119,7 @@ stacks_t sb_funct(stacks_t main, int option);
 stacks_t ss_funct(stacks_t main);
 
 int ft_strlen(char *str);
-int ft_atoi(char *str);
+long int ft_atoi(char *str);
 int  find(int number, int *arr);
 int    *ft_swap(int *stack, int i);
 
@@ -137,7 +135,8 @@ void    init_struct(stacks_t *main, int ac);
 int lowest_num(int *stack, int size);
 
 void    print_stacks(stacks_t main);
-int    get_attr_chunks(int **chunks, int sizeA, int *org);
+int    get_attr_chunks(int **chunks, int sizeA, int *org, int divisor);
 int *organize_array(int *stack, int size);
+void    init_main_loop(stacks_t *main, int *org);
 
 #endif

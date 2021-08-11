@@ -16,7 +16,7 @@ stacks_t ra_funct(stacks_t main, int option)
     }
     main.stackA[x] = temp;
     if (option)
-        write(1, "ra \n", 5);
+        write(1, "ra\n", 4);
     return (main);
 }
 
@@ -36,7 +36,7 @@ stacks_t rb_funct(stacks_t main, int option)
     }
     main.stackB[x] = temp;
     if (option)
-        write(1, "rb \n", 5);
+        write(1, "rb\n", 4);
     return (main);
 }
 
@@ -46,7 +46,7 @@ stacks_t rr_funct(stacks_t main, int opt)
     main = ra_funct(main, 0);
     main = rb_funct(main, 0);
     if (opt)
-        write(1, "rr \n", 5);
+        write(1, "rr\n", 4);
     return (main);
 }
 
@@ -62,7 +62,7 @@ stacks_t rra_funct(stacks_t main, int option)
         main.stackA[size] = main.stackA[size - 1];
     main.stackA[0] = last;
     if (option)
-        write(1, "rra \n", 6);
+        write(1, "rra\n", 5);
     return (main);
 }
 
@@ -76,6 +76,6 @@ stacks_t rrb_funct(stacks_t main, int option)
         main.stackB[size] = main.stackB[size - 1];
     main.stackB[0] = last;
     if (option)
-        write(1, "rrb \n", 6);
+        write(1, "rrb\n", 5);
     return (main);
 }

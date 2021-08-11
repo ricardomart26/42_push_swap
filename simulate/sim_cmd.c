@@ -28,13 +28,6 @@ stacks_t   gen_moves_fake(stacks_t main, int option, int counter, int pb_pa)
 
 stacks_t   gen_moves_real(stacks_t main, int option, int counter, int pb_pa)
 {
-    // if (counter > 20)
-    // {
-    //     print_stacks(main);
-    //     printf("\n\toption %d\n", option);
-    //     sleep(2);
-    //     exit(0);
-    // }
     while (counter)
     {
         if (option == 0)
@@ -59,25 +52,6 @@ stacks_t   gen_moves_real(stacks_t main, int option, int counter, int pb_pa)
     return (main);
 }
 
-
-// moves_t *rr_sim(moves_t *cmd, int rr, int ra, int rb)
-// {
-//     cmd->rr = rr;
-//     cmd->ra = ra;
-//     cmd->rb = rb;
-//     cmd->total = cmd->rr + cmd->ra + cmd->rb;
-//     return (cmd);
-// }
-
-// moves_t *rrr_sim(moves_t *cmd, int rrr, int rrb, int rra)
-// {
-//     cmd->rrr = rrr;
-//     cmd->rrb = rrb;
-//     cmd->rra = rra;
-//     cmd->total = cmd->rrr + cmd->rra + cmd->rrb;
-//     return (cmd);
-// }
-
 int num1(stacks_t **temp, moves_t cmd)
 {
     if (cmd.rr && !cmd.ra && !cmd.rb)
@@ -98,8 +72,7 @@ int num1(stacks_t **temp, moves_t cmd)
 
         **temp = gen_moves_real(**temp, 0, cmd.ra, 0);
         **temp = gen_moves_real(**temp, 2, cmd.rb, 0);
-        **temp = gen_moves_real(**temp, 3, cmd.rrb, 0);
-        **temp = pb_funct(**temp, 1);
+        **temp = gen_moves_real(**temp, 3, cmd.rrb, 1);
         return (cmd.ra + cmd.rb + cmd.rrb + pb);
     }
     return (0);
@@ -151,8 +124,7 @@ int num1_fake(stacks_t **temp, moves_t cmd)
 
         **temp = gen_moves_fake(**temp, 0, cmd.ra, 0);
         **temp = gen_moves_fake(**temp, 2, cmd.rb, 0);
-        **temp = gen_moves_fake(**temp, 3, cmd.rrb, 0);
-        **temp = pb_funct(**temp, 0);
+        **temp = gen_moves_fake(**temp, 3, cmd.rrb, 1);
         return (cmd.ra + cmd.rb + cmd.rrb + pb);
     }
     return (0);

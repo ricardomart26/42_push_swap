@@ -1,4 +1,4 @@
-CC = gcc 
+CC = gcc -Wall -Wextra -Werror
 
 INCLUDE = -I push_swap.h
 
@@ -8,7 +8,7 @@ SRC = $(wildcard main/*.c) $(wildcard cmds_and_combos/*.c) $(wildcard utils/*.c)
 
 OBJS = $(SRC:.c=.o)
 
-NAME = swap.out
+NAME = push_swap
 
 all: $(NAME)
 

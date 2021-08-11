@@ -7,20 +7,13 @@ int    *organize_the_stack(int *stack, int size, int opt)
 
     size2 = size - 1;
     x = 0;
-
-    // printf("\n\t(Organize array 1) FUCK YOU %d %d size %d\n", stack[x], x, size);
-    // print_array(stack, size);
     if (opt)
         stack = realloc(stack, sizeof(int) * size2 + 1);
     while (size2--)
     {
         stack[x] = stack[x + 1];
         x++;
-        // printf("\n\t(Organize array 2) FUCK YOU %d %d\n", stack[x], x);
-
     }
-    // printf("\n\t(Organize array 2) FUCK YOU %d %d\n", stack[x], x);
-
     stack[x] = 0;
     return (stack);
 }
@@ -40,7 +33,6 @@ int    *push_to_p(int *stack, int *size, int number)
     stack[0] = number;
     while (temp_size--)
     {
-        // printf("\n\ttemp = %d stackb = %d", temp, stack[x]);
         temp2 = stack[x];
         stack[x] = temp;
         temp = temp2;
@@ -58,7 +50,7 @@ stacks_t pa_funct(stacks_t main, int opt)
         perror("\n\tIN PB: main stack A esta vazio\n");
     if (main.sizeA == 0)
     {
-        main.stackA = malloc(sizeof(int) + 1); // Posso fazer isto?
+        main.stackA = malloc(sizeof(int) + 1);
         main.stackA[0] = number;
         main.stackB = organize_the_stack(main.stackB, main.sizeB, 0);
         main.sizeA++;
@@ -69,9 +61,8 @@ stacks_t pa_funct(stacks_t main, int opt)
         main.stackB = organize_the_stack(main.stackB, main.sizeB, 1);
     }
     main.sizeB--;
-
     if (opt)    
-        write(1, "pa \n", 5);
+        write(1, "pa\n", 4);
     return (main);
 
 }
@@ -96,8 +87,7 @@ stacks_t pb_funct(stacks_t main, int opt)
         main.stackA = organize_the_stack(main.stackA, main.sizeA, 1);
     }
     main.sizeA--;
-
     if (opt)
-        write(1, "pb \n", 5);
+        write(1, "pb\n", 4);
     return (main);
 }

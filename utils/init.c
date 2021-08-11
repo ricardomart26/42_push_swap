@@ -1,5 +1,14 @@
 #include "../push_swap.h"
 
+void    init_main_loop(stacks_t *main, int *org)
+{
+    main->lowest = org[0];
+    if (main->sizeA % 2 != 0)
+        main->middle_size = main->sizeA/2 + 1;
+    else
+        main->middle_size = main->sizeA/2;
+}
+
 void    init_cmd(moves_t *cmd)
 {
     cmd->num = 0;

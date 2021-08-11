@@ -19,10 +19,6 @@ int *organize_array(int *stack, int size)
             i++;
         if (i < size)
             org = ft_swap(org, i);
-        // printf("\n\t(org array) array A = %d && org A + 1 %d\n", org[i], org[i + 1]);
     }
-    // print_array(org, size);
-    // printf("\n");
-    // sleep(3);
     return (org);
 }

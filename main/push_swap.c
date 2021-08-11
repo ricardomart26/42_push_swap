@@ -1,32 +1,32 @@
 #include "../push_swap.h"
 
-stacks_t get_av(stacks_t main, char **av)
+stacks_t	get_av(stacks_t main, char **av)
 {
-    int x;
-    
-    x = 1;
-    while (av[x])
-    {
-        main.stackA[x - 1] = ft_atoi(av[x]);
-        x++;
-    }
-    return (main);
+	int	x;
+	long int temp;
+
+	x = 1;
+	while (av[x])
+	{
+		temp = ft_atoi(av[x]);
+		if (temp > 2147483647 || temp < -21474836478)
+        	error_mes();
+		main.stackA[x - 1] = (int)temp;
+		x++;
+	}
+	return (main);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    stacks_t main;
+	stacks_t	main;
 
-    init_struct(&main, ac); // Iniciar a struct do main, alocar memoria para o stackA, e o tamanho de sizeA
-    main = get_av(main, av); // Passar os numeros para o stackA
-    if (!is_valid(main)) // Verificar se tem numeros dup
-        perror("ERROR: NUMBER DUP\n\n");
-    if (ac < 20)
-        main = peanuts(main, main.sizeA); 
-    else if (ac < 99)
-        main = do_easy_one2(main);
-    else if (ac < 500)
-        main = do_not_so_easy_one(main);
-    else
-        main = beast_mode(main);
+	init_struct(&main, ac);
+	main = get_av(main, av);
+	if (is_valid(main) == 2)
+		return (0);
+	if (ac < 20)
+		main = peanuts(main);
+	else
+		main = do_easy_one2(main);
 }

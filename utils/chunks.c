@@ -1,9 +1,10 @@
 #include "../push_swap.h"
 
-int    get_attr_chunks(int **chunks, int sizeA, int *org)
+int    get_attr_chunks(int **chunks, int sizeA, int *org, int divisor)
 {
     int i;
-    // printf("\n\tmiddle size %d\n", sizeA);
+    
+    sizeA /= divisor;
     *chunks = (int *)malloc(sizeof(int) * sizeA + 1);  
     i = 0;
     while (i < sizeA)
