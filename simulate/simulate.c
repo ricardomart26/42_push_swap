@@ -1,4 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simulate.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/12 01:03:17 by ricardo           #+#    #+#             */
+/*   Updated: 2021/08/12 01:03:17 by ricardo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
+
+int simulate_next_f(stacks_t temp, int *chunks, int moves)
+{
+    stacks_t temp2;
+
+    temp2 = pass_stacks_to_temp(temp);
+    moves += simulate_num1(&temp2, chunks, 0);
+    return (moves);
+}
+
+int simulate_next_s(stacks_t temp, int *chunks, int moves)
+{
+    stacks_t temp2;
+    temp2 = pass_stacks_to_temp(temp);
+    moves += simulate_num2(&temp2, chunks, 0);
+    return (moves);
+}
 
 int simulate_num2(stacks_t *temp, int *chunks, int opt)
 {

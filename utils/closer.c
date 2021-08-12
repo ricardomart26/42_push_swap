@@ -9,7 +9,7 @@ int closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd)
     while (size + 1)
     {
         x = 0;
-        while (main.stackA[i] != chunk[x] && x < main.size_chunk + 1)
+        while (main.A[i] != chunk[x] && x < main.size_chunk + 1)
             x++;
         if (x == main.size_chunk + 1)
             i++;
@@ -17,7 +17,7 @@ int closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd)
         {
             cmd->ra = i;
 			cmd->rra = 0;
-            cmd->num = main.stackA[i];
+            cmd->num = main.A[i];
             break;
         }
         size--;
@@ -36,7 +36,7 @@ int closer_to_end2(stacks_t main, int *chunk, moves_t *cmd)
     while (size + 1)
     {
         x = 0;
-        while (main.stackA[size] != chunk[x] && x < main.size_chunk + 1)
+        while (main.A[size] != chunk[x] && x < main.size_chunk + 1)
             x++;
         if (x == main.size_chunk + 1)
             size--;
@@ -44,7 +44,7 @@ int closer_to_end2(stacks_t main, int *chunk, moves_t *cmd)
         {
 			cmd->rra = main.sizeA - size;
 			cmd->ra = 0;
-            cmd->num = main.stackA[size];
+            cmd->num = main.A[size];
             return (size);
         }
     }

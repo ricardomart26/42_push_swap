@@ -23,7 +23,7 @@ void    print_cmds(moves_t cmd)
     printf("\t**  rra  = %d **\n", cmd.rra);
     printf("\t**  rrb  = %d **\n", cmd.rrb);
     printf("\t**  rrr  = %d **\n", cmd.rrr);
-    printf("\t**  pos B = %d **\n", cmd.pos_stackb);
+    printf("\t**  pos B = %d **\n", cmd.pos_B);
     printf("\t**  num = %d **\n", cmd.num);
     printf("\t**  total = %d **\n", cmd.total);
     printf("\t****************\n");
@@ -50,18 +50,18 @@ void    print_stacks(stacks_t main)
     {
         if (main.sizeA != 0 && main.sizeB != 0)
         {
-            printf("\t** %d ** %d **\n", main.stackA[c], main.stackB[c]);
+            printf("\t** %d ** %d **\n", main.A[c], main.B[c]);
             main.sizeA--;
             main.sizeB--;    
         }
         else if (main.sizeA != 0 && main.sizeB == 0)
         {
-            printf("\t** %d **   **\n", main.stackA[c]);
+            printf("\t** %d **   **\n", main.A[c]);
             main.sizeA--;
         }
         else if (main.sizeA == 0 && main.sizeB != 0)
         {
-            printf("\t**   ** %d **\n", main.stackB[c]);
+            printf("\t**   ** %d **\n", main.B[c]);
             main.sizeB--;
         }
         c++;

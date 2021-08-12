@@ -6,14 +6,14 @@ int is_valid(stacks_t main)
     int i;
 
     x = 0;
-    if (is_correct(main.stackA, main.sizeA))
+    if (is_correct(main.A, main.sizeA))
         return (2);
-    while (main.stackA[x])
+    while (main.A[x])
     {
         i = x + 1;
-        while (main.stackA[i])
+        while (main.A[i])
         {
-            if (main.stackA[x] == main.stackA[i])
+            if (main.A[x] == main.A[i])
                 error_mes();
             i++;
         }
@@ -45,7 +45,7 @@ int is_correct(int *stack, int size)
     return (1);
 }
 
-int is_correct_stackB(int *stackB, int size)
+int is_correct_B(int *B, int size)
 {
     int i;
 
@@ -53,7 +53,7 @@ int is_correct_stackB(int *stackB, int size)
     while (size)
     {
 
-        if (stackB[i] > stackB[i + 1])
+        if (B[i] > B[i + 1])
             i++;
         else if (i < size)
             return (0);

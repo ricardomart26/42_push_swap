@@ -6,15 +6,15 @@ stacks_t ra_funct(stacks_t main, int option)
     int x;
     int temp;
 
-    temp = main.stackA[0];
+    temp = main.A[0];
     x = 0;
     size = main.sizeA - 1;
     while (size--)
     {
-        main.stackA[x] = main.stackA[x + 1];
+        main.A[x] = main.A[x + 1];
         x++;
     }
-    main.stackA[x] = temp;
+    main.A[x] = temp;
     if (option)
         write(1, "ra\n", 4);
     return (main);
@@ -26,15 +26,15 @@ stacks_t rb_funct(stacks_t main, int option)
     int x;
     int temp;
 
-    temp = main.stackB[0];
+    temp = main.B[0];
     x = 0;
     size = main.sizeB - 1;
     while (size--)
     {
-        main.stackB[x] = main.stackB[x + 1];
+        main.B[x] = main.B[x + 1];
         x++;
     }
-    main.stackB[x] = temp;
+    main.B[x] = temp;
     if (option)
         write(1, "rb\n", 4);
     return (main);
@@ -56,11 +56,11 @@ stacks_t rra_funct(stacks_t main, int option)
     int size;
     int last;
 
-    last = main.stackA[main.sizeA - 1];
+    last = main.A[main.sizeA - 1];
     size = main.sizeA;
     while (size--)
-        main.stackA[size] = main.stackA[size - 1];
-    main.stackA[0] = last;
+        main.A[size] = main.A[size - 1];
+    main.A[0] = last;
     if (option)
         write(1, "rra\n", 5);
     return (main);
@@ -70,11 +70,11 @@ stacks_t rrb_funct(stacks_t main, int option)
 {
     int size;
     int last;
-    last = main.stackB[main.sizeB - 1];
+    last = main.B[main.sizeB - 1];
     size = main.sizeB;
     while (size--)
-        main.stackB[size] = main.stackB[size - 1];
-    main.stackB[0] = last;
+        main.B[size] = main.B[size - 1];
+    main.B[0] = last;
     if (option)
         write(1, "rrb\n", 5);
     return (main);

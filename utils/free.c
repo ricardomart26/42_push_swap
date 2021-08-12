@@ -2,12 +2,12 @@
 
 void free_all_stacks_t(stacks_t *main)
 {
-    free(main->stackA);
-    main->stackA = NULL;
+    free(main->A);
+    main->A = NULL;
     if (main->sizeB)
     {
-        free(main->stackB);
-        main->stackB = NULL;    
+        free(main->B);
+        main->B = NULL;    
     }
         
 }

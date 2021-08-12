@@ -45,20 +45,20 @@ stacks_t pa_funct(stacks_t main, int opt)
 {
     int number;
 
-    number = main.stackB[0];
-    if (!main.stackB)
+    number = main.B[0];
+    if (!main.B)
         perror("\n\tIN PB: main stack A esta vazio\n");
     if (main.sizeA == 0)
     {
-        main.stackA = malloc(sizeof(int) + 1);
-        main.stackA[0] = number;
-        main.stackB = organize_the_stack(main.stackB, main.sizeB, 0);
+        main.A = malloc(sizeof(int) + 1);
+        main.A[0] = number;
+        main.B = organize_the_stack(main.B, main.sizeB, 0);
         main.sizeA++;
     }
     else
     {
-        main.stackA = push_to_p(main.stackA, &main.sizeA, number);
-        main.stackB = organize_the_stack(main.stackB, main.sizeB, 1);
+        main.A = push_to_p(main.A, &main.sizeA, number);
+        main.B = organize_the_stack(main.B, main.sizeB, 1);
     }
     main.sizeB--;
     if (opt)    
@@ -71,20 +71,20 @@ stacks_t pb_funct(stacks_t main, int opt)
 {
     int number;
 
-    number = main.stackA[0];
-    if (!main.stackA)
+    number = main.A[0];
+    if (!main.A)
         perror("\n\tIN PB: main stack A esta vazio\n");
     if (main.sizeB == 0)
     {
-        main.stackB = malloc(sizeof(int) + 1); // Posso fazer isto?
-        main.stackB[0] = number;
-        main.stackA = organize_the_stack(main.stackA, main.sizeA, 0);
+        main.B = malloc(sizeof(int) + 1); // Posso fazer isto?
+        main.B[0] = number;
+        main.A = organize_the_stack(main.A, main.sizeA, 0);
         main.sizeB++;
     }
     else
     {
-        main.stackB = push_to_p(main.stackB, &main.sizeB, number);
-        main.stackA = organize_the_stack(main.stackA, main.sizeA, 1);
+        main.B = push_to_p(main.B, &main.sizeB, number);
+        main.A = organize_the_stack(main.A, main.sizeA, 1);
     }
     main.sizeA--;
     if (opt)

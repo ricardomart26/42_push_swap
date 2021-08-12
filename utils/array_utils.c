@@ -75,3 +75,23 @@ int lowest_num(int *stack, int size)
     }
     return (temp);
 }
+
+int	search_in_chunk(stacks_t temp, int *chunk, int sizeA)
+{
+	int	ret;
+	int	i;
+	int	x;
+
+	i = 0;
+	ret = 0;
+	while (i < sizeA && ret < 2)
+	{
+		x = 0;
+		while (temp.A[i] != chunk[x] && x < temp.size_chunk)
+			x++;
+		if (x != temp.size_chunk)
+			ret++;
+		i++;
+	}
+	return (ret);
+}

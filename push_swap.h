@@ -7,8 +7,8 @@
 
 typedef struct stacks_s
 {
-    int *stackA;
-    int *stackB;
+    int *A;
+    int *B;
     int sizeA;
     int size_chunk;
     int sizeB;
@@ -28,11 +28,15 @@ typedef struct moves_s
     int rrr;
     int total;
     int num;
-    int pos_stackb;
+    int pos_B;
 } moves_t;
 
 #define pb 1
 #define pa 1
+
+int	search_in_chunk(stacks_t temp, int *chunk, int sizeA);
+
+
 
 void    moves_rrb(moves_t *cmd);
 void    moves_rb(moves_t *cmd);
@@ -73,11 +77,11 @@ int simulate_num2(stacks_t *temp, int *chunks, int opt);
 stacks_t   gen_moves_fake(stacks_t main, int option, int counter, int pb_pa);
 stacks_t   gen_moves_real(stacks_t main, int option, int counter, int pb_pa);
 
-int where_to_putnbr2(int x, int *stackB, int size);
+int where_to_putnbr2(int x, int *B, int size);
 int simulate_next_f(stacks_t temp, int *chunks, int moves);
 int simulate_next_s(stacks_t temp, int *chunks, int moves);
 stacks_t pass_stacks_to_temp(stacks_t main);
-void	do_only3(stacks_t *main);
+stacks_t	do_only3(stacks_t main);
 
 void    print_cmds(moves_t cmd);
 
@@ -126,7 +130,7 @@ int    *ft_swap(int *stack, int i);
 int ft_isntdigit(char c);
 int is_valid(stacks_t main);
 int is_correct(int *stack, int size);
-int is_correct_stackB(int *stackB, int size);
+int is_correct_B(int *B, int size);
 
 stacks_t *combo1(stacks_t *main);
 stacks_t *combo2(stacks_t *main);

@@ -26,41 +26,41 @@ moves_t place_to_put_nbr(stacks_t main, moves_t cmd, int size)
     i = 0;
     while (i < size)
     {
-        if (cmd.num > main.stackB[0] && cmd.num < main.stackB[size - 1] && i == 0)
+        if (cmd.num > main.B[0] && cmd.num < main.B[size - 1] && i == 0)
         {
-            cmd.pos_stackb = 0;
+            cmd.pos_B = 0;
             break;
         }
         else
         {
-            if (main.stackB[i] > cmd.num)
-                temp = main.stackB[i] - cmd.num;   
-            else if (main.stackB[i] < cmd.num)
-                temp = cmd.num - main.stackB[i];
+            if (main.B[i] > cmd.num)
+                temp = main.B[i] - cmd.num;   
+            else if (main.B[i] < cmd.num)
+                temp = cmd.num - main.B[i];
             if (i == 0)
             {
                 diff = temp;
-                if (main.stackB[i] > cmd.num)
-                    cmd.pos_stackb = i + 1;   
-                else if (main.stackB[i] < cmd.num)
-                    cmd.pos_stackb = i;
+                if (main.B[i] > cmd.num)
+                    cmd.pos_B = i + 1;   
+                else if (main.B[i] < cmd.num)
+                    cmd.pos_B = i;
                 
             }
             else if (temp < diff)
             {
-                if (main.stackB[i] > cmd.num)
-                    cmd.pos_stackb = i + 1;   
-                else if (main.stackB[i] < cmd.num)
-                    cmd.pos_stackb = i;
+                if (main.B[i] > cmd.num)
+                    cmd.pos_B = i + 1;   
+                else if (main.B[i] < cmd.num)
+                    cmd.pos_B = i;
                 diff = temp;
             }
             i++;
         }
     }
-    if (cmd.pos_stackb > main.sizeB/2)
-        cmd = set_b(cmd, 0, size - cmd.pos_stackb);
-    else if (cmd.pos_stackb <= main.sizeB/2)
-        cmd = set_b(cmd, cmd.pos_stackb, 0);
+    if (cmd.pos_B > main.sizeB/2)
+        cmd = set_b(cmd, 0, size - cmd.pos_B);
+    else if (cmd.pos_B <= main.sizeB/2)
+        cmd = set_b(cmd, cmd.pos_B, 0);
     return (cmd);
 }   
 
@@ -73,9 +73,9 @@ moves_t    get_cmds(stacks_t main, moves_t cmd, int size)
     option = 0;
     if (size > 1)
     {
-        max = biggest_num(main.stackB, size);
-        max_place = place_in_array(main.stackB, max);
-        if ((is_lowest_array(cmd.num, main.stackB, size) || cmd.num > max))
+        max = biggest_num(main.B, size);
+        max_place = place_in_array(main.B, max);
+        if ((is_lowest_array(cmd.num, main.B, size) || cmd.num > max))
         {
             if (max_place == 0)
                 set_b(cmd, 0, 0);
@@ -92,7 +92,7 @@ moves_t    get_cmds(stacks_t main, moves_t cmd, int size)
     }
     else
     {
-        cmd.pos_stackb = 0;
+        cmd.pos_B = 0;
         cmd.rb = 0;
         cmd.rrb = 0;
         cmd.rr = 0;
