@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:44:51 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 00:56:56 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/12 02:53:27 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ moves_t	B_correct(stacks_t *main, int size)
 	return (cmd);
 }
 
-void	organize4_A(stacks_t *main, moves_t cmd)
+void	organize4_A(stacks_t *main)
 {
 	int	lower;
 	int	lower_pos;
@@ -80,10 +80,10 @@ void	organize4_A(stacks_t *main, moves_t cmd)
 	}
 }
 
-stacks_t	last3_A(stacks_t main, moves_t cmd)
+stacks_t	last3_A(stacks_t main)
 {
 	if (!is_lowest_array(main.B[0], main.A, main.sizeA))
-		organize4_A(&main, cmd);
+		organize4_A(&main);
 	if (!is_correct(main.A, 3))
 	{
 		if (main.A[0] > main.A[1] && main.A[1] < main.A[2])
@@ -104,6 +104,7 @@ stacks_t	do_easy_one(stacks_t main)
 	int		*org;
 	moves_t	cmd;
 
+	init_cmd(&cmd);
 	while (main.sizeA != 3)
 	{
 		org = organize_array(main.A, main.sizeA - 1);
@@ -117,7 +118,7 @@ stacks_t	do_easy_one(stacks_t main)
 		main = push_chunk_to_b(main, chunks);
 	}
 	cmd = B_correct(&main, main.sizeB);
-	main = last3_A(main, cmd);
+	main = last3_A(main);
 	while (main.B[0] < main.A[0] && main.sizeB != 0)
 		main = pa_funct(main, 1);
 	print_stacks(main);

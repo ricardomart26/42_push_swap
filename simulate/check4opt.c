@@ -6,11 +6,37 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:45:00 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 00:45:01 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/12 02:55:34 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+int	return_best_opt(int *mv, stacks_t temp, int *chunks)
+{
+	int	i;
+	int	x;
+	int	value;
+
+	i = 0;
+	while (1)
+	{
+		if (i == 3)
+			return (i);
+		x = i + 1;
+		while (mv[i] <= mv[x] && x != 4)
+			x++;
+		if (x == 4)
+		{
+			value = mv[i];
+			x = i;
+			i = see_if_is_equal(temp, chunks, value, i);
+			break ;
+		}
+		i++;
+	}
+	return (i);
+}
 
 int	do_end(stacks_t temp, int *chunks)
 {

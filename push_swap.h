@@ -82,6 +82,7 @@ int simulate_next_f(stacks_t temp, int *chunks, int moves);
 int simulate_next_s(stacks_t temp, int *chunks, int moves);
 stacks_t pass_stacks_to_temp(stacks_t main);
 stacks_t	do_only3(stacks_t main);
+int	how_many_moves(stacks_t temp, int *chunks, int i);
 
 void    print_cmds(moves_t cmd);
 
