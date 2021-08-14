@@ -18,7 +18,7 @@ void	error_mes(void)
 	exit(0);
 }
 
-void	free_all_stacks_t(stacks_t *main)
+void	free_all_stacks_t(t_stacks *main)
 {
 	free(main->A);
 	main->A = NULL;

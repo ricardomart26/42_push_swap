@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-int	check_two_opt(stacks_t temp, int *chunks)
+int	check_two_opt(t_stacks temp, int *chunks)
 {
 	int	mv[2];
 
@@ -23,7 +23,7 @@ int	check_two_opt(stacks_t temp, int *chunks)
 	return (mv[0]);
 }
 
-int	sim_all(stacks_t temp, int *chunks, int i, int x)
+int	sim_all(t_stacks temp, int *chunks, int i, int x)
 {
 	int	moves;
 
@@ -52,7 +52,7 @@ int	sim_all(stacks_t temp, int *chunks, int i, int x)
 	return (moves);
 }
 
-int	how_many_moves(stacks_t temp, int *chunks, int i)
+int	how_many_moves(t_stacks temp, int *chunks, int i)
 {
 	int	moves;
 
@@ -68,7 +68,7 @@ int	how_many_moves(stacks_t temp, int *chunks, int i)
 	return (moves);
 }
 
-int	see_best_opt(int i, int x, stacks_t temp, int *chunks)
+int	see_best_opt(int i, int x, t_stacks temp, int *chunks)
 {
 	int	moves;
 	int	moves2;
@@ -82,9 +82,9 @@ int	see_best_opt(int i, int x, stacks_t temp, int *chunks)
 	return (i);
 }
 
-int	see_if_is_equal(stacks_t temp, int value, int i, int *mv)
+int	see_if_is_equal(t_stacks temp, int value, int i, int *mv)
 {
-	int x;
+	int	x;
 
 	x = i;
 	while (x < 4)

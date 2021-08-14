@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-int	closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd)
+int	closer_to_beg(t_stacks main, int *chunk, int size, t_moves *cmd)
 {
 	int	i;
 	int	x;
@@ -39,7 +39,7 @@ int	closer_to_beginning2(stacks_t main, int *chunk, int size, moves_t *cmd)
 	return (1);
 }
 
-int	closer_to_end2(stacks_t main, int *chunk, moves_t *cmd)
+int	closer_to_end(t_stacks main, int *chunk, t_moves *cmd)
 {
 	int	size;
 	int	x;

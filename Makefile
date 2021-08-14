@@ -15,8 +15,8 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	mkdir Objs
 	@echo "created Dirs"
-	make bonus -C Libft
-	$(CC) $(OBJS) include -I $(LIB) -o $(NAME)
+	# make bonus -C Libft
+	$(CC) $(OBJS) -o $(NAME)
 	mv $(OBJS) Objs
 
 clean:

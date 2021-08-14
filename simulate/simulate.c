@@ -12,30 +12,30 @@
 
 #include "../push_swap.h"
 
-int	simulate_next_f(stacks_t temp, int *chunks, int moves)
+int	simulate_next_f(t_stacks temp, int *chunks, int moves)
 {
-	stacks_t	temp2;
+	t_stacks	temp2;
 
 	temp2 = pass_stacks_to_temp(temp);
 	moves += simulate_num1(&temp2, chunks, 0);
 	return (moves);
 }
 
-int	simulate_next_s(stacks_t temp, int *chunks, int moves)
+int	simulate_next_s(t_stacks temp, int *chunks, int moves)
 {
-	stacks_t	temp2;
+	t_stacks	temp2;
 
 	temp2 = pass_stacks_to_temp(temp);
 	moves += simulate_num2(&temp2, chunks, 0);
 	return (moves);
 }
 
-int	simulate_num2(stacks_t *temp, int *chunks, int opt)
+int	simulate_num2(t_stacks *temp, int *chunks, int opt)
 {
-	moves_t	cmd;
+	t_moves	cmd;
 
 	init_cmd(&cmd);
-	closer_to_end2(*temp, chunks, &cmd);
+	closer_to_end(*temp, chunks, &cmd);
 	cmd = get_cmds(*temp, cmd, temp->sizeB);
 	if (opt)
 		cmd.total = num2(&temp, cmd);
@@ -44,12 +44,12 @@ int	simulate_num2(stacks_t *temp, int *chunks, int opt)
 	return (cmd.total);
 }
 
-int	simulate_num1(stacks_t *temp, int *chunks, int opt)
+int	simulate_num1(t_stacks *temp, int *chunks, int opt)
 {
-	moves_t	cmd;
+	t_moves	cmd;
 
 	init_cmd(&cmd);
-	closer_to_beginning2(*temp, chunks, temp->sizeA, &cmd);
+	closer_to_beg(*temp, chunks, temp->sizeA, &cmd);
 	cmd = get_cmds(*temp, cmd, temp->sizeB);
 	if (opt)
 		cmd.total = num1(&temp, cmd);

@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	moves_rb(moves_t *cmd)
+void	moves_rb(t_moves *cmd)
 {
 	if (cmd->ra == cmd->rb)
 	{
@@ -34,7 +34,7 @@ void	moves_rb(moves_t *cmd)
 	}
 }
 
-void	moves_rrb(moves_t *cmd)
+void	moves_rrb(t_moves *cmd)
 {
 	if (cmd->rra == cmd->rrb)
 	{

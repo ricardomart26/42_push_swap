@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-int	return_best_opt(int *mv, stacks_t temp, int num_in_chunk)
+int	return_best_opt(int *mv, t_stacks temp, int num_in_chunk)
 {
 	int	i;
 	int	x;
@@ -39,17 +39,17 @@ int	return_best_opt(int *mv, stacks_t temp, int num_in_chunk)
 	return (i);
 }
 
-int	do_end(stacks_t temp, int *chunks)
+int	do_end(t_stacks temp, int *chunks)
 {
 	int		mv[2];
-	moves_t	cmd[2];
+	t_moves	cmd[2];
 
 	init_cmd(&cmd[0]);
 	init_cmd(&cmd[1]);
 	if (temp.sizeB == 4)
 	{
-		closer_to_beginning2(temp, chunks, temp.sizeA, &cmd[0]);
-		closer_to_end2(temp, chunks, &cmd[1]);
+		closer_to_beg(temp, chunks, temp.sizeA, &cmd[0]);
+		closer_to_end(temp, chunks, &cmd[1]);
 		if (cmd[0].num <= cmd[1].num)
 			return (4);
 		return (5);
@@ -65,9 +65,9 @@ int	do_end(stacks_t temp, int *chunks)
 	return (0);
 }
 
-int	check_four_opt(stacks_t main, int *chunks)
+int	check_four_opt(t_stacks main, int *chunks)
 {
-	stacks_t	temp;
+	t_stacks	temp;
 	int			movesss;
 	int			mv[4];
 	int			nums_in_chunk;
@@ -82,10 +82,12 @@ int	check_four_opt(stacks_t main, int *chunks)
 	movesss = simulate_num1(&temp, chunks, 0);
 	mv[0] = simulate_next_f(temp, chunks, movesss);
 	mv[1] = simulate_next_s(temp, chunks, movesss);
+	free_all_stacks_t(&temp);
 	temp = pass_stacks_to_temp(main);
 	movesss = simulate_num2(&temp, chunks, 0);
 	mv[2] = simulate_next_f(temp, chunks, movesss);
 	mv[3] = simulate_next_s(temp, chunks, movesss);
-	temp = pass_stacks_to_temp(main);		
+	free_all_stacks_t(&temp);
+	temp = pass_stacks_to_temp(main);
 	return (return_best_opt(mv, temp, nums_in_chunk));
 }

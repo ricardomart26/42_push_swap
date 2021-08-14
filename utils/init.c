@@ -17,7 +17,7 @@ int	attr_chunks(int **chunks, int sizeA, int *org, int divisor)
 	int	i;
 
 	sizeA /= divisor;
-	*chunks = (int *)malloc(sizeof(int) * sizeA + 1);
+	*chunks = (int *)calloc(sizeA, sizeof(int));
 	i = 0;
 	while (i < sizeA)
 	{
@@ -29,7 +29,7 @@ int	attr_chunks(int **chunks, int sizeA, int *org, int divisor)
 	return (sizeA - 1);
 }
 
-void	init_main_loop(stacks_t *main, int *org)
+void	init_main_loop(t_stacks *main, int *org)
 {
 	main->lowest = org[0];
 	if (main->sizeA % 2 != 0)
@@ -38,7 +38,7 @@ void	init_main_loop(stacks_t *main, int *org)
 		main->middle_size = main->sizeA / 2;
 }
 
-void	init_cmd(moves_t *cmd)
+void	init_cmd(t_moves *cmd)
 {
 	cmd->num = 0;
 	cmd->pos_B = 0;
@@ -51,10 +51,10 @@ void	init_cmd(moves_t *cmd)
 	cmd->rrr = 0;
 }
 
-void	init_struct(stacks_t *main, int ac)
+void	init_struct(t_stacks *main, int ac)
 {
 	main->ac = ac - 1;
-	main->A = malloc(sizeof(int) * (ac - 1) + 1);
+	main->A = calloc((ac - 1), sizeof(int));
 	if (!main->A)
 		return ;
 	main->sizeA = main->ac;

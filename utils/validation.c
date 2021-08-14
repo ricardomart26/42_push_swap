@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-int	is_valid(stacks_t main)
+int	is_valid(t_stacks main)
 {
 	int	x;
 	int	i;

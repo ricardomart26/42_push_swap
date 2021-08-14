@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-stacks_t	gen_moves_fake(stacks_t main, int option, int counter, int pb_pa)
+t_stacks	gen_moves_fake(t_stacks main, int option, int counter, int pb_pa)
 {
 	while (counter)
 	{
@@ -37,7 +37,7 @@ stacks_t	gen_moves_fake(stacks_t main, int option, int counter, int pb_pa)
 	return (main);
 }
 
-stacks_t	gen_moves_real(stacks_t main, int option, int counter, int pb_pa)
+t_stacks	gen_moves_real(t_stacks main, int option, int counter, int pb_pa)
 {
 	while (counter)
 	{

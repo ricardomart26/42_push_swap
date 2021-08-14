@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-static void	push_everything_to_b(stacks_t *main, int *org)
+static void	push_everything_to_b(t_stacks *main, int *org)
 {
 	while (main->sizeA != 3)
 	{
@@ -37,7 +37,7 @@ static void	push_everything_to_b(stacks_t *main, int *org)
 	}
 }
 
-stacks_t	do_only3(stacks_t main)
+t_stacks	do_only3(t_stacks main)
 {
 	if (main.ac == 2)
 		return (sa_funct(main, 1));
@@ -66,7 +66,7 @@ stacks_t	do_only3(stacks_t main)
 	}
 }
 
-stacks_t	peanuts(stacks_t main)
+t_stacks	peanuts(t_stacks main)
 {
 	int	*org;
 
@@ -80,7 +80,7 @@ stacks_t	peanuts(stacks_t main)
 	return (main);
 }
 
-stacks_t	get_av(stacks_t main, char **av)
+t_stacks	get_av(t_stacks main, char **av)
 {
 	int			x;
 	long int	temp;
@@ -92,7 +92,6 @@ stacks_t	get_av(stacks_t main, char **av)
 		if (temp > 2147483647 || temp < -21474836478)
 			error_mes();
 		main.A[x - 1] = (int)temp;
-		// printf("\n\tnumber %d\n", main.A[x - 1]);
 		x++;
 	}
 	return (main);
@@ -100,7 +99,7 @@ stacks_t	get_av(stacks_t main, char **av)
 
 int	main(int ac, char **av)
 {
-	stacks_t	main;
+	t_stacks	main;
 
 	init_struct(&main, ac);
 	main = get_av(main, av);

@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-moves_t	set_b(moves_t cmd, int rb, int rrb)
+t_moves	set_b(t_moves cmd, int rb, int rrb)
 {
 	cmd.rb = rb;
 	cmd.rrb = rrb;
@@ -28,7 +28,7 @@ moves_t	set_b(moves_t cmd, int rb, int rrb)
 	return (cmd);
 }
 
-int	fuck_norm2(stacks_t main, int i, moves_t *cmd)
+int	fuck_norm2(t_stacks main, int i, t_moves *cmd)
 {
 	if (main.B[i] > cmd->num)
 		cmd->pos_B = i + 1;
@@ -37,7 +37,7 @@ int	fuck_norm2(stacks_t main, int i, moves_t *cmd)
 	return (cmd->pos_B);
 }
 
-void	check_diff(stacks_t main, moves_t *cmd, int i, int size)
+void	check_diff(t_stacks main, t_moves *cmd, int i, int size)
 {
 	int	temp;
 	int	diff;
@@ -63,7 +63,7 @@ void	check_diff(stacks_t main, moves_t *cmd, int i, int size)
 	}
 }
 
-moves_t	place_to_put_nbr(stacks_t main, moves_t cmd, int size)
+t_moves	place_to_put_nbr(t_stacks main, t_moves cmd, int size)
 {
 	int	i;
 
@@ -79,7 +79,7 @@ moves_t	place_to_put_nbr(stacks_t main, moves_t cmd, int size)
 	return (cmd);
 }
 
-moves_t	get_cmds(stacks_t main, moves_t cmd, int size)
+t_moves	get_cmds(t_stacks main, t_moves cmd, int size)
 {
 	int	max;
 	int	max_place;

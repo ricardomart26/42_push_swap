@@ -11,57 +11,30 @@
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-// static int i = 0;
 
-int	real_num2(stacks_t *temp, int *chunk)
+int	real_num2(t_stacks *temp, int *chunk)
 {
-	moves_t	cmd;
+	t_moves	cmd;
 
 	init_cmd(&cmd);
-	closer_to_end2(*temp, chunk, &cmd);
-
+	closer_to_end(*temp, chunk, &cmd);
 	cmd = get_cmds(*temp, cmd, temp->sizeB);
-	print_cmds(cmd);
-	
-	// if (cmd.num == 181)
-	// {
-	// 	i++;
-	// 	printf("\n\tNum = 181\n");
-	// 	sleep(3);
-	// }
-	// if (i == 2)
-	// {
-	// 	print_stacks(*temp);
-	// 	exit(0);
-	// }
 	cmd.total = num2(&temp, cmd);
 	return (cmd.total);
 }
 
-int	real_num1(stacks_t *temp, int *chunk)
+int	real_num1(t_stacks *temp, int *chunk)
 {
-	moves_t	cmd;
+	t_moves	cmd;
 
 	init_cmd(&cmd);
-	closer_to_beginning2(*temp, chunk, temp->sizeA, &cmd);
+	closer_to_beg(*temp, chunk, temp->sizeA, &cmd);
 	cmd = get_cmds(*temp, cmd, temp->sizeB);
-	print_cmds(cmd);
-	// if (cmd.num == 181)
-	// {
-	// 	i++;
-	// 	printf("\n\tNum = 181\n");
-	// 	sleep(3);
-	// }
-	// if (i == 2)
-	// {
-	// 	print_stacks(*temp);
-	// 	exit(0);
-	// }
 	cmd.total = num1(&temp, cmd);
 	return (cmd.total);
 }
 
-stacks_t	combo_opt(stacks_t main, int *chunks, int option)
+t_stacks	combo_opt(t_stacks main, int *chunks, int option)
 {
 	if (option == 0)
 	{
@@ -86,7 +59,7 @@ stacks_t	combo_opt(stacks_t main, int *chunks, int option)
 	return (main);
 }
 
-stacks_t	do_opt(stacks_t main, int *chunks, int option)
+t_stacks	do_opt(t_stacks main, int *chunks, int option)
 {
 	if (option < 4)
 		main = combo_opt(main, chunks, option);

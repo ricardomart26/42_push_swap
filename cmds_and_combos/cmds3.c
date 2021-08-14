@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-stacks_t	rrr_funct(stacks_t main, int opt)
+t_stacks	rrr_funct(t_stacks main, int opt)
 {
 	main = rra_funct(main, 0);
 	main = rrb_funct(main, 0);
@@ -21,7 +21,7 @@ stacks_t	rrr_funct(stacks_t main, int opt)
 	return (main);
 }
 
-stacks_t	sa_funct(stacks_t main, int option)
+t_stacks	sa_funct(t_stacks main, int option)
 {
 	int	temp;
 
@@ -35,7 +35,7 @@ stacks_t	sa_funct(stacks_t main, int option)
 	return (main);
 }
 
-stacks_t	sb_funct(stacks_t main, int option)
+t_stacks	sb_funct(t_stacks main, int option)
 {
 	int	x;
 	int	temp;
@@ -51,7 +51,7 @@ stacks_t	sb_funct(stacks_t main, int option)
 	return (main);
 }
 
-stacks_t	ss_funct(stacks_t main)
+t_stacks	ss_funct(t_stacks main)
 {
 	main = sa_funct(main, 0);
 	main = sb_funct(main, 0);

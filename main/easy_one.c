@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	treat_error(stacks_t *main)
+void	treat_error(t_stacks *main)
 {
 	int	max;
 
@@ -21,33 +21,7 @@ void	treat_error(stacks_t *main)
 		*main = sb_funct(*main, 1);
 }
 
-void	check_both_stacks(stacks_t main, int num)
-{
-	int i;
-	int x;
-
-	x = 0;
-	i = 0;
-	while (i < main.sizeA)
-	{
-		if (main.A[i] == num)
-			x++;
-		i++;
-	}
-	printf("\n\t 1 x %d \n", x);
-	i = 0;
-	while (i < main.sizeB)
-	{
-		if (main.B[i] == num)
-			x++;
-		i++;
-	}
-	printf("\n\t 2 x %d \n", x);
-	if (x == 2)
-		exit(0);
-}
-
-stacks_t	push_chunk_to_b(stacks_t main)
+t_stacks	push_chunk_to_b(t_stacks main)
 {
 	int	counter;
 	int	option;
@@ -61,9 +35,6 @@ stacks_t	push_chunk_to_b(stacks_t main)
 			break ;
 		main = do_opt(main, main.chunks, option);
 		treat_error(&main);
-		print_stacks(main);
-		// sleep(1);
-		check_both_stacks(main, 181);
 		if (main.sizeA == 3)
 			break ;
 		counter += 2;
@@ -71,76 +42,10 @@ stacks_t	push_chunk_to_b(stacks_t main)
 	return (main);
 }
 
-moves_t	B_correct(stacks_t *main, int size)
-{
-	int		max;
-	int		max_place;
-	moves_t	cmd;
-
-	init_cmd(&cmd);
-	max = biggest_num(main->B, size);
-	max_place = place_in_array(main->B, max);
-	if (max_place <= size / 2)
-	{
-		*main = gen_moves_fake(*main, 3, size - max_place, 0);
-		cmd.rrb = size - max_place;
-	}
-	else if (max_place > size / 2)
-	{
-		*main = gen_moves_fake(*main, 2, max_place, 0);
-		cmd.rb = max_place;
-	}
-	return (cmd);
-}
-
-void	organize4_A(stacks_t *main)
-{
-	int	lower;
-	int	lower_pos;
-
-	lower = lowest_num(main->A, main->sizeA);
-	lower_pos = place_in_array(main->A, lower);
-	if (lower_pos == 0 && main->A[1] < main->A[2])
-	{
-		*main = ra_funct(*main, 1);
-		*main = pa_funct(*main, 1);
-		*main = rra_funct(*main, 1);
-	}
-	if (lower_pos == 2 && main->A[0] > main->A[1])
-	{
-		*main = sa_funct(*main, 1);
-		while (main->A[main->sizeA - 1] < main->B[0])
-			*main = pa_funct(*main, 1);
-	}
-	else if (lower_pos == 2 && main->A[0] < main->A[1])
-	{
-		*main = pa_funct(*main, 1);
-		*main = rra_funct(*main, 1);
-	}
-}
-
-stacks_t	last3_A(stacks_t main)
-{
-	if (!is_lowest_array(main.B[0], main.A, main.sizeA))
-		organize4_A(&main);
-	if (!is_correct(main.A, 3))
-	{
-		if (main.A[0] > main.A[1] && main.A[1] < main.A[2])
-			main = ra_funct(main, 1);
-		if (main.A[0] > main.A[1])
-			main = sa_funct(main, 1);
-		if (is_lowest_array(main.A[3], main.A, main.sizeA))
-			main = rra_funct(main, 1);
-		while (!is_lowest_array(main.A[0], main.A, main.sizeA))
-			main = ra_funct(main, 1);
-	}
-	return (main);
-}
-
-stacks_t	do_easy_one(stacks_t main)
+t_stacks	do_easy_one(t_stacks main)
 {
 	int		*org;
-	moves_t	cmd;
+	t_moves	cmd;
 
 	init_cmd(&cmd);
 	while (main.sizeA != 3)

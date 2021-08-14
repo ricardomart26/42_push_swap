@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	fuck_norm(stacks_t *temp, stacks_t *main)
+void	fuck_norm(t_stacks *temp, t_stacks *main)
 {
 	temp->lowest = main->lowest;
 	temp->size_chunk = main->size_chunk;
@@ -21,12 +21,12 @@ void	fuck_norm(stacks_t *temp, stacks_t *main)
 	temp->sizeB = main->sizeB;
 }
 
-stacks_t	pass_stacks_to_temp(stacks_t main)
+t_stacks	pass_stacks_to_temp(t_stacks main)
 {
-	stacks_t	temp;
+	t_stacks	temp;
 	int			x;
 
-	temp.A = malloc(sizeof(int) * main.sizeA + 1);
+	temp.A = calloc(main.sizeA, sizeof(int));
 	fuck_norm(&temp, &main);
 	x = 0;
 	while (main.sizeA--)
@@ -37,7 +37,7 @@ stacks_t	pass_stacks_to_temp(stacks_t main)
 	x = 0;
 	if (main.sizeB != 0)
 	{
-		temp.B = malloc(sizeof(int) * main.sizeB + 1);
+		temp.B = calloc(main.sizeB, sizeof(int));
 		while (main.sizeB--)
 		{
 			temp.B[x] = main.B[x];
@@ -53,7 +53,7 @@ int	*organize_array(int *stack, int size)
 	int	*org;
 
 	i = -1;
-	org = malloc(sizeof(int) * size + 1);
+	org = calloc(size, sizeof(int));
 	while (i++ < size)
 		org[i] = stack[i];
 	i = 0;

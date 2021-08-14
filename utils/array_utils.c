@@ -85,7 +85,7 @@ int	lowest_num(int *stack, int size)
 	return (temp);
 }
 
-int	search_in_chunk(stacks_t temp, int *chunk, int sizeA)
+int	search_in_chunk(t_stacks temp, int *chunk, int sizeA)
 {
 	int	ret;
 	int	i;

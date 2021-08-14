@@ -17,7 +17,7 @@ int	*organize_the_stack(int *stack, int size, int opt)
 	int	x;
 	int	size2;
 
-	size2 = size - 1;
+	size2 = size;
 	x = 0;
 	if (opt)
 		stack = realloc(stack, sizeof(int) * size2 + 1);
@@ -26,7 +26,7 @@ int	*organize_the_stack(int *stack, int size, int opt)
 		stack[x] = stack[x + 1];
 		x++;
 	}
-	stack[x] = 0;
+	stack[x] = '\0';
 	return (stack);
 }
 
@@ -53,7 +53,7 @@ int	*push_to_p(int *stack, int *size, int number)
 	return (stack);
 }
 
-stacks_t	pa_funct(stacks_t main, int opt)
+t_stacks	pa_funct(t_stacks main, int opt)
 {
 	int	number;
 
@@ -62,7 +62,7 @@ stacks_t	pa_funct(stacks_t main, int opt)
 		perror("\n\tIN PB: main stack A esta vazio\n");
 	if (main.sizeA == 0)
 	{
-		main.A = malloc(sizeof(int) + 1);
+		main.A = calloc(1, sizeof(int));
 		main.A[0] = number;
 		main.B = organize_the_stack(main.B, main.sizeB, 0);
 		main.sizeA++;
@@ -78,16 +78,16 @@ stacks_t	pa_funct(stacks_t main, int opt)
 	return (main);
 }
 
-stacks_t	pb_funct(stacks_t main, int opt)
+t_stacks	pb_funct(t_stacks main, int opt)
 {
 	int	number;
-	
+
 	number = main.A[0];
 	if (!main.A)
 		perror("\n\tIN PB: main stack A esta vazio\n");
 	if (main.sizeB == 0)
 	{
-		main.B = malloc(sizeof(int) + 1);
+		main.B = calloc(1, sizeof(int));
 		main.B[0] = number;
 		main.A = organize_the_stack(main.A, main.sizeA, 0);
 		main.sizeB++;
