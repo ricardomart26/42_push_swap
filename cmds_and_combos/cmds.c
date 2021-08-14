@@ -81,7 +81,7 @@ stacks_t	pa_funct(stacks_t main, int opt)
 stacks_t	pb_funct(stacks_t main, int opt)
 {
 	int	number;
-
+	
 	number = main.A[0];
 	if (!main.A)
 		perror("\n\tIN PB: main stack A esta vazio\n");

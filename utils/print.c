@@ -50,17 +50,28 @@ void	print_stacks(stacks_t main)
 		size = main.sizeA;
 	else
 		size = main.sizeB;
+	printf("\n\t************\n");
 	printf("\t** A ** B **\n");
 	printf("\t** %d ** %d **\n", main.sizeA, main.sizeB);
 	printf("\t************\n");
 	while (size--)
 	{
-		if (main.sizeA-- != 0 && main.sizeB-- != 0)
+		if (main.sizeA != 0 && main.sizeB != 0)
+		{
 			printf("\t** %d ** %d **\n", main.A[c], main.B[c]);
-		else if (main.sizeA-- != 0 && main.sizeB == 0)
+			main.sizeA--;
+			main.sizeB--;
+		}
+		else if (main.sizeA != 0 && main.sizeB == 0)
+		{
 			printf("\t** %d **   **\n", main.A[c]);
-		else if (main.sizeA == 0 && main.sizeB-- != 0)
+			main.sizeA--;
+		}
+		else if (main.sizeA == 0 && main.sizeB != 0)
+		{
 			printf("\t**   ** %d **\n", main.B[c]);
+			main.sizeB--;
+		}
 		c++;
 	}
 	printf("\t************\n");

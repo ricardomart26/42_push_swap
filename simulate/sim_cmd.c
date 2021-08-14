@@ -14,9 +14,12 @@
 
 int	num1(stacks_t **temp, moves_t cmd)
 {
+	
 	if (cmd.rr && !cmd.ra && !cmd.rb)
 	{
 		**temp = gen_moves_real(**temp, 4, cmd.rr, 1);
+		printf("\n\tnum 1\n\n");
+		print_stacks(**temp);
 		return (cmd.rr + pb);
 	}
 	else if (cmd.rr)
@@ -25,6 +28,8 @@ int	num1(stacks_t **temp, moves_t cmd)
 		**temp = gen_moves_real(**temp, 0, cmd.ra, 0);
 		**temp = gen_moves_real(**temp, 2, cmd.rb, 0);
 		**temp = gen_moves_real(**temp, 3, cmd.rrb, 1);
+		printf("\n\tnum 1\n\n");
+		print_stacks(**temp);
 		return (cmd.rr + cmd.ra + cmd.rb + cmd.rrb + pb);
 	}
 	else if (!cmd.rr)
@@ -32,6 +37,8 @@ int	num1(stacks_t **temp, moves_t cmd)
 		**temp = gen_moves_real(**temp, 0, cmd.ra, 0);
 		**temp = gen_moves_real(**temp, 2, cmd.rb, 0);
 		**temp = gen_moves_real(**temp, 3, cmd.rrb, 1);
+		printf("\n\tnum 1\n\n");
+		print_stacks(**temp);
 		return (cmd.ra + cmd.rb + cmd.rrb + pb);
 	}
 	return (0);
@@ -42,6 +49,8 @@ int	num2(stacks_t **temp, moves_t cmd)
 	if (cmd.rrr && !cmd.rra && !cmd.rrb)
 	{
 		**temp = gen_moves_real(**temp, 5, cmd.rrr, 1);
+		// printf("\n\tnum 2\n\n");
+		// print_stacks(**temp);
 		return (cmd.rrr + pb);
 	}
 	else if (cmd.rrr)
@@ -50,6 +59,8 @@ int	num2(stacks_t **temp, moves_t cmd)
 		**temp = gen_moves_real(**temp, 1, cmd.rra, 0);
 		**temp = gen_moves_real(**temp, 3, cmd.rrb, 0);
 		**temp = gen_moves_real(**temp, 2, cmd.rb, 1);
+		// printf("\n\tnum 2\n\n");
+		// print_stacks(**temp);
 		return (cmd.rrr + cmd.rra + cmd.rb + cmd.rrb + pb);
 	}
 	else if (!cmd.rrr)
@@ -57,6 +68,8 @@ int	num2(stacks_t **temp, moves_t cmd)
 		**temp = gen_moves_real(**temp, 1, cmd.rra, 0);
 		**temp = gen_moves_real(**temp, 2, cmd.rb, 0);
 		**temp = gen_moves_real(**temp, 3, cmd.rrb, 1);
+		// printf("\n\tnum 2\n\n");
+		// print_stacks(**temp);
 		return (cmd.rra + cmd.rb + cmd.rrb + pb);
 	}
 	return (0);

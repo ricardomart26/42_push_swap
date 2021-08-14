@@ -12,7 +12,42 @@
 
 #include "../push_swap.h"
 
-stacks_t	push_chunk_to_b(stacks_t main, int *chunks)
+void	treat_error(stacks_t *main)
+{
+	int	max;
+
+	max = biggest_num(main->B, main->sizeB);
+	if (main->B[0] < main->B[1] && main->B[1] != max)
+		*main = sb_funct(*main, 1);
+}
+
+void	check_both_stacks(stacks_t main, int num)
+{
+	int i;
+	int x;
+
+	x = 0;
+	i = 0;
+	while (i < main.sizeA)
+	{
+		if (main.A[i] == num)
+			x++;
+		i++;
+	}
+	printf("\n\t 1 x %d \n", x);
+	i = 0;
+	while (i < main.sizeB)
+	{
+		if (main.B[i] == num)
+			x++;
+		i++;
+	}
+	printf("\n\t 2 x %d \n", x);
+	if (x == 2)
+		exit(0);
+}
+
+stacks_t	push_chunk_to_b(stacks_t main)
 {
 	int	counter;
 	int	option;
@@ -21,10 +56,14 @@ stacks_t	push_chunk_to_b(stacks_t main, int *chunks)
 	while (counter <= main.size_chunk + 1)
 	{
 		option = 0;
-		option = check_four_opt(main, chunks);
+		option = check_four_opt(main, main.chunks);
 		if (option == -1)
 			break ;
-		main = do_opt(main, chunks, option);
+		main = do_opt(main, main.chunks, option);
+		treat_error(&main);
+		print_stacks(main);
+		// sleep(1);
+		check_both_stacks(main, 181);
 		if (main.sizeA == 3)
 			break ;
 		counter += 2;
@@ -100,7 +139,6 @@ stacks_t	last3_A(stacks_t main)
 
 stacks_t	do_easy_one(stacks_t main)
 {
-	int		*chunks;
 	int		*org;
 	moves_t	cmd;
 
@@ -109,18 +147,17 @@ stacks_t	do_easy_one(stacks_t main)
 	{
 		org = organize_array(main.A, main.sizeA - 1);
 		init_main_loop(&main, org);
-		 if (main.sizeA > 100)
-			main.size_chunk = get_attr_chunks(&chunks, main.sizeA, org, 11);
+		if (main.sizeA >= 50)
+			main.size_chunk = attr_chunks(&main.chunks, main.sizeA, org, 11);
 		if (main.sizeA > 20)
-			main.size_chunk = get_attr_chunks(&chunks, main.sizeA, org, 6);
+			main.size_chunk = attr_chunks(&main.chunks, main.sizeA, org, 4);
 		else
-			main.size_chunk = get_attr_chunks(&chunks, main.sizeA, org, 2);
-		main = push_chunk_to_b(main, chunks);
+			main.size_chunk = attr_chunks(&main.chunks, main.sizeA, org, 2);
+		main = push_chunk_to_b(main);
 	}
 	cmd = B_correct(&main, main.sizeB);
 	main = last3_A(main);
 	while (main.B[0] < main.A[0] && main.sizeB != 0)
 		main = pa_funct(main, 1);
-	print_stacks(main);
 	return (main);
 }

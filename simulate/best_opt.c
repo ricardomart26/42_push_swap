@@ -27,6 +27,7 @@ int	sim_all(stacks_t temp, int *chunks, int i, int x)
 {
 	int	moves;
 
+	moves = 0;
 	if (i == 1 && x == 1)
 	{
 		moves = simulate_num1(&temp, chunks, 0);
@@ -55,6 +56,7 @@ int	how_many_moves(stacks_t temp, int *chunks, int i)
 {
 	int	moves;
 
+	moves = 0;
 	if (i == 0)
 		moves = sim_all(temp, chunks, 1, 1);
 	else if (i == 1)
@@ -80,7 +82,7 @@ int	see_best_opt(int i, int x, stacks_t temp, int *chunks)
 	return (i);
 }
 
-void	see_if_is_equal(stacks_t temp, int *chunks, int value, int i)
+int	see_if_is_equal(stacks_t temp, int value, int i, int *mv)
 {
 	int x;
 
@@ -91,7 +93,7 @@ void	see_if_is_equal(stacks_t temp, int *chunks, int value, int i)
 			x++;
 		else if (temp.sizeA > 5)
 		{
-			i = see_best_opt(i, x, temp, chunks);
+			i = see_best_opt(i, x, temp, temp.chunks);
 			break ;
 		}
 	}

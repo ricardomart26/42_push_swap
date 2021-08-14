@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-int	get_attr_chunks(int **chunks, int sizeA, int *org, int divisor)
+int	attr_chunks(int **chunks, int sizeA, int *org, int divisor)
 {
 	int	i;
 
@@ -54,7 +54,7 @@ void	init_cmd(moves_t *cmd)
 void	init_struct(stacks_t *main, int ac)
 {
 	main->ac = ac - 1;
-	main->A = calloc(ac - 1, sizeof(int));
+	main->A = malloc(sizeof(int) * (ac - 1) + 1);
 	if (!main->A)
 		return ;
 	main->sizeA = main->ac;

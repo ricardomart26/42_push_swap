@@ -86,12 +86,13 @@ stacks_t	get_av(stacks_t main, char **av)
 	long int	temp;
 
 	x = 1;
-	while (av[x])
+	while (x < main.sizeA + 1)
 	{
 		temp = ft_atoi(av[x]);
 		if (temp > 2147483647 || temp < -21474836478)
 			error_mes();
 		main.A[x - 1] = (int)temp;
+		// printf("\n\tnumber %d\n", main.A[x - 1]);
 		x++;
 	}
 	return (main);
@@ -107,6 +108,8 @@ int	main(int ac, char **av)
 		return (0);
 	if (ac < 20)
 		main = peanuts(main);
+	else if (ac <= 100)
+		main = do_easy_one(main);
 	else
-		main = do_easy_one2(main);
+		main = not_so_easy_one(main);
 }

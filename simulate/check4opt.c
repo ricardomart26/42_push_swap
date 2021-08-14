@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-int	return_best_opt(int *mv, stacks_t temp, int *chunks)
+int	return_best_opt(int *mv, stacks_t temp, int num_in_chunk)
 {
 	int	i;
 	int	x;
@@ -30,7 +30,8 @@ int	return_best_opt(int *mv, stacks_t temp, int *chunks)
 		{
 			value = mv[i];
 			x = i;
-			i = see_if_is_equal(temp, chunks, value, i);
+			if (num_in_chunk != 2)
+				i = see_if_is_equal(temp, value, i, mv);
 			break ;
 		}
 		i++;
@@ -85,6 +86,6 @@ int	check_four_opt(stacks_t main, int *chunks)
 	movesss = simulate_num2(&temp, chunks, 0);
 	mv[2] = simulate_next_f(temp, chunks, movesss);
 	mv[3] = simulate_next_s(temp, chunks, movesss);
-	temp = pass_stacks_to_temp(main);
-	return (return_best_opt(mv, temp, chunks));
+	temp = pass_stacks_to_temp(main);		
+	return (return_best_opt(mv, temp, nums_in_chunk));
 }

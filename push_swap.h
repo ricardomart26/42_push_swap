@@ -16,6 +16,7 @@ typedef struct stacks_s
     int lowest;
     int lowest_pos;
     int middle_size;
+    int *chunks;
 } stacks_t;
 
 typedef struct moves_s
@@ -35,7 +36,12 @@ typedef struct moves_s
 #define pa 1
 
 int	search_in_chunk(stacks_t temp, int *chunk, int sizeA);
+int	see_if_is_equal(stacks_t temp, int value, int i, int *mv);
 
+stacks_t	last3_A(stacks_t main);
+void	organize4_A(stacks_t *main);
+moves_t	B_correct(stacks_t *main, int size);
+stacks_t	not_so_easy_one(stacks_t main);
 
 
 void    moves_rrb(moves_t *cmd);
@@ -52,7 +58,7 @@ int num2_fake(stacks_t **temp, moves_t cmd);
 
 void free_all_stacks_t(stacks_t *main);
 
-int	return_best_opt(int *mv, stacks_t temp, int *chunk);
+int	return_best_opt(int *mv, stacks_t temp, int num_in_chunk);
 int check_four_opt(stacks_t main, int *chunks);
 int check_two_opt(stacks_t main, int *chunks);
 
@@ -70,7 +76,6 @@ void    error_mes();
 
 void    init_cmd(moves_t *cmd);
 stacks_t push_chunk_to_b2(stacks_t main, int *chunks);
-
 
 int simulate_num1(stacks_t *temp, int *chunks, int opt);
 int simulate_num2(stacks_t *temp, int *chunks, int opt);
@@ -94,13 +99,13 @@ int closer_to_end2(stacks_t main, int *chunk, moves_t *cmd);
 
 stacks_t get_av(stacks_t main, char **av);
 
-stacks_t    do_easy_one2(stacks_t main);
+stacks_t    do_easy_one(stacks_t main);
 stacks_t    do_not_so_easy_one(stacks_t main);
 stacks_t    beast_mode(stacks_t main);
 stacks_t    peanuts(stacks_t main);
 
 void        print_array(int *stack, int size);
-stacks_t    push_chunk_to_b(stacks_t main, int *chunks);
+stacks_t    push_chunk_to_b(stacks_t main);
 stacks_t    do_not_so_easy_one(stacks_t main);
 
 /* cmds */  
@@ -140,7 +145,7 @@ void    init_struct(stacks_t *main, int ac);
 int lowest_num(int *stack, int size);
 
 void    print_stacks(stacks_t main);
-int    get_attr_chunks(int **chunks, int sizeA, int *org, int divisor);
+int    attr_chunks(int **chunks, int sizeA, int *org, int divisor);
 int *organize_array(int *stack, int size);
 void    init_main_loop(stacks_t *main, int *org);
 

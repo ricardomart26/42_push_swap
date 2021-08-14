@@ -93,7 +93,7 @@ int	search_in_chunk(stacks_t temp, int *chunk, int sizeA)
 
 	i = 0;
 	ret = 0;
-	while (i < sizeA && ret < 2)
+	while (i < sizeA && ret < 3)
 	{
 		x = 0;
 		while (temp.A[i] != chunk[x] && x < temp.size_chunk)
