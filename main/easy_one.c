@@ -42,7 +42,7 @@ t_stacks	push_chunk_to_b(t_stacks main)
 	return (main);
 }
 
-t_stacks	do_easy_one(t_stacks main)
+void	do_easy_one(t_stacks main)
 {
 	int		*org;
 	t_moves	cmd;
@@ -60,9 +60,11 @@ t_stacks	do_easy_one(t_stacks main)
 			main.size_chunk = attr_chunks(&main.chunks, main.sizeA, org, 2);
 		main = push_chunk_to_b(main);
 	}
+	main.chunks = NULL;
 	cmd = B_correct(&main, main.sizeB);
 	main = last3_A(main);
 	while (main.B[0] < main.A[0] && main.sizeB != 0)
 		main = pa_funct(main, 1);
-	return (main);
+	free(main.A);
+	main.A = NULL;
 }

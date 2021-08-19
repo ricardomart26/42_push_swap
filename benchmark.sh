@@ -6,7 +6,7 @@
 #    By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/29 17:15:18 by vbrazhni          #+#    #+#              #
-#    Updated: 2021/08/14 07:39:20 by rimartin         ###   ########.fr        #
+#    Updated: 2021/08/19 12:20:54 by rimartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SUM=0
 
 for i in {1..100}
 do
-		export ARG=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`
+		export ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`
 		if ./push_swap $ARG | ./checker_Mac $ARG | wc -l | grep -q KO
 		then
 			echo "Error!	"

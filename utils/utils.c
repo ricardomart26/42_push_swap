@@ -29,6 +29,8 @@ static	void	if_minus(char *str, int *minus, int *c)
 	{
 		(*c)++;
 		*minus = 1;
+		if (str[1] == '\0')
+			error_mes();
 	}
 }
 

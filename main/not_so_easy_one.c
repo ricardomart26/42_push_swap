@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-t_stacks	not_so_easy_one(t_stacks main)
+void	not_so_easy_one(t_stacks main)
 {
 	int		*org;
 	t_moves	cmd;
@@ -22,5 +22,8 @@ t_stacks	not_so_easy_one(t_stacks main)
 	main = last3_A(main);
 	while (main.B[0] < main.A[0] && main.sizeB != 0)
 		main = pa_funct(main, 1);
-	return (main);
+	free(main.B);
+	main.B = NULL;
+	free(main.A);
+	main.A = NULL;
 }

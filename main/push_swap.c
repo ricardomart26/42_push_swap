@@ -66,18 +66,20 @@ t_stacks	do_only3(t_stacks main)
 	}
 }
 
-t_stacks	peanuts(t_stacks main)
+void	peanuts(t_stacks main)
 {
 	int	*org;
 
 	if (main.ac <= 3)
-		return (do_only3(main));
+	{
+		do_only3(main);
+		return ;
+	}
 	org = organize_array(main.A, main.sizeA - 1);
 	push_everything_to_b(&main, org);
 	main = do_only3(main);
 	while (main.sizeB != 0)
 		main = pa_funct(main, 1);
-	return (main);
 }
 
 t_stacks	get_av(t_stacks main, char **av)
@@ -106,9 +108,10 @@ int	main(int ac, char **av)
 	if (is_valid(main) == 2)
 		return (0);
 	if (ac < 20)
-		main = peanuts(main);
+		peanuts(main);
 	else if (ac <= 100)
-		main = do_easy_one(main);
+		do_easy_one(main);
 	else
-		main = not_so_easy_one(main);
+		not_so_easy_one(main);
+	
 }

@@ -16,6 +16,8 @@ int	attr_chunks(int **chunks, int sizeA, int *org, int divisor)
 {
 	int	i;
 
+	if (*chunks)
+		free(*chunks);
 	sizeA /= divisor;
 	*chunks = (int *)calloc(sizeA, sizeof(int));
 	i = 0;

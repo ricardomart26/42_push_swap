@@ -1,5 +1,7 @@
 CC = gcc -Wall -Wextra -Werror
 
+CCS = gcc -Wall -Wextra -Werror -fsanitize=address -static-libsan
+
 INCLUDE = -I push_swap.h
 
 LIB = -L ./Libft -l libft.a -static
@@ -17,6 +19,13 @@ $(NAME): $(OBJS)
 	@echo "created Dirs"
 	# make bonus -C Libft
 	$(CC) $(OBJS) -o $(NAME)
+	mv $(OBJS) Objs
+
+san: fclean $(OBJS)
+	mkdir Objs
+	@echo "created Dirs"
+	# make bonus -C Libft
+	$(CCS) $(OBJS) -g -o $(NAME)
 	mv $(OBJS) Objs
 
 clean:

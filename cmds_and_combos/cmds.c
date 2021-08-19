@@ -73,6 +73,8 @@ t_stacks	pa_funct(t_stacks main, int opt)
 		main.B = organize_the_stack(main.B, main.sizeB, 1);
 	}
 	main.sizeB--;
+	if (main.sizeB == 0)
+		free(main.B);
 	if (opt)
 		write(1, "pa\n", 4);
 	return (main);
@@ -98,6 +100,8 @@ t_stacks	pb_funct(t_stacks main, int opt)
 		main.A = organize_the_stack(main.A, main.sizeA, 1);
 	}
 	main.sizeA--;
+	if (main.sizeA == 0)
+		free(main.A);
 	if (opt)
 		write(1, "pb\n", 4);
 	return (main);
