@@ -17,7 +17,6 @@ all: $(NAME)
 $(NAME): $(OBJS)
 
 	# ifeq ("$(wildcard Objs)","Objs")
-		# mkdir Objs
 	# @echo "created Dirs"
 	$(CC) $(OBJS) -o $(NAME)
 	mv $(OBJS) Objs
@@ -32,7 +31,7 @@ clean:
 	rm -f $(OBJS)
 
 fclean: clean
-	rm -rf Objs
+	# rm -rf Objs
 	rm -f swap.out
 
 re:	fclean $(NAME)

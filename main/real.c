@@ -67,6 +67,5 @@ t_stacks	do_opt(t_stacks main, int *chunks, int option)
 		simulate_num1(&main, chunks, 1);
 	else if (option == 5)
 		simulate_num2(&main, chunks, 1);
-
 	return (main);
 }

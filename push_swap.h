@@ -39,6 +39,8 @@ typedef struct moves_s
 # define PB 1
 # define PA 1
 
+void	print_array(int *stack, int size);
+void		print_stacks(t_stacks main);
 int			search_in_chunk(t_stacks temp, int *chunk, int sizeA);
 int			see_if_is_equal(t_stacks temp, int value, int i, int *mv);
 t_stacks	last3_A(t_stacks main);
