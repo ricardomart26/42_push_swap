@@ -15,13 +15,13 @@
 void	attr_chunks(t_stacks *main, int *org, int divisor)
 {
 	int	i;
-	int sizeA;
-	
+	int	sizeA;
+
 	sizeA = main->sizeA;
 	sizeA /= divisor;
 	if (main->alloc_chunks == true)
 		free(main->chunks);
-	main->chunks = (int *)calloc(sizeA, sizeof(int));
+	main->chunks = (int *)ft_calloc(sizeA, sizeof(int));
 	i = 0;
 	while (i < sizeA)
 	{
@@ -42,7 +42,7 @@ void	init_main_loop(t_stacks *main, int *org)
 		main->middle_size = main->sizeA / 2 + 1;
 	else
 		main->middle_size = main->sizeA / 2;
-	main->alloc_chunks = 0;
+	main->alloc_chunks = false;
 }
 
 void	init_cmd(t_moves *cmd)
@@ -61,7 +61,7 @@ void	init_cmd(t_moves *cmd)
 void	init_struct(t_stacks *main, int ac)
 {
 	main->ac = ac - 1;
-	main->A = calloc((ac - 1), sizeof(int));
+	main->A = ft_calloc((ac - 1), sizeof(int));
 	if (!main->A)
 		return ;
 	main->sizeA = main->ac;

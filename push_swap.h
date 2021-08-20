@@ -39,6 +39,7 @@ typedef struct moves_s
 # define PB 1
 # define PA 1
 
+void	*ft_calloc(size_t count, size_t size);
 void	print_array(int *stack, int size);
 void		print_stacks(t_stacks main);
 int			search_in_chunk(t_stacks temp, int *chunk, int sizeA);

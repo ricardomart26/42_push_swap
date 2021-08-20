@@ -26,10 +26,9 @@ t_stacks	pass_stacks_to_temp(t_stacks main)
 	t_stacks	temp;
 	int			x;
 
-	temp.A = calloc(main.sizeA, sizeof(int));
+	temp.A = ft_calloc(main.sizeA, sizeof(int));
 	fuck_norm(&temp, &main);
 	x = 0;
-	// printf("main.[%d] %d\n", x, main.A[x]);	
 	while (main.sizeA--)
 	{
 		temp.A[x] = main.A[x];
@@ -38,7 +37,7 @@ t_stacks	pass_stacks_to_temp(t_stacks main)
 	x = 0;
 	if (main.sizeB != 0)
 	{
-		temp.B = calloc(main.sizeB, sizeof(int));
+		temp.B = ft_calloc(main.sizeB, sizeof(int));
 		while (main.sizeB--)
 		{
 			temp.B[x] = main.B[x];
@@ -54,7 +53,7 @@ int	*organize_array(int *stack, int size)
 	int	*org;
 
 	i = -1;
-	org = calloc(size, sizeof(int));
+	org = ft_calloc(size, sizeof(int));
 	while (i++ < size)
 		org[i] = stack[i];
 	i = 0;

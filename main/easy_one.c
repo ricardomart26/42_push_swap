@@ -29,19 +29,11 @@ t_stacks	push_chunk_to_b(t_stacks main)
 	counter = 0;
 	while (counter <= main.size_chunk + 1)
 	{
-		// printf("teste1\n");
-		// print_stacks(main);
 		option = 0;
 		option = check_four_opt(main, main.chunks);
-		// printf("teste 2\n");
 		if (option == -1)
 			break ;
-		// printf("teste2\n");
-		// print_stacks(main);
 		main = do_opt(main, main.chunks, option);
-		// treat_error(&main);
-		// printf("teste3\n");
-		// print_stacks(main);
 		if (main.sizeA == 3)
 			break ;
 		counter += 2;
@@ -66,6 +58,9 @@ void	do_easy_one(t_stacks main)
 		else
 			attr_chunks(&main, org, 4);
 		main = push_chunk_to_b(main);
+		free(org);
+		free(main.chunks);
+		main.chunks = false;
 	}
 	cmd = B_correct(&main, main.sizeB);
 	main = last3_A(main);
