@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:46:23 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 00:46:23 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/20 21:13:42 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,6 @@ t_stacks	do_opt(t_stacks main, int *chunks, int option)
 		simulate_num1(&main, chunks, 1);
 	else if (option == 5)
 		simulate_num2(&main, chunks, 1);
-	free(main.B);
-	main.B = NULL;
-	free(main.A);
-	main.A = NULL;
+
 	return (main);
 }

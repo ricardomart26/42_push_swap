@@ -11,11 +11,11 @@ void	not_so_easy_one(t_stacks main)
 		org = organize_array(main.A, main.sizeA - 1);
 		init_main_loop(&main, org);
 		if (main.sizeA > 100)
-			main.size_chunk = attr_chunks(&main.chunks, main.sizeA, org, 11);
+			attr_chunks(&main, org, 11);
 		if (main.sizeA > 20)
-			main.size_chunk = attr_chunks(&main.chunks, main.sizeA, org, 6);
+			attr_chunks(&main, org, 6);
 		else
-			main.size_chunk = attr_chunks(&main.chunks, main.sizeA, org, 2);
+			attr_chunks(&main, org, 2);
 		main = push_chunk_to_b(main);
 	}
 	cmd = B_correct(&main, main.sizeB);

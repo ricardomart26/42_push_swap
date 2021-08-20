@@ -15,16 +15,16 @@ NAME = push_swap
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	mkdir Objs
-	@echo "created Dirs"
-	# make bonus -C Libft
+
+	# ifeq ("$(wildcard Objs)","Objs")
+		# mkdir Objs
+	# @echo "created Dirs"
 	$(CC) $(OBJS) -o $(NAME)
 	mv $(OBJS) Objs
 
 san: fclean $(OBJS)
-	mkdir Objs
-	@echo "created Dirs"
-	# make bonus -C Libft
+	# mkdir Objs
+	# @echo "created Dirs"
 	$(CCS) $(OBJS) -g -o $(NAME)
 	mv $(OBJS) Objs
 

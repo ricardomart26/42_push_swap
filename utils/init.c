@@ -6,29 +6,33 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:27:03 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 01:29:46 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/20 20:59:35 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	attr_chunks(int **chunks, int sizeA, int *org, int divisor)
+void	attr_chunks(t_stacks *main, int *org, int divisor)
 {
 	int	i;
-
-	if (*chunks)
-		free(*chunks);
+	int sizeA;
+	
+	sizeA = main->sizeA;
 	sizeA /= divisor;
-	*chunks = (int *)calloc(sizeA, sizeof(int));
+	if (main->alloc_chunks == true)
+		free(main->chunks);
+	main->chunks = (int *)calloc(sizeA, sizeof(int));
 	i = 0;
 	while (i < sizeA)
 	{
-		(*chunks)[i] = *org;
+		main->chunks[i] = *org;
 		i++;
 		org++;
 	}
-	(*chunks)[i] = '\0';
-	return (sizeA - 1);
+	main->chunks[i] = '\0';
+	main->size_chunk = sizeA - 1;
+	if (main->alloc_chunks == false)
+		main->alloc_chunks = true;
 }
 
 void	init_main_loop(t_stacks *main, int *org)
@@ -38,6 +42,7 @@ void	init_main_loop(t_stacks *main, int *org)
 		main->middle_size = main->sizeA / 2 + 1;
 	else
 		main->middle_size = main->sizeA / 2;
+	main->alloc_chunks = 0;
 }
 
 void	init_cmd(t_moves *cmd)

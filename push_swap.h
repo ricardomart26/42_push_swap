@@ -4,6 +4,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 typedef struct stacks_s
 {
@@ -17,6 +18,9 @@ typedef struct stacks_s
 	int	lowest_pos;
 	int	middle_size;
 	int	*chunks;
+	bool	alloc_chunks;
+	bool	alloc_A;
+	bool	alloc_B;
 }				t_stacks;
 
 typedef struct moves_s
@@ -50,7 +54,6 @@ int			num2(t_stacks **temp, t_moves cmd);
 int			num1_fake(t_stacks **temp, t_moves cmd);
 int			num2_fake(t_stacks **temp, t_moves cmd);
 void		free_all_stacks_t(t_stacks *main);
-int			return_best_opt(int *mv, t_stacks temp, int num_in_chunk);
 int			check_four_opt(t_stacks main, int *chunks);
 int			check_two_opt(t_stacks main, int *chunks);
 t_stacks	do_opt(t_stacks main, int *chunks, int option);
@@ -62,6 +65,7 @@ int			biggest_num(int *stack, int size);
 t_stacks	combo_opt(t_stacks main, int *chunks, int option);
 void		error_mes(void);
 void		init_cmd(t_moves *cmd);
+int			return_best_opt(int *mv, t_stacks temp, int num_in_chunk);
 int			simulate_num1(t_stacks *temp, int *chunks, int opt);
 int			simulate_num2(t_stacks *temp, int *chunks, int opt);
 t_stacks	gen_moves_fake(t_stacks main, int option, int counter, int pb_pa);
@@ -96,7 +100,8 @@ int			is_correct(int *stack, int size);
 int			is_correct_B(int *B, int size);
 void		init_struct(t_stacks *main, int ac);
 int			lowest_num(int *stack, int size);
-int			attr_chunks(int **chunks, int sizeA, int *org, int divisor);
+void		attr_chunks(t_stacks *main, int *org, int divisor);
 int			*organize_array(int *stack, int size);
 void		init_main_loop(t_stacks *main, int *org);
+
 #endif
