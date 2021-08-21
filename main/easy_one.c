@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:44:51 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/20 21:15:04 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/20 23:17:00 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,11 @@ t_stacks	push_chunk_to_b(t_stacks main)
 	counter = 0;
 	while (counter <= main.size_chunk + 1)
 	{
-		// printf("teste1\n");
-		// print_stacks(main);
 		option = 0;
 		option = check_four_opt(main, main.chunks);
-		// printf("teste 2\n");
 		if (option == -1)
 			break ;
-		// printf("teste2\n");
-		// print_stacks(main);
 		main = do_opt(main, main.chunks, option);
-		// treat_error(&main);
-		// printf("teste3\n");
-		// print_stacks(main);
 		if (main.sizeA == 3)
 			break ;
 		counter += 2;
@@ -64,7 +56,7 @@ void	do_easy_one(t_stacks main)
 		if (main.sizeA > 20)
 			attr_chunks(&main, org, 4);
 		else
-			attr_chunks(&main, org, 4);
+			attr_chunks(&main, org, 2);
 		main = push_chunk_to_b(main);
 	}
 	cmd = B_correct(&main, main.sizeB);
@@ -74,3 +66,4 @@ void	do_easy_one(t_stacks main)
 	free_all_stacks_t(&main);
 	main.A = NULL;
 }
+

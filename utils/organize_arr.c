@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:24:18 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/20 21:14:36 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/20 22:40:10 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_stacks	pass_stacks_to_temp(t_stacks main)
 	temp.A = calloc(main.sizeA, sizeof(int));
 	fuck_norm(&temp, &main);
 	x = 0;
-	// printf("main.[%d] %d\n", x, main.A[x]);	
+	// printf("main.[%d] %d\n", x, main.A[x]);
 	while (main.sizeA--)
 	{
 		temp.A[x] = main.A[x];

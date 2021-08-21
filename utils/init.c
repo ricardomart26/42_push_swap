@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:27:03 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/20 20:59:35 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/20 22:39:30 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	attr_chunks(t_stacks *main, int *org, int divisor)
 	
 	sizeA = main->sizeA;
 	sizeA /= divisor;
-	if (main->alloc_chunks == true)
+	if (main->alloc_chunks == true || main->sizeA < 20)
 		free(main->chunks);
-	main->chunks = (int *)calloc(sizeA, sizeof(int));
+	main->chunks = (int *)calloc(sizeA, sizeof(int) + 1);
 	i = 0;
 	while (i < sizeA)
 	{
