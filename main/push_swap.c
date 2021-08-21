@@ -91,7 +91,7 @@ t_stacks	get_av(t_stacks main, char **av)
 	long int	temp;
 
 	x = 1;
-	while (x < main.sizeA)
+	while (x < main.sizeA + 1)
 	{
 		temp = ft_atoi(av[x], main);
 		if (temp > 2147483647 || temp < -21474836478)

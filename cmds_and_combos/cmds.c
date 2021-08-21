@@ -19,10 +19,12 @@ int	*organize_the_stack(int *stack, int size, int opt)
 
 	size2 = size;
 	x = 0;
-	if (opt && size == 1)
+	if (opt)
 		stack = realloc(stack, (sizeof(int) * size2) + 1);
+	print_array(stack, size);
 	while (size2--)
 	{
+		printf("stack %d\n", stack[x]);
 		stack[x] = stack[x + 1];
 		x++;
 	}
@@ -66,13 +68,13 @@ t_stacks	pa_funct(t_stacks main, int opt)
 	{
 		main.A = ft_calloc(1, sizeof(int) + 1);
 		main.A[0] = number;
-		main.B = organize_the_stack(main.B, main.sizeB - 1, 0);
+		main.B = organize_the_stack(main.B, main.sizeB, 0);
 		main.sizeA++;
 	}
 	else
 	{
 		main.A = push_to_p(main.A, &main.sizeA, number);
-		main.B = organize_the_stack(main.B, main.sizeB - 1, 1);
+		main.B = organize_the_stack(main.B, main.sizeB, 1);
 	}
 	main.sizeB--;
 	if (main.sizeB == 0)
@@ -93,13 +95,13 @@ t_stacks	pb_funct(t_stacks main, int opt)
 	{
 		main.B = ft_calloc(1, sizeof(int));
 		main.B[0] = number;
-		main.A = organize_the_stack(main.A, main.sizeA - 1, 0);
+		main.A = organize_the_stack(main.A, main.sizeA, 0);
 		main.sizeB++;
 	}
 	else
 	{
 		main.B = push_to_p(main.B, &main.sizeB, number);
-		main.A = organize_the_stack(main.A, main.sizeA - 1, 1);
+		main.A = organize_the_stack(main.A, main.sizeA, 1);
 	}
 	main.sizeA--;
 	if (main.sizeA == 0)

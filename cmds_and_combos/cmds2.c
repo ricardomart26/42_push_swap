@@ -84,7 +84,7 @@ t_stacks	rrb_funct(t_stacks main, int option)
 	last = main.B[main.sizeB - 1];
 	size = main.sizeB;
 	while (size--)
-		main.B[size] = main.B[size];
+		main.B[size] = main.B[size + 1];
 	main.B[0] = last;
 	if (option)
 		write(1, "rrb\n", 5);

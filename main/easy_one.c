@@ -27,6 +27,7 @@ t_stacks	push_chunk_to_b(t_stacks main)
 	int	option;
 
 	counter = 0;
+
 	while (counter <= main.size_chunk + 1)
 	{
 		option = 0;
@@ -62,10 +63,7 @@ void	do_easy_one(t_stacks main)
 	}
 	cmd = B_correct(&main, main.sizeB);
 	main = last3_A(main);
-	print_stacks(main);
-	// printf("Chegou aqui? %d\n", main.sizeA);
 	while (main.B[0] < main.A[0] && main.sizeB != 0)
 		main = pa_funct(main, 1);
-	// printf("Chegou aqui? %d\n", main.sizeA);
 	free_all_stacks_t(&main, main.sizeB);
 }
