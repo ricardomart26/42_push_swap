@@ -41,6 +41,7 @@ typedef struct moves_s
 # define PB 1
 # define PA 1
 
+void	free2(int **org, int **chunks);
 void		*ft_calloc(size_t count, size_t size);
 void		print_array(int *stack, int size);
 void		print_stacks(t_stacks main);
@@ -78,6 +79,10 @@ t_stacks	gen_moves_real(t_stacks main, int option, int counter, int pb_pa);
 int			simulate_next_f(t_stacks temp, int *chunks, int moves);
 int			simulate_next_s(t_stacks temp, int *chunks, int moves);
 t_stacks	pass_stacks_to_temp(t_stacks main);
+t_stacks	pass_stacks_to_temp0(t_stacks main);
+t_stacks	pass_stacks_to_temp1(t_stacks main);
+t_stacks	pass_stacks_to_temp2(t_stacks main);
+
 t_stacks	do_only3(t_stacks main);
 int			how_many_moves(t_stacks temp, int *chunks, int i);
 int			closer_to_beg(t_stacks m, int *c, int size, t_moves *cmd);

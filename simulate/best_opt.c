@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:52:28 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/21 06:45:23 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 19:01:44 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_two_opt(t_stacks temp, int *chunks)
 {
 	int	mv[2];
-
+	
 	mv[0] = simulate_next_f(temp, chunks, 0);
 	mv[1] = simulate_next_s(temp, chunks, 0);
 	if (mv[1] >= mv[0])
