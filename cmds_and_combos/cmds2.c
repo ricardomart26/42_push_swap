@@ -69,7 +69,7 @@ t_stacks	rra_funct(t_stacks main, int option)
 	last = main.A[main.sizeA - 1];
 	size = main.sizeA;
 	while (size--)
-		main.A[size] = main.A[size];
+		main.A[size] = main.A[size -1];
 	main.A[0] = last;
 	if (option)
 		write(1, "rra\n", 5);
@@ -84,7 +84,7 @@ t_stacks	rrb_funct(t_stacks main, int option)
 	last = main.B[main.sizeB - 1];
 	size = main.sizeB;
 	while (size--)
-		main.B[size] = main.B[size + 1];
+		main.B[size] = main.B[size - 1];
 	main.B[0] = last;
 	if (option)
 		write(1, "rrb\n", 5);

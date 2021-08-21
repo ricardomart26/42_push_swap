@@ -21,10 +21,8 @@ int	*organize_the_stack(int *stack, int size, int opt)
 	x = 0;
 	if (opt)
 		stack = realloc(stack, (sizeof(int) * size2) + 1);
-	print_array(stack, size);
 	while (size2--)
 	{
-		printf("stack %d\n", stack[x]);
 		stack[x] = stack[x + 1];
 		x++;
 	}
