@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:44:51 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/20 23:17:00 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 06:52:05 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,16 @@ t_stacks	push_chunk_to_b(t_stacks main)
 		if (main.sizeA == 3)
 			break ;
 		counter += 2;
-	}
+	}	
 	return (main);
+}
+
+void	free2(int **org, int **chunks)
+{
+	free(*org);
+	*org = NULL;
+	free(*chunks);
+	*chunks = NULL;
 }
 
 void	do_easy_one(t_stacks main)
@@ -53,17 +61,18 @@ void	do_easy_one(t_stacks main)
 		init_main_loop(&main, org);
 		if (main.sizeA >= 50)
 			attr_chunks(&main, org, 11);
-		if (main.sizeA > 20)
+		else if (main.sizeA > 20)
 			attr_chunks(&main, org, 4);
 		else
 			attr_chunks(&main, org, 2);
 		main = push_chunk_to_b(main);
+		free2(&org, &main.chunks);
 	}
 	cmd = B_correct(&main, main.sizeB);
 	main = last3_A(main);
+	printf("Chegou aqui? %d\n", main.sizeA);
 	while (main.B[0] < main.A[0] && main.sizeB != 0)
 		main = pa_funct(main, 1);
-	free_all_stacks_t(&main);
-	main.A = NULL;
+	printf("Chegou aqui? %d\n", main.sizeA);
+	free_all_stacks_t(&main, main.sizeB);
 }
-

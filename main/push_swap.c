@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:45:32 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 01:02:13 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 05:44:23 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,12 @@ void	peanuts(t_stacks main)
 	}
 	org = organize_array(main.A, main.sizeA - 1);
 	push_everything_to_b(&main, org);
+	free(org);
+	org = NULL;
 	main = do_only3(main);
 	while (main.sizeB != 0)
 		main = pa_funct(main, 1);
+	free_all_stacks_t(&main, main.sizeB);
 }
 
 t_stacks	get_av(t_stacks main, char **av)
@@ -88,11 +91,11 @@ t_stacks	get_av(t_stacks main, char **av)
 	long int	temp;
 
 	x = 1;
-	while (x < main.sizeA + 1)
+	while (x < main.sizeA)
 	{
-		temp = ft_atoi(av[x]);
+		temp = ft_atoi(av[x], main);
 		if (temp > 2147483647 || temp < -21474836478)
-			error_mes();
+			error_mes(&main);
 		main.A[x - 1] = (int)temp;
 		x++;
 	}
@@ -106,7 +109,10 @@ int	main(int ac, char **av)
 	init_struct(&main, ac);
 	main = get_av(main, av);
 	if (is_valid(main) == 2)
+	{
+		free_all_stacks_t(&main, main.sizeB);
 		return (0);
+	}
 	if (ac < 20)
 		peanuts(main);
 	else if (ac <= 100)

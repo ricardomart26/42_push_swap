@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:52:28 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/20 21:09:03 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 06:45:23 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,19 @@ int	see_best_opt(int i, int x, t_stacks temp, int *chunks)
 		return (i);
 	moves = how_many_moves(temp, chunks, i);
 	moves2 = how_many_moves(temp, chunks, x);
-	free_all_stacks_t(&temp);
 	if (moves >= moves2)
 		return (x);
 	return (i);
 }
 
-int	see_if_is_equal(t_stacks temp, int value, int i, int *mv)
+int	see_if_is_equal(t_stacks main, t_stacks temp, int value, int i)
 {
 	int	x;
 
 	x = i;
 	while (x < 4)
 	{
-		if (value != mv[x + 1] && x + 1 != 4)
+		if (value != main.mv[x + 1] && x + 1 != 4)
 			x++;
 		else if (temp.sizeA > 5)
 		{

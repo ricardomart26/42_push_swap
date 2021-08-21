@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:03:17 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 01:13:14 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 06:44:22 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	simulate_next_f(t_stacks temp, int *chunks, int moves)
 
 	temp2 = pass_stacks_to_temp(temp);
 	moves += simulate_num1(&temp2, chunks, 0);
+	free_all_stacks_t(&temp2, temp2.sizeB);
 	return (moves);
 }
 
@@ -27,6 +28,7 @@ int	simulate_next_s(t_stacks temp, int *chunks, int moves)
 
 	temp2 = pass_stacks_to_temp(temp);
 	moves += simulate_num2(&temp2, chunks, 0);
+	free_all_stacks_t(&temp2, temp2.sizeB);
 	return (moves);
 }
 

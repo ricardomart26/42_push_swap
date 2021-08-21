@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:11:23 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 02:24:42 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 04:16:13 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_stacks	gen_moves_fake(t_stacks main, int option, int counter, int pb_pa)
 		if (option == 5)
 			main = rrr_funct(main, 0);
 		counter--;
-	}
+	}	
 	if (pb_pa == 1)
 		main = pb_funct(main, 0);
 	else if (pb_pa == 2)

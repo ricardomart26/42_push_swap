@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:24:18 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/20 22:40:10 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 06:43:54 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ t_stacks	pass_stacks_to_temp(t_stacks main)
 	t_stacks	temp;
 	int			x;
 
-	temp.A = calloc(main.sizeA, sizeof(int));
+	temp.A = ft_calloc(main.sizeA, sizeof(int));
 	fuck_norm(&temp, &main);
 	x = 0;
-	// printf("main.[%d] %d\n", x, main.A[x]);
 	while (main.sizeA--)
 	{
 		temp.A[x] = main.A[x];
@@ -38,7 +37,7 @@ t_stacks	pass_stacks_to_temp(t_stacks main)
 	x = 0;
 	if (main.sizeB != 0)
 	{
-		temp.B = calloc(main.sizeB, sizeof(int));
+		temp.B = ft_calloc(main.sizeB, sizeof(int));
 		while (main.sizeB--)
 		{
 			temp.B[x] = main.B[x];
@@ -54,8 +53,8 @@ int	*organize_array(int *stack, int size)
 	int	*org;
 
 	i = -1;
-	org = calloc(size, sizeof(int));
-	while (i++ < size)
+	org = ft_calloc(size, sizeof(int) + 1);
+	while (i++ <= size)
 		org[i] = stack[i];
 	i = 0;
 	while (!is_correct(org, size))

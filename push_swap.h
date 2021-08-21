@@ -8,6 +8,7 @@
 
 typedef struct stacks_s
 {
+	int	mv[4];
 	int	*A;
 	int	*B;
 	int	sizeA;
@@ -21,6 +22,7 @@ typedef struct stacks_s
 	bool	alloc_chunks;
 	bool	alloc_A;
 	bool	alloc_B;
+	bool	error;
 }				t_stacks;
 
 typedef struct moves_s
@@ -39,10 +41,11 @@ typedef struct moves_s
 # define PB 1
 # define PA 1
 
-void	print_array(int *stack, int size);
+void		*ft_calloc(size_t count, size_t size);
+void		print_array(int *stack, int size);
 void		print_stacks(t_stacks main);
 int			search_in_chunk(t_stacks temp, int *chunk, int sizeA);
-int			see_if_is_equal(t_stacks temp, int value, int i, int *mv);
+int			see_if_is_equal(t_stacks main, t_stacks temp, int value, int i);
 t_stacks	last3_A(t_stacks main);
 void		organize4_A(t_stacks *main);
 t_moves		B_correct(t_stacks *main, int size);
@@ -55,7 +58,7 @@ int			num1(t_stacks **temp, t_moves cmd);
 int			num2(t_stacks **temp, t_moves cmd);
 int			num1_fake(t_stacks **temp, t_moves cmd);
 int			num2_fake(t_stacks **temp, t_moves cmd);
-void		free_all_stacks_t(t_stacks *main);
+void		free_all_stacks_t(t_stacks *main, int sizeB);
 int			check_four_opt(t_stacks main, int *chunks);
 int			check_two_opt(t_stacks main, int *chunks);
 t_stacks	do_opt(t_stacks main, int *chunks, int option);
@@ -65,9 +68,9 @@ int			place_in_array(int *stack, int num);
 int			is_lowest_array(int x, int *array, int size);
 int			biggest_num(int *stack, int size);
 t_stacks	combo_opt(t_stacks main, int *chunks, int option);
-void		error_mes(void);
+void		error_mes(t_stacks *main);
 void		init_cmd(t_moves *cmd);
-int			return_best_opt(int *mv, t_stacks temp, int num_in_chunk);
+int			return_best_opt(t_stacks main, t_stacks temp, int num_in_chunk);
 int			simulate_num1(t_stacks *temp, int *chunks, int opt);
 int			simulate_num2(t_stacks *temp, int *chunks, int opt);
 t_stacks	gen_moves_fake(t_stacks main, int option, int counter, int pb_pa);
@@ -93,7 +96,7 @@ t_stacks	sa_funct(t_stacks main, int option);
 t_stacks	sb_funct(t_stacks main, int option);
 t_stacks	ss_funct(t_stacks main);
 int			ft_strlen(char *str);
-long int	ft_atoi(char *str);
+long int	ft_atoi(char *str, t_stacks main);
 int			find(int number, int *arr);
 int			*ft_swap(int *stack, int i);
 int			ft_isntdigit(char c);

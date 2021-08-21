@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:17:26 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 01:17:36 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 06:44:08 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	is_valid(t_stacks main)
 			if (main.A[x] == main.A[i])
 			{
 				printf("dup %d\n", main.A[x]);
-				error_mes();
+				error_mes(&main);
 			}
 			i++;
 		}

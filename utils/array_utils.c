@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:26:23 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 01:27:34 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 05:57:55 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_lowest_array(int x, int *array, int size)
 	int	i;
 
 	i = 0;
-	while (array[i] >= x && i < size)
+	while (array[i] >= x && i < size - 1)
 		i++;
 	if (i == size)
 		return (1);

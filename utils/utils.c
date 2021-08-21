@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:17:44 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 01:19:23 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 05:06:21 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strlen(char *str)
 	return (c);
 }
 
-static	void	if_minus(char *str, int *minus, int *c)
+static	void	if_minus(char *str, int *minus, int *c, t_stacks main)
 {
 	*minus = 0;
 	if (str[0] == '-')
@@ -30,11 +30,11 @@ static	void	if_minus(char *str, int *minus, int *c)
 		(*c)++;
 		*minus = 1;
 		if (str[1] == '\0')
-			error_mes();
+			error_mes(&main);
 	}
 }
 
-long int	ft_atoi(char *str)
+long int	ft_atoi(char *str, t_stacks main)
 {
 	int			c;
 	long int	ret;
@@ -46,11 +46,11 @@ long int	ft_atoi(char *str)
 		return (0);
 	ret = 0;
 	c = -1;
-	if_minus(str, &minus, &c);
+	if_minus(str, &minus, &c, main);
 	while (++c < size)
 	{
 		if (ft_isntdigit(str[c]))
-			error_mes();
+			error_mes(&main);
 		ret += str[c] - '0';
 		if (size != 1 && str[c + 1] != '\0')
 			ret *= 10;

@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 02:20:18 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 02:23:03 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 05:58:20 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_stacks	rra_funct(t_stacks main, int option)
 	last = main.A[main.sizeA - 1];
 	size = main.sizeA;
 	while (size--)
-		main.A[size] = main.A[size - 1];
+		main.A[size] = main.A[size];
 	main.A[0] = last;
 	if (option)
 		write(1, "rra\n", 5);
@@ -84,7 +84,7 @@ t_stacks	rrb_funct(t_stacks main, int option)
 	last = main.B[main.sizeB - 1];
 	size = main.sizeB;
 	while (size--)
-		main.B[size] = main.B[size - 1];
+		main.B[size] = main.B[size];
 	main.B[0] = last;
 	if (option)
 		write(1, "rrb\n", 5);

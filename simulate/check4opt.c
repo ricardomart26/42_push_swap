@@ -6,13 +6,13 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:45:00 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/20 23:05:15 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 06:45:12 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	return_best_opt(int *mv, t_stacks temp, int num_in_chunk)
+int	return_best_opt(t_stacks main, t_stacks temp, int num_in_chunk)
 {
 	int	i;
 	int	x;
@@ -22,20 +22,21 @@ int	return_best_opt(int *mv, t_stacks temp, int num_in_chunk)
 	while (1)
 	{
 		if (i == 3)
-			return (i);
+			break ;
 		x = i + 1;
-		while (mv[i] <= mv[x] && x != 4)
+		while (main.mv[i] <= main.mv[x] && x != 4)
 			x++;
 		if (x == 4)
 		{
-			value = mv[i];
+			value = main.mv[i];
 			x = i;
 			if (num_in_chunk != 2)
-				i = see_if_is_equal(temp, value, i, mv);
+				i = see_if_is_equal(main, temp, value, i);
 			break ;
 		}
 		i++;
 	}
+	free_all_stacks_t(&temp, temp.sizeB);
 	return (i);
 }
 
@@ -62,6 +63,7 @@ int	do_end(t_stacks temp, int *chunks)
 			return (4);
 		return (5);
 	}
+	free_all_stacks_t(&temp, temp.sizeB);
 	return (0);
 }
 
@@ -69,8 +71,8 @@ int	check_four_opt(t_stacks main, int *chunks)
 {
 	t_stacks	temp;
 	int			movesss;
-	int			mv[4];
 	int			nums_in_chunk;
+	int			ret;
 
 	movesss = 0;
 	temp = pass_stacks_to_temp(main);
@@ -80,14 +82,15 @@ int	check_four_opt(t_stacks main, int *chunks)
 	else if (nums_in_chunk == 1 || temp.sizeA == 4)
 		return (do_end(temp, chunks));
 	movesss = simulate_num1(&temp, chunks, 0);
-	mv[0] = simulate_next_f(temp, chunks, movesss);
-	mv[1] = simulate_next_s(temp, chunks, movesss);
-	free_all_stacks_t(&temp);
+	main.mv[0] = simulate_next_f(temp, chunks, movesss);
+	main.mv[1] = simulate_next_s(temp, chunks, movesss);
+	free_all_stacks_t(&temp, temp.sizeB);
 	temp = pass_stacks_to_temp(main);
 	movesss = simulate_num2(&temp, chunks, 0);
-	mv[2] = simulate_next_f(temp, chunks, movesss);
-	mv[3] = simulate_next_s(temp, chunks, movesss);
-	free_all_stacks_t(&temp);
+	main.mv[2] = simulate_next_f(temp, chunks, movesss);
+	main.mv[3] = simulate_next_s(temp, chunks, movesss);
+	free_all_stacks_t(&temp, temp.sizeB);
 	temp = pass_stacks_to_temp(main);
-	return (return_best_opt(mv, temp, nums_in_chunk));
+	ret = return_best_opt(main, temp, nums_in_chunk);
+	return (ret);
 }
