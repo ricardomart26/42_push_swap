@@ -27,7 +27,6 @@ t_stacks	push_chunk_to_b(t_stacks main)
 	int	option;
 
 	counter = 0;
-
 	while (counter <= main.size_chunk + 1)
 	{
 		option = 0;
@@ -35,8 +34,6 @@ t_stacks	push_chunk_to_b(t_stacks main)
 		if (option == -1)
 			break ;
 		main = do_opt(main, main.chunks, option);
-		print_stacks(main);
-		sleep(1);
 		if (main.sizeA == 3)
 			break ;
 		counter += 2;

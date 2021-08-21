@@ -73,7 +73,6 @@ int	check_four_opt(t_stacks main, int *chunks)
 	t_stacks	temp;
 	int			movesss;
 	int			nums_in_chunk;
-	int			ret;
 
 	movesss = 0;
 	temp = pass_stacks_to_temp(main);
@@ -84,10 +83,7 @@ int	check_four_opt(t_stacks main, int *chunks)
 		return (-1);
 	}
 	else if (nums_in_chunk == 1 || temp.sizeA == 4)
-	{
-		ret = do_end(&temp, chunks);
-		return (ret);
-	}
+		return (do_end(&temp, chunks));
 	movesss = simulate_num1(&temp, chunks, 0);
 	main.mv[0] = simulate_next_f(temp, chunks, movesss);
 	main.mv[1] = simulate_next_s(temp, chunks, movesss);
@@ -98,6 +94,5 @@ int	check_four_opt(t_stacks main, int *chunks)
 	main.mv[3] = simulate_next_s(temp, chunks, movesss);
 	free_all_stacks_t(&temp, temp.sizeB);
 	temp = pass_stacks_to_temp(main);
-	ret = return_best_opt(main, temp, nums_in_chunk);
-	return (ret);
+	return (return_best_opt(main, temp, nums_in_chunk));
 }

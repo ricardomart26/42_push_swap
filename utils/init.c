@@ -19,7 +19,7 @@ void	attr_chunks(t_stacks *main, int *org, int divisor)
 
 	sizeA = main->sizeA;
 	sizeA /= divisor;
-	main->chunks = (int *)ft_calloc(sizeA, sizeof(int) + 1);
+	main->chunks = (int *)ft_calloc(sizeA, sizeof(int));
 	main->alloc_chunks = true;
 	i = 0;
 	while (i < sizeA)

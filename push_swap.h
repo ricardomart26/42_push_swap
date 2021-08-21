@@ -8,21 +8,18 @@
 
 typedef struct stacks_s
 {
-	int	mv[4];
-	int	*A;
-	int	*B;
-	int	sizeA;
-	int	size_chunk;
-	int	sizeB;
-	int	ac;
-	int	lowest;
-	int	lowest_pos;
-	int	middle_size;
-	int	*chunks;
+	int		mv[4];
+	int		*A;
+	int		*B;
+	int		sizeA;
+	int		size_chunk;
+	int		sizeB;
+	int		ac;
+	int		lowest;
+	int		lowest_pos;
+	int		middle_size;
+	int		*chunks;
 	bool	alloc_chunks;
-	bool	alloc_A;
-	bool	alloc_B;
-	bool	error;
 }				t_stacks;
 
 typedef struct moves_s
@@ -41,7 +38,7 @@ typedef struct moves_s
 # define PB 1
 # define PA 1
 
-void	free2(int **org, int **chunks);
+void		free2(int **org, int **chunks);
 void		*ft_calloc(size_t count, size_t size);
 void		print_array(int *stack, int size);
 void		print_stacks(t_stacks main);

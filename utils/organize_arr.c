@@ -53,7 +53,7 @@ int	*organize_array(int *stack, int size)
 	int	*org;
 
 	i = -1;
-	org = ft_calloc(size, sizeof(int) + 1);
+	org = ft_calloc(size, sizeof(int));
 	while (i++ <= size)
 		org[i] = stack[i];
 	i = 0;

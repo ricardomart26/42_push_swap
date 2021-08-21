@@ -64,7 +64,7 @@ t_stacks	pa_funct(t_stacks main, int opt)
 		perror("\n\tIN PB: main stack A esta vazio\n");
 	if (main.sizeA == 0)
 	{
-		main.A = ft_calloc(1, sizeof(int) + 1);
+		main.A = ft_calloc(1, sizeof(int));
 		main.A[0] = number;
 		main.B = organize_the_stack(main.B, main.sizeB, 0);
 		main.sizeA++;
