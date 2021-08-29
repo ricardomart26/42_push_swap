@@ -62,6 +62,12 @@ void	do_easy_one(t_stacks main)
 	}
 	cmd = B_correct(&main, main.sizeB);
 	main = last3_A(main);
+	if (main.B[0] > main.A[0])
+	{
+		ra_funct(main, 1);
+		pa_funct(main, 1);
+		rb_funct(main, 1);
+	}
 	while (main.B[0] < main.A[0] && main.sizeB != 0)
 		main = pa_funct(main, 1);
 	free_all_stacks_t(&main, main.sizeB);
