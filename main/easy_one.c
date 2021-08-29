@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:44:51 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/21 19:17:23 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/21 21:51:26 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ t_stacks	push_chunk_to_b(t_stacks main)
 		if (option == -1)
 			break ;
 		main = do_opt(main, main.chunks, option);
-		print_stacks(main);
-		sleep(1);
+		// print_stacks(main);
+		// sleep(1);
 		if (main.sizeA == 3)
 			break ;
 		counter += 2;
