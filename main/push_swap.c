@@ -82,7 +82,9 @@ void	peanuts(t_stacks main)
 	main = do_only3(main);
 	while (main.sizeB != 0)
 		main = pa_funct(main, 1);
+	// print_stacks(main);
 	free_all_stacks_t(&main, main.sizeB);
+
 }
 
 t_stacks	get_av(t_stacks main, char **av)
