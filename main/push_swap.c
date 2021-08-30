@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:45:32 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/21 05:44:23 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/30 00:50:12 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	peanuts(t_stacks main)
 	if (main.ac <= 3)
 	{
 		do_only3(main);
+		free_all_stacks_t(&main, main.sizeB);
 		return ;
 	}
 	org = organize_array(main.A, main.sizeA - 1);

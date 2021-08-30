@@ -6,7 +6,7 @@
 /*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 02:20:23 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/21 06:47:31 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/08/30 01:00:39 by ricardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_stacks	pa_funct(t_stacks main, int opt)
 		perror("\n\tIN PB: main stack A esta vazio\n");
 	if (main.sizeA == 0)
 	{
-		main.A = ft_calloc(1, sizeof(int) + 1);
+		main.A = ft_calloc(1, sizeof(int));
 		main.A[0] = number;
 		main.B = organize_the_stack(main.B, main.sizeB, 0);
 		main.sizeA++;

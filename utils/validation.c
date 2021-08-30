@@ -19,7 +19,10 @@ int	is_valid(t_stacks main)
 
 	x = 0;
 	if (is_correct(main.A, main.sizeA))
+	{
+		printf("dup %d\n", main.A[x]);
 		return (2);
+	}
 	while (main.A[x])
 	{
 		i = x + 1;

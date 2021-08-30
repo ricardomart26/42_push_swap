@@ -50,7 +50,10 @@ long int	ft_atoi(char *str, t_stacks main)
 	while (++c < size)
 	{
 		if (ft_isntdigit(str[c]))
+		{
+			printf("dup %c\n", str[c]);
 			error_mes(&main);
+		}
 		ret += str[c] - '0';
 		if (size != 1 && str[c + 1] != '\0')
 			ret *= 10;

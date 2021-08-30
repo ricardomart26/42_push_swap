@@ -1,6 +1,6 @@
 CC = gcc -Wall -Wextra -Werror
 
-CCS = gcc -Wall -Wextra -Werror -fsanitize=address -static-libasan
+CCS = gcc -Wall -Wextra -Werror -fsanitize=address
 
 INCLUDE = -I push_swap.h
 
