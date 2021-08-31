@@ -49,7 +49,12 @@ void	check_diff(t_stacks main, t_moves *cmd, int i, int size)
 		if (main.B[i] > cmd->num)
 			temp = main.B[i] - cmd->num;
 		else if (main.B[i] < cmd->num)
-			temp = cmd->num - main.B[i];
+		{
+			if (main.B[i] <= 0)
+				temp = cmd->num + (main.B[i] * -1);
+			else
+				temp = cmd->num - main.B[i];
+		}
 		if (i == 0)
 		{
 			diff = temp;
@@ -99,7 +104,7 @@ t_moves	get_cmds(t_stacks main, t_moves cmd, int size)
 			else if (max_place <= main.sizeB / 2)
 				cmd = set_b(cmd, max_place, 0);
 		}
-		else if (size != main.size_chunk + 1)
+		else
 			cmd = place_to_put_nbr(main, cmd, main.sizeB);
 		cmd.total = 0;
 	}

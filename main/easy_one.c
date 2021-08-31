@@ -12,14 +12,14 @@
 
 #include "../push_swap.h"
 
-void	treat_error(t_stacks *main)
-{
-	int	max;
+// void	treat_error(t_stacks *main)
+// {
+// 	int	max;
 
-	max = biggest_num(main->B, main->sizeB);
-	if (main->B[0] < main->B[1] && main->B[1] != max)
-		*main = sb_funct(*main, 1);
-}
+// 	max = biggest_num(main->B, main->sizeB);
+// 	if (main->B[0] < main->B[1] && main->B[1] != max)
+// 		*main = sb_funct(*main, 1);
+// }
 
 t_stacks	push_chunk_to_b(t_stacks main)
 {
@@ -41,6 +41,67 @@ t_stacks	push_chunk_to_b(t_stacks main)
 	return (main);
 }
 
+t_stacks push_bigger_to_end(t_stacks main, int max_place, int size)
+{
+	if (max_place > main.sizeA / 2)
+	{
+		while (max_place++ < size - 1)
+		{
+			if (main.A[0] > main.A[1])
+				main = sa_funct(main, 0);
+			main = rra_funct(main, 0);
+		}
+	}
+	else
+	{
+		while (max_place-- > -1)
+			main = ra_funct(main, 0);
+		if (main.A[0] > main.A[1])
+			main = sa_funct(main, 0);
+	}
+	return (main);
+}
+
+int	check_stackA(t_stacks main, int size)
+{
+	int max;
+	int max_place;
+	int i;
+
+	i = -1;
+	max = biggest_num(main.A, size);
+	max_place = place_in_array(main.A, max);
+	if (is_correct(main.A, main.sizeA))
+		return (1);
+	else if (max_place != size)
+	{
+		main = push_bigger_to_end(main, max_place, size);
+		if (is_correct(main.A, main.sizeA))
+			return (1);
+	}
+	return (0);
+}
+
+t_stacks	check_stackA_real(t_stacks main, int size)
+{
+	int max;
+	int max_place;
+	int i;
+
+	i = -1;
+	max = biggest_num(main.A, size);
+	max_place = place_in_array(main.A, max);
+	if (is_correct(main.A, main.sizeA))
+		return (main);
+	else if (max_place != size)
+	{
+		main = push_bigger_to_end(main, max_place, size);
+		if (is_correct(main.A, main.sizeA))
+			return (main);
+	}
+	return (main);
+}
+
 void	do_easy_one(t_stacks main)
 {
 	int		*org;
@@ -51,25 +112,27 @@ void	do_easy_one(t_stacks main)
 	{
 		org = organize_array(main.A, main.sizeA - 1);
 		init_main_loop(&main, org);
-		if (main.sizeA >= 50)
+		if (main.sizeA > 20)
 			attr_chunks(&main, org, 11);
-		else if (main.sizeA > 20)
-			attr_chunks(&main, org, 4);
 		else
 			attr_chunks(&main, org, 2);
 		main = push_chunk_to_b(main);
 		free2(&org, &main.chunks);
+		if (check_stackA(main, main.sizeA))
+			break ;
 	}
-	cmd = B_correct(&main, main.sizeB);
+	if (check_stackA(main, main.sizeA) && main.sizeA != 3)
+		check_stackA_real(main, main.sizeA);
+	if (!is_correct_B(main.B, main.sizeB))
+		cmd = B_correct(&main, main.sizeB);
 	main = last3_A(main);
 	if (main.B[0] > main.A[0])
 	{
-		ra_funct(main, 1);
-		pa_funct(main, 1);
-		rb_funct(main, 1);
+		main = ra_funct(main, 1);
+		main = pa_funct(main, 1);
+		main = rra_funct(main, 1);
 	}
 	while (main.B[0] < main.A[0] && main.sizeB != 0)
 		main = pa_funct(main, 1);
-	// print_stacks(main);
 	free_all_stacks_t(&main, main.sizeB);
 }

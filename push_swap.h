@@ -38,6 +38,9 @@ typedef struct moves_s
 # define PB 1
 # define PA 1
 
+t_stacks	check_stackA_real(t_stacks main, int size);
+int	check_stackA(t_stacks main, int size);
+
 void		free2(int **org, int **chunks);
 void		*ft_calloc(size_t count, size_t size);
 void		print_array(int *stack, int size);

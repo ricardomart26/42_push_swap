@@ -19,10 +19,7 @@ int	is_valid(t_stacks main)
 
 	x = 0;
 	if (is_correct(main.A, main.sizeA))
-	{
-		printf("dup %d\n", main.A[x]);
 		return (2);
-	}
 	while (main.A[x])
 	{
 		i = x + 1;
@@ -67,11 +64,14 @@ int	is_correct_B(int *B, int size)
 	int	i;
 
 	i = 0;
-	while (size)
+	while (size + 1)
 	{
 		if (B[i] > B[i + 1])
+		{
+			// printf("B[%d] %d >  B[%d] %d\n", i, B[i], i + 1, B[i + 1]);
 			i++;
-		else if (i < size)
+		}
+		else
 			return (0);
 		size--;
 	}

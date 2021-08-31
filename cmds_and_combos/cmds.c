@@ -20,7 +20,7 @@ int	*organize_the_stack(int *stack, int size, int opt)
 	size2 = size;
 	x = 0;
 	if (opt)
-		stack = realloc(stack, (sizeof(int) * size2) + 1);
+		stack = realloc(stack, (sizeof(int) * size2));
 	while (size2--)
 	{
 		stack[x] = stack[x + 1];
@@ -41,7 +41,7 @@ int	*push_to_p(int *stack, int *size, int number)
 	x = 1;
 	temp_size = *size;
 	*size += 1;
-	new_stack = realloc(stack, (*size * sizeof(int)) + 1);
+	new_stack = realloc(stack, ((*size + 1) * sizeof(int)));
 	stack = new_stack;
 	temp = stack[0];
 	stack[0] = number;
