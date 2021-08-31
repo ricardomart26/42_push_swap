@@ -67,10 +67,7 @@ int	is_correct_B(int *B, int size)
 	while (size + 1)
 	{
 		if (B[i] > B[i + 1])
-		{
-			// printf("B[%d] %d >  B[%d] %d\n", i, B[i], i + 1, B[i + 1]);
 			i++;
-		}
 		else
 			return (0);
 		size--;

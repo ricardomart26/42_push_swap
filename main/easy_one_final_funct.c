@@ -1,5 +1,16 @@
 #include "../push_swap.h"
 
+t_stacks	fuck_norm3(t_stacks main)
+{
+	if (main.B[0] > main.A[0])
+	{
+		main = ra_funct(main, 1);
+		main = pa_funct(main, 1);
+		main = rra_funct(main, 1);
+	}
+	return (main);
+}
+
 t_moves	B_correct(t_stacks *main, int size)
 {
 	int		max;
@@ -30,11 +41,7 @@ void	organize4_A(t_stacks *main)
 	lower = lowest_num(main->A, main->sizeA);
 	lower_pos = place_in_array(main->A, lower);
 	if (lower_pos == 0 && main->A[1] < main->A[2])
-	{
-		*main = ra_funct(*main, 1);
-		*main = pa_funct(*main, 1);
-		*main = rra_funct(*main, 1);
-	}
+		*main = fuck_norm3(*main);
 	if (lower_pos == 2 && main->A[0] > main->A[1])
 	{
 		*main = sa_funct(*main, 1);

@@ -12,15 +12,6 @@
 
 #include "../push_swap.h"
 
-// void	treat_error(t_stacks *main)
-// {
-// 	int	max;
-
-// 	max = biggest_num(main->B, main->sizeB);
-// 	if (main->B[0] < main->B[1] && main->B[1] != max)
-// 		*main = sb_funct(*main, 1);
-// }
-
 t_stacks	push_chunk_to_b(t_stacks main)
 {
 	int	counter;
@@ -41,7 +32,7 @@ t_stacks	push_chunk_to_b(t_stacks main)
 	return (main);
 }
 
-t_stacks push_bigger_to_end(t_stacks main, int max_place, int size)
+t_stacks	push_bigger_to_end(t_stacks main, int max_place, int size)
 {
 	if (max_place > main.sizeA / 2)
 	{
@@ -64,9 +55,9 @@ t_stacks push_bigger_to_end(t_stacks main, int max_place, int size)
 
 int	check_stackA(t_stacks main, int size)
 {
-	int max;
-	int max_place;
-	int i;
+	int	max;
+	int	max_place;
+	int	i;
 
 	i = -1;
 	max = biggest_num(main.A, size);
@@ -84,9 +75,9 @@ int	check_stackA(t_stacks main, int size)
 
 t_stacks	check_stackA_real(t_stacks main, int size)
 {
-	int max;
-	int max_place;
-	int i;
+	int	max;
+	int	max_place;
+	int	i;
 
 	i = -1;
 	max = biggest_num(main.A, size);
@@ -118,20 +109,11 @@ void	do_easy_one(t_stacks main)
 			attr_chunks(&main, org, 2);
 		main = push_chunk_to_b(main);
 		free2(&org, &main.chunks);
-		if (check_stackA(main, main.sizeA))
-			break ;
 	}
-	if (check_stackA(main, main.sizeA) && main.sizeA != 3)
-		check_stackA_real(main, main.sizeA);
 	if (!is_correct_B(main.B, main.sizeB))
 		cmd = B_correct(&main, main.sizeB);
 	main = last3_A(main);
-	if (main.B[0] > main.A[0])
-	{
-		main = ra_funct(main, 1);
-		main = pa_funct(main, 1);
-		main = rra_funct(main, 1);
-	}
+	main = fuck_norm3(main);
 	while (main.B[0] < main.A[0] && main.sizeB != 0)
 		main = pa_funct(main, 1);
 	free_all_stacks_t(&main, main.sizeB);

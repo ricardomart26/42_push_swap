@@ -28,13 +28,13 @@ t_moves	set_b(t_moves cmd, int rb, int rrb)
 	return (cmd);
 }
 
-int	fuck_norm2(t_stacks main, int i, t_moves *cmd)
+int	fuck_norm2(t_stacks main, int i, t_moves *cmd, int temp)
 {
 	if (main.B[i] > cmd->num)
 		cmd->pos_B = i + 1;
 	else if (main.B[i] < cmd->num)
 		cmd->pos_B = i;
-	return (cmd->pos_B);
+	return (temp);
 }
 
 void	check_diff(t_stacks main, t_moves *cmd, int i, int size)
@@ -56,15 +56,9 @@ void	check_diff(t_stacks main, t_moves *cmd, int i, int size)
 				temp = cmd->num - main.B[i];
 		}
 		if (i == 0)
-		{
-			diff = temp;
-			cmd->pos_B = fuck_norm2(main, i, cmd);
-		}
+			diff = fuck_norm2(main, i, cmd, temp);
 		else if (temp < diff)
-		{
-			diff = temp;
-			cmd->pos_B = fuck_norm2(main, i, cmd);
-		}
+			diff = fuck_norm2(main, i, cmd, temp);
 	}
 }
 
