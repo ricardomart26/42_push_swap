@@ -82,7 +82,6 @@ t_stacks	pass_stacks_to_temp(t_stacks main);
 t_stacks	pass_stacks_to_temp0(t_stacks main);
 t_stacks	pass_stacks_to_temp1(t_stacks main);
 t_stacks	pass_stacks_to_temp2(t_stacks main);
-
 t_stacks	do_only3(t_stacks main);
 int			how_many_moves(t_stacks temp, int *chunks, int i);
 int			closer_to_beg(t_stacks m, int *c, int size, t_moves *cmd);
