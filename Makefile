@@ -21,7 +21,7 @@ san: fclean $(OBJS)
 	mv $(OBJS) Objs
 
 clean:
-	rm -f $(OBJS)
+	rm -f Objs/*.o
 
 fclean: clean
 	rm -f swap.out

@@ -78,7 +78,7 @@ t_stacks	pa_funct(t_stacks main, int opt)
 	if (main.sizeB == 0)
 		free(main.B);
 	if (opt)
-		write(1, "pa\n", 4);
+		write(1, "pa\n", 3);
 	return (main);
 }
 
@@ -105,6 +105,6 @@ t_stacks	pb_funct(t_stacks main, int opt)
 	if (main.sizeA == 0)
 		free(main.A);
 	if (opt)
-		write(1, "pb\n", 4);
+		write(1, "pb\n", 3);
 	return (main);
 }

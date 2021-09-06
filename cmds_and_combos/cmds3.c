@@ -31,7 +31,7 @@ t_stacks	sa_funct(t_stacks main, int option)
 	main.A[0] = main.A[1];
 	main.A[1] = temp;
 	if (option)
-		write(1, "sa\n", 4);
+		write(1, "sa\n", 3);
 	return (main);
 }
 
@@ -47,7 +47,7 @@ t_stacks	sb_funct(t_stacks main, int option)
 	main.B[x] = main.B[x + 1];
 	main.B[x + 1] = temp;
 	if (option)
-		write(1, "sb\n", 4);
+		write(1, "sb\n", 3);
 	return (main);
 }
 
@@ -55,5 +55,6 @@ t_stacks	ss_funct(t_stacks main)
 {
 	main = sa_funct(main, 0);
 	main = sb_funct(main, 0);
+	write(1, "ss\n", 3);
 	return (main);
 }

@@ -28,7 +28,7 @@ t_stacks	ra_funct(t_stacks main, int option)
 	}
 	main.A[x] = temp;
 	if (option)
-		write(1, "ra\n", 4);
+		write(1, "ra\n", 3);
 	return (main);
 }
 
@@ -48,7 +48,7 @@ t_stacks	rb_funct(t_stacks main, int option)
 	}
 	main.B[x] = temp;
 	if (option)
-		write(1, "rb\n", 4);
+		write(1, "rb\n", 3);
 	return (main);
 }
 
@@ -57,7 +57,7 @@ t_stacks	rr_funct(t_stacks main, int opt)
 	main = ra_funct(main, 0);
 	main = rb_funct(main, 0);
 	if (opt)
-		write(1, "rr\n", 4);
+		write(1, "rr\n", 3);
 	return (main);
 }
 
@@ -72,7 +72,7 @@ t_stacks	rra_funct(t_stacks main, int option)
 		main.A[size] = main.A[size - 1];
 	main.A[0] = last;
 	if (option)
-		write(1, "rra\n", 5);
+		write(1, "rra\n", 4);
 	return (main);
 }
 
@@ -87,6 +87,6 @@ t_stacks	rrb_funct(t_stacks main, int option)
 		main.B[size] = main.B[size - 1];
 	main.B[0] = last;
 	if (option)
-		write(1, "rrb\n", 5);
+		write(1, "rrb\n", 4);
 	return (main);
 }
