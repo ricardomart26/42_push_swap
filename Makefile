@@ -23,6 +23,10 @@ san: fclean $(OBJS)
 clean:
 	rm -f Objs/*.o
 
+test:
+	$(CC) random_numbers.c -o test
+	
+
 fclean: clean
 	rm -f swap.out
 

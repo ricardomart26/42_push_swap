@@ -26,10 +26,7 @@ int	is_valid(t_stacks main)
 		while (main.A[i])
 		{
 			if (main.A[x] == main.A[i])
-			{
-				printf("dup %d\n", main.A[x]);
 				error_mes(&main);
-			}
 			i++;
 		}
 		x++;
