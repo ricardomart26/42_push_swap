@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   array_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rimartin <rimartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:26:23 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/21 05:57:55 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/09/11 11:41:42 by rimartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	lowest_num(int *stack, int size)
 	return (temp);
 }
 
-int	search_in_chunk(t_stacks temp, int *chunk, int sizeA)
+int	search_in_chunk(t_stacks temp, int *chunk, int size_a)
 {
 	int	ret;
 	int	i;
@@ -93,10 +93,10 @@ int	search_in_chunk(t_stacks temp, int *chunk, int sizeA)
 
 	i = 0;
 	ret = 0;
-	while (i < sizeA && ret < 3)
+	while (i < size_a && ret < 3)
 	{
 		x = 0;
-		while (temp.A[i] != chunk[x] && x < temp.size_chunk + 1)
+		while (temp.a[i] != chunk[x] && x < temp.size_chunk + 1)
 			x++;
 		if (x != temp.size_chunk + 1)
 			ret++;

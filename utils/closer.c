@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   closer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rimartin <rimartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:26:34 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/12 01:27:46 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/09/11 11:42:09 by rimartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	closer_to_beg(t_stacks main, int *chunk, int size, t_moves *cmd)
 	while (size + 1)
 	{
 		x = 0;
-		while (main.A[i] != chunk[x] && x < main.size_chunk + 1)
+		while (main.a[i] != chunk[x] && x < main.size_chunk + 1)
 			x++;
 		if (x == main.size_chunk + 1)
 			i++;
@@ -29,7 +29,7 @@ int	closer_to_beg(t_stacks main, int *chunk, int size, t_moves *cmd)
 		{
 			cmd->ra = i;
 			cmd->rra = 0;
-			cmd->num = main.A[i];
+			cmd->num = main.a[i];
 			break ;
 		}
 		size--;
@@ -44,19 +44,19 @@ int	closer_to_end(t_stacks main, int *chunk, t_moves *cmd)
 	int	size;
 	int	x;
 
-	size = main.sizeA - 1;
+	size = main.size_a - 1;
 	while (size + 1)
 	{
 		x = 0;
-		while (main.A[size] != chunk[x] && x < main.size_chunk + 1)
+		while (main.a[size] != chunk[x] && x < main.size_chunk + 1)
 			x++;
 		if (x == main.size_chunk + 1)
 			size--;
 		else
 		{
-			cmd->rra = main.sizeA - size;
+			cmd->rra = main.size_a - size;
 			cmd->ra = 0;
-			cmd->num = main.A[size];
+			cmd->num = main.a[size];
 			return (size);
 		}
 	}

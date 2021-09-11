@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rimartin <rimartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:27:03 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/30 00:56:54 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/09/10 17:56:54 by rimartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,37 @@
 void	attr_chunks(t_stacks *main, int *org, int divisor)
 {
 	int	i;
-	int	sizeA;
+	int	size_a;
 
-	sizeA = main->sizeA;
-	sizeA /= divisor;
-	main->chunks = (int *)ft_calloc(sizeA, sizeof(int));
+	size_a = main->size_a;
+	size_a /= divisor;
+	main->chunks = (int *)ft_calloc(size_a, sizeof(int));
 	main->alloc_chunks = true;
 	i = 0;
-	while (i < sizeA)
+	while (i < size_a)
 	{
 		main->chunks[i] = *org;
 		i++;
 		org++;
 	}
 	main->chunks[i] = '\0';
-	main->size_chunk = sizeA - 1;
+	main->size_chunk = size_a - 1;
 }
 
 void	init_main_loop(t_stacks *main, int *org)
 {
 	main->lowest = org[0];
-	if (main->sizeA % 2 != 0)
-		main->middle_size = main->sizeA / 2 + 1;
+	if (main->size_a % 2 != 0)
+		main->middle_size = main->size_a / 2 + 1;
 	else
-		main->middle_size = main->sizeA / 2;
+		main->middle_size = main->size_a / 2;
 	main->alloc_chunks = false;
 }
 
 void	init_cmd(t_moves *cmd)
 {
 	cmd->num = 0;
-	cmd->pos_B = 0;
+	cmd->pos_b = 0;
 	cmd->total = 0;
 	cmd->ra = 0;
 	cmd->rb = 0;
@@ -58,9 +58,9 @@ void	init_cmd(t_moves *cmd)
 void	init_struct(t_stacks *main, int ac)
 {
 	main->ac = ac - 1;
-	main->A = ft_calloc((ac - 1), sizeof(int));
-	if (!main->A)
+	main->a = ft_calloc((ac - 1), sizeof(int));
+	if (!main->a)
 		return ;
-	main->sizeA = main->ac;
-	main->sizeB = 0;
+	main->size_a = main->ac;
+	main->size_b = 0;
 }

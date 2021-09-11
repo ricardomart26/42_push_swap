@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rimartin <rimartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 00:45:32 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/30 00:50:12 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/09/11 11:38:42 by rimartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 static void	push_everything_to_b(t_stacks *main, int *org)
 {
-	while (main->sizeA != 3)
+	while (main->size_a != 3)
 	{
 		main->lowest = *org;
-		main->middle_size = main->sizeA / 2;
-		main->lowest_pos = find(*org, main->A);
+		main->middle_size = main->size_a / 2;
+		main->lowest_pos = find(*org, main->a);
 		if (main->lowest_pos == 0)
 			*main = pb_funct(*main, 1);
-		else if (main->lowest_pos > main->middle_size && main->sizeA != 0)
+		else if (main->lowest_pos > main->middle_size && main->size_a != 0)
 		{
-			while (main->lowest_pos++ != main->sizeA)
+			while (main->lowest_pos++ != main->size_a)
 				*main = rra_funct(*main, 1);
 			*main = pb_funct(*main, 1);
 		}
-		else if (main->lowest_pos <= main->middle_size && main->sizeA != 0)
+		else if (main->lowest_pos <= main->middle_size && main->size_a != 0)
 		{
 			while (main->lowest_pos-- != 0)
 				*main = ra_funct(*main, 1);
@@ -43,21 +43,21 @@ t_stacks	do_only3(t_stacks main)
 		return (sa_funct(main, 1));
 	else
 	{
-		if (main.A[0] > main.A[1] && main.A[1]
-			< main.A[2] && main.A[0] < main.A[2])
+		if (main.a[0] > main.a[1] && main.a[1]
+			< main.a[2] && main.a[0] < main.a[2])
 			main = sa_funct(main, 1);
-		else if (main.A[0] > main.A[1] && main.A[1]
-			< main.A[2] && main.A[0] > main.A[2])
+		else if (main.a[0] > main.a[1] && main.a[1]
+			< main.a[2] && main.a[0] > main.a[2])
 			main = ra_funct(main, 1);
-		else if (main.A[0] > main.A[1] && main.A[1] > main.A[2])
+		else if (main.a[0] > main.a[1] && main.a[1] > main.a[2])
 		{
 			main = sa_funct(main, 1);
 			main = rra_funct(main, 1);
 		}
-		else if (main.A[0] < main.A[1] && main.A[1]
-			> main.A[2] && main.A[0] > main.A[2])
+		else if (main.a[0] < main.a[1] && main.a[1]
+			> main.a[2] && main.a[0] > main.a[2])
 			main = rra_funct(main, 1);
-		else if (main.A[0] < main.A[1] && main.A[1] > main.A[2])
+		else if (main.a[0] < main.a[1] && main.a[1] > main.a[2])
 		{
 			main = rra_funct(main, 1);
 			main = sa_funct(main, 1);
@@ -73,17 +73,17 @@ void	peanuts(t_stacks main)
 	if (main.ac <= 3)
 	{
 		do_only3(main);
-		free_all_stacks_t(&main, main.sizeB);
+		free_all_stacks_t(&main, main.size_b);
 		return ;
 	}
-	org = organize_array(main.A, main.sizeA - 1);
+	org = organize_array(main.a, main.size_a - 1);
 	push_everything_to_b(&main, org);
 	free(org);
 	org = NULL;
 	main = do_only3(main);
-	while (main.sizeB != 0)
+	while (main.size_b != 0)
 		main = pa_funct(main, 1);
-	free_all_stacks_t(&main, main.sizeB);
+	free_all_stacks_t(&main, main.size_b);
 }
 
 t_stacks	get_av(t_stacks main, char **av)
@@ -92,12 +92,12 @@ t_stacks	get_av(t_stacks main, char **av)
 	long int	temp;
 
 	x = 1;
-	while (x < main.sizeA + 1)
+	while (x < main.size_a + 1)
 	{
 		temp = ft_atoi(av[x], main);
 		if (temp > 2147483647 || temp < -21474836478)
 			error_mes(&main);
-		main.A[x - 1] = (int)temp;
+		main.a[x - 1] = (int)temp;
 		x++;
 	}
 	return (main);
@@ -111,7 +111,7 @@ int	main(int ac, char **av)
 	main = get_av(main, av);
 	if (is_valid(main) == 2)
 	{
-		free_all_stacks_t(&main, main.sizeB);
+		free_all_stacks_t(&main, main.size_b);
 		return (0);
 	}
 	if (ac < 20)

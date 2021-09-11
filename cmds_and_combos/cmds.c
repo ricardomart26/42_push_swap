@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmds.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rimartin <rimartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 02:20:23 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/30 01:00:39 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/09/11 11:44:04 by rimartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,24 @@ t_stacks	pa_funct(t_stacks main, int opt)
 {
 	int	number;
 
-	number = main.B[0];
-	if (!main.B)
+	number = main.b[0];
+	if (!main.b)
 		perror("\n\tIN PB: main stack A esta vazio\n");
-	if (main.sizeA == 0)
+	if (main.size_a == 0)
 	{
-		main.A = ft_calloc(1, sizeof(int));
-		main.A[0] = number;
-		main.B = organize_the_stack(main.B, main.sizeB, 0);
-		main.sizeA++;
+		main.a = ft_calloc(1, sizeof(int));
+		main.a[0] = number;
+		main.b = organize_the_stack(main.b, main.size_b, 0);
+		main.size_a++;
 	}
 	else
 	{
-		main.A = push_to_p(main.A, &main.sizeA, number);
-		main.B = organize_the_stack(main.B, main.sizeB, 1);
+		main.a = push_to_p(main.a, &main.size_a, number);
+		main.b = organize_the_stack(main.b, main.size_b, 1);
 	}
-	main.sizeB--;
-	if (main.sizeB == 0)
-		free(main.B);
+	main.size_b--;
+	if (main.size_b == 0)
+		free(main.b);
 	if (opt)
 		write(1, "pa\n", 3);
 	return (main);
@@ -86,24 +86,24 @@ t_stacks	pb_funct(t_stacks main, int opt)
 {
 	int	number;
 
-	number = main.A[0];
-	if (!main.A)
+	number = main.a[0];
+	if (!main.a)
 		perror("\n\tIN PB: main stack A esta vazio\n");
-	if (main.sizeB == 0)
+	if (main.size_b == 0)
 	{
-		main.B = ft_calloc(1, sizeof(int));
-		main.B[0] = number;
-		main.A = organize_the_stack(main.A, main.sizeA, 0);
-		main.sizeB++;
+		main.b = ft_calloc(1, sizeof(int));
+		main.b[0] = number;
+		main.a = organize_the_stack(main.a, main.size_a, 0);
+		main.size_b++;
 	}
 	else
 	{
-		main.B = push_to_p(main.B, &main.sizeB, number);
-		main.A = organize_the_stack(main.A, main.sizeA, 1);
+		main.b = push_to_p(main.b, &main.size_b, number);
+		main.a = organize_the_stack(main.a, main.size_a, 1);
 	}
-	main.sizeA--;
-	if (main.sizeA == 0)
-		free(main.A);
+	main.size_a--;
+	if (main.size_a == 0)
+		free(main.a);
 	if (opt)
 		write(1, "pb\n", 3);
 	return (main);

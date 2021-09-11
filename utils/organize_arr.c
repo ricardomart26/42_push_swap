@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   organize_arr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rimartin <rimartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:24:18 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/30 00:58:55 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/09/10 17:58:20 by rimartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	fuck_norm(t_stacks *temp, t_stacks *main)
 	temp->lowest = main->lowest;
 	temp->size_chunk = main->size_chunk;
 	temp->middle_size = main->middle_size;
-	temp->sizeA = main->sizeA;
-	temp->sizeB = main->sizeB;
+	temp->size_a = main->size_a;
+	temp->size_b = main->size_b;
 }
 
 t_stacks	pass_stacks_to_temp(t_stacks main)
@@ -26,21 +26,21 @@ t_stacks	pass_stacks_to_temp(t_stacks main)
 	t_stacks	temp;
 	int			x;
 
-	temp.A = ft_calloc(main.sizeA, sizeof(int));
+	temp.a = ft_calloc(main.size_a, sizeof(int));
 	fuck_norm(&temp, &main);
 	x = 0;
-	while (main.sizeA--)
+	while (main.size_a--)
 	{
-		temp.A[x] = main.A[x];
+		temp.a[x] = main.a[x];
 		x++;
 	}
 	x = 0;
-	if (main.sizeB != 0)
+	if (main.size_b != 0)
 	{
-		temp.B = ft_calloc(main.sizeB, sizeof(int));
-		while (main.sizeB--)
+		temp.b = ft_calloc(main.size_b, sizeof(int));
+		while (main.size_b--)
 		{
-			temp.B[x] = main.B[x];
+			temp.b[x] = main.b[x];
 			x++;
 		}
 	}

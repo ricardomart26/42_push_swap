@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rimartin <rimartin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/11 11:34:58 by rimartin          #+#    #+#             */
+/*   Updated: 2021/09/11 11:34:59 by rimartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -9,11 +21,11 @@
 typedef struct stacks_s
 {
 	int		mv[4];
-	int		*A;
-	int		*B;
-	int		sizeA;
+	int		*a;
+	int		*b;
+	int		size_a;
 	int		size_chunk;
-	int		sizeB;
+	int		size_b;
 	int		ac;
 	int		lowest;
 	int		lowest_pos;
@@ -32,24 +44,24 @@ typedef struct moves_s
 	int	rrr;
 	int	total;
 	int	num;
-	int	pos_B;
+	int	pos_b;
 }				t_moves;
 
 # define PB 1
 # define PA 1
 
 t_stacks	fuck_norm3(t_stacks main);
-t_stacks	check_stackA_real(t_stacks main, int size);
-int			check_stackA(t_stacks main, int size);
+t_stacks	check_stacka_real(t_stacks main, int size);
+int			check_stacka(t_stacks main, int size);
 void		free2(int **org, int **chunks);
 void		*ft_calloc(size_t count, size_t size);
 void		print_array(int *stack, int size);
 void		print_stacks(t_stacks main);
 int			search_in_chunk(t_stacks temp, int *chunk, int sizeA);
 int			see_if_is_equal(t_stacks main, t_stacks temp, int value, int i);
-t_stacks	last3_A(t_stacks main);
-void		organize4_A(t_stacks *main);
-t_moves		B_correct(t_stacks *main, int size);
+t_stacks	last3_a(t_stacks main);
+void		organize4_a(t_stacks *main);
+t_moves		b_correct(t_stacks *main, int size);
 void		not_so_easy_one(t_stacks main);
 void		moves_rrb(t_moves *cmd);
 void		moves_rb(t_moves *cmd);
@@ -106,7 +118,7 @@ int			*ft_swap(int *stack, int i);
 int			ft_isntdigit(char c);
 int			is_valid(t_stacks main);
 int			is_correct(int *stack, int size);
-int			is_correct_B(int *B, int size);
+int			is_correct_b(int *B, int size);
 void		init_struct(t_stacks *main, int ac);
 int			lowest_num(int *stack, int size);
 void		attr_chunks(t_stacks *main, int *org, int divisor);

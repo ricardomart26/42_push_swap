@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricardo <ricardo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rimartin <rimartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 01:17:26 by ricardo           #+#    #+#             */
-/*   Updated: 2021/08/21 06:44:08 by ricardo          ###   ########.fr       */
+/*   Updated: 2021/09/11 11:37:02 by rimartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	is_valid(t_stacks main)
 	int	i;
 
 	x = 0;
-	if (is_correct(main.A, main.sizeA))
+	if (is_correct(main.a, main.size_a))
 		return (2);
-	while (main.A[x])
+	while (main.a[x])
 	{
 		i = x + 1;
-		while (main.A[i])
+		while (main.a[i])
 		{
-			if (main.A[x] == main.A[i])
+			if (main.a[x] == main.a[i])
 				error_mes(&main);
 			i++;
 		}
@@ -56,14 +56,14 @@ int	is_correct(int *stack, int size)
 	return (1);
 }
 
-int	is_correct_B(int *B, int size)
+int	is_correct_b(int *b, int size)
 {
 	int	i;
 
 	i = 0;
 	while (size + 1)
 	{
-		if (B[i] > B[i + 1])
+		if (b[i] > b[i + 1])
 			i++;
 		else
 			return (0);
