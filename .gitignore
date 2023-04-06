@@ -1,3 +1,4 @@
 .vscode
 push_swap
 *.o
+.DS_Store
