@@ -11,7 +11,7 @@ To use this project, simply clone this repository and navigate to the root direc
 
 Once compiled, you can run the programs as follows:
 
-    `./push_swap [list of integers]`: This will sort the list of integers using the algorithm implemented in push_swap and output the required instructions to standard output.
+    ./push_swap [list of integers]: This will sort the list of integers using the algorithm implemented in push_swap and output the required instructions to standard output.
 
 Note that the list of integers should be provided as a space-separated list of integers.
 
@@ -22,7 +22,3 @@ The algorithm implemented in push_swap is a variation of the Quick Sort algorith
     Divide the list of integers into multiple chuncks from the lower numbers to the biggest ones.
     Push the first the chunck to stack B and organize the numbers, and then repeat the same progress for the rest of the chuncks, and in the end send them to stack B.
     Implemented also simulations, to see which would be the most efficient way to send the chunk to stack B.
-
-Contributors
-
-This project was implemented by [your name and your partner's name], as part of the curriculum for the 42 program at [school name]. Feel free to contribute or fork this repository if you find it useful!
