@@ -1,6 +1,6 @@
-CC = gcc -Wall -Wextra -Werror
+CC = gcc 
 
-CCS = gcc -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror 
 
 INCLUDE = -I push_swap.h
 
@@ -13,22 +13,16 @@ NAME = push_swap
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
-	mv $(OBJS) Objs
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 san: fclean $(OBJS)
 	$(CCS) $(OBJS) -g -o $(NAME)
-	mv $(OBJS) Objs
 
 clean:
-	rm -f Objs/*.o
-
-test:
-	$(CC) random_numbers.c -o test
-	
+	rm -f $(OBJS)
 
 fclean: clean
-	rm -f swap.out
+	rm -f $(NAME)
 
 re:	fclean $(NAME)
 

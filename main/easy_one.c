@@ -57,9 +57,7 @@ int	check_stacka(t_stacks main, int size)
 {
 	int	max;
 	int	max_place;
-	int	i;
 
-	i = -1;
 	max = biggest_num(main.a, size);
 	max_place = place_in_array(main.a, max);
 	if (is_correct(main.a, main.size_a))
@@ -77,9 +75,7 @@ t_stacks	check_stacka_real(t_stacks main, int size)
 {
 	int	max;
 	int	max_place;
-	int	i;
 
-	i = -1;
 	max = biggest_num(main.a, size);
 	max_place = place_in_array(main.a, max);
 	if (is_correct(main.a, main.size_a))
