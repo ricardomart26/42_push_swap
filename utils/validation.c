@@ -14,8 +14,8 @@
 
 int	is_valid(t_stacks main)
 {
-	int	x;
-	int	i;
+	size_t	x;
+	size_t	i;
 
 	x = 0;
 	if (is_correct(main.a, main.size_a))
@@ -36,37 +36,33 @@ int	is_valid(t_stacks main)
 
 int	ft_isntdigit(char c)
 {
-	if (c <= '9' && c >= '0')
-		return (0);
-	return (1);
+	return (!(c <= '9' && c >= '0'));
 }
 
 int	is_correct(int *stack, int size)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i + 1 < size)
 	{
-		if (stack[i] < stack[i + 1])
-			i++;
-		else
+		if (stack[i] >= stack[i + 1])
 			return (0);
+		i++;
 	}
 	return (1);
 }
 
 int	is_correct_b(int *b, int size)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (size + 1)
 	{
-		if (b[i] > b[i + 1])
-			i++;
-		else
+		if (b[i] <= b[i + 1])
 			return (0);
+		i++;
 		size--;
 	}
 	return (1);

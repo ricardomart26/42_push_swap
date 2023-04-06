@@ -22,16 +22,13 @@ void	free2(int **org, int **chunks)
 
 void	ft_bzero(void *s, size_t n)
 {
-	int		c;
+	size_t	c;
 	char	*temp;
 
 	temp = (char *)s;
 	c = 0;
 	while (c < (int)n)
-	{
-		temp[c] = '\0';
-		c++;
-	}
+		temp[c++] = '\0';
 }
 
 void	*ft_calloc(size_t count, size_t size)

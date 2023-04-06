@@ -19,10 +19,7 @@ int	is_lowest_array(int x, int *array, int size)
 	i = 0;
 	while (array[i] >= x && i < size - 1)
 		i++;
-	if (i == size)
-		return (1);
-	else
-		return (0);
+	return (i == size);
 }
 
 int	place_in_array(int *stack, int num)

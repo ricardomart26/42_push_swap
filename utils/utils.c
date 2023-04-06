@@ -72,7 +72,7 @@ int	*ft_swap(int *stack, int i)
 
 int	find(int number, int *arr)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (arr[i])

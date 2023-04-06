@@ -120,4 +120,5 @@ int	main(int ac, char **av)
 		do_easy_one(main);
 	else
 		not_so_easy_one(main);
+	return (0);
 }
