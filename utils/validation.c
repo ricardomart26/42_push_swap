@@ -12,21 +12,21 @@
 
 #include "../push_swap.h"
 
-int	is_valid(t_stacks main)
+int	is_valid(t_stacks stacks)
 {
 	size_t	x;
 	size_t	i;
 
 	x = 0;
-	if (is_correct(main.a, main.size_a))
+	if (is_correct(stacks.a, stacks.size_a))
 		return (2);
-	while (main.a[x])
+	while (stacks.a[x])
 	{
 		i = x + 1;
-		while (main.a[i])
+		while (stacks.a[i])
 		{
-			if (main.a[x] == main.a[i])
-				error_mes(&main);
+			if (stacks.a[x] == stacks.a[i])
+				error_mes(&stacks);
 			i++;
 		}
 		x++;
@@ -44,7 +44,7 @@ int	is_correct(int *stack, int size)
 	size_t	i;
 
 	i = 0;
-	while (i + 1 < size)
+	while (i + 1 < (size_t)size)
 	{
 		if (stack[i] >= stack[i + 1])
 			return (0);

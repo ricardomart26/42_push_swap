@@ -12,66 +12,66 @@
 
 #include "../push_swap.h"
 
-t_stacks	fuck_norm3(t_stacks main)
+t_stacks	fuck_norm3(t_stacks stacks)
 {
-	if (main.b[0] > main.a[0])
+	if (stacks.b[0] > stacks.a[0])
 	{
-		main = ra_funct(main, 1);
-		main = pa_funct(main, 1);
-		main = rra_funct(main, 1);
+		stacks = ra_funct(stacks, 1);
+		stacks = pa_funct(stacks, 1);
+		stacks = rra_funct(stacks, 1);
 	}
-	return (main);
+	return (stacks);
 }
 
-t_moves	b_correct(t_stacks *main, int size)
+t_moves	b_correct(t_stacks *stacks, int size)
 {
 	int		max;
 	int		max_place;
 	t_moves	cmd;
 
 	init_cmd(&cmd);
-	max = biggest_num(main->b, size);
-	max_place = place_in_array(main->b, max);
+	max = biggest_num(stacks->b, size);
+	max_place = place_in_array(stacks->b, max);
 	if (max_place <= size / 2)
 	{
-		*main = gen_moves_real(*main, 3, size - max_place, 0);
+		*stacks = gen_moves_real(*stacks, 3, size - max_place, 0);
 		cmd.rrb = size - max_place;
 	}
 	else if (max_place > size / 2)
 	{
-		*main = gen_moves_real(*main, 2, max_place, 0);
+		*stacks = gen_moves_real(*stacks, 2, max_place, 0);
 		cmd.rb = max_place;
 	}
 	return (cmd);
 }
 
-void	organize4_a(t_stacks *main)
+void	organize4_a(t_stacks *stacks)
 {
 	int	lower;
 	int	lower_pos;
 
-	lower = lowest_num(main->a, main->size_a);
-	lower_pos = place_in_array(main->a, lower);
-	if (lower_pos == 0 && main->a[1] < main->a[2])
-		*main = fuck_norm3(*main);
-	if (lower_pos == 2 && main->a[0] > main->a[1])
+	lower = lowest_num(stacks->a, stacks->size_a);
+	lower_pos = place_in_array(stacks->a, lower);
+	if (lower_pos == 0 && stacks->a[1] < stacks->a[2])
+		*stacks = fuck_norm3(*stacks);
+	if (lower_pos == 2 && stacks->a[0] > stacks->a[1])
 	{
-		*main = sa_funct(*main, 1);
-		while (main->a[main->size_a - 1] < main->b[0])
-			*main = pa_funct(*main, 1);
+		*stacks = sa_funct(*stacks, 1);
+		while (stacks->a[stacks->size_a - 1] < stacks->b[0])
+			*stacks = pa_funct(*stacks, 1);
 	}
-	else if (lower_pos == 2 && main->a[0] < main->a[1])
+	else if (lower_pos == 2 && stacks->a[0] < stacks->a[1])
 	{
-		*main = pa_funct(*main, 1);
-		*main = rra_funct(*main, 1);
+		*stacks = pa_funct(*stacks, 1);
+		*stacks = rra_funct(*stacks, 1);
 	}
 }
 
-t_stacks	last3_a(t_stacks main)
+t_stacks	last3_a(t_stacks stacks)
 {
-	if (!is_lowest_array(main.b[0], main.a, main.size_a))
-		organize4_a(&main);
-	if (!is_correct(main.a, 3))
-		main = do_only3(main);
-	return (main);
+	if (!is_lowest_array(stacks.b[0], stacks.a, stacks.size_a))
+		organize4_a(&stacks);
+	if (!is_correct(stacks.a, 3))
+		stacks = do_only3(stacks);
+	return (stacks);
 }

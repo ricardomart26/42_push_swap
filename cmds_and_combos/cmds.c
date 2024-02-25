@@ -55,56 +55,56 @@ int	*push_to_p(int *stack, int *size, int number)
 	return (stack);
 }
 
-t_stacks	pa_funct(t_stacks main, int opt)
+t_stacks	pa_funct(t_stacks stacks, int opt)
 {
 	int	number;
 
-	number = main.b[0];
-	if (!main.b)
-		perror("\n\tIN PB: main stack A esta vazio\n");
-	if (main.size_a == 0)
+	number = stacks.b[0];
+	if (!stacks.b)
+		perror("\n\tIN PB: stacks stack A esta vazio\n");
+	if (stacks.size_a == 0)
 	{
-		main.a = ft_calloc(1, sizeof(int));
-		main.a[0] = number;
-		main.b = organize_the_stack(main.b, main.size_b, 0);
-		main.size_a++;
+		stacks.a = ft_calloc(1, sizeof(int));
+		stacks.a[0] = number;
+		stacks.b = organize_the_stack(stacks.b, stacks.size_b, 0);
+		stacks.size_a++;
 	}
 	else
 	{
-		main.a = push_to_p(main.a, &main.size_a, number);
-		main.b = organize_the_stack(main.b, main.size_b, 1);
+		stacks.a = push_to_p(stacks.a, &stacks.size_a, number);
+		stacks.b = organize_the_stack(stacks.b, stacks.size_b, 1);
 	}
-	main.size_b--;
-	if (main.size_b == 0)
-		free(main.b);
+	stacks.size_b--;
+	if (stacks.size_b == 0)
+		free(stacks.b);
 	if (opt)
 		write(1, "pa\n", 3);
-	return (main);
+	return (stacks);
 }
 
-t_stacks	pb_funct(t_stacks main, int opt)
+t_stacks	pb_funct(t_stacks stacks, int opt)
 {
 	int	number;
 
-	number = main.a[0];
-	if (!main.a)
-		perror("\n\tIN PB: main stack A esta vazio\n");
-	if (main.size_b == 0)
+	number = stacks.a[0];
+	if (!stacks.a)
+		perror("\n\tIN PB: stacks stack A esta vazio\n");
+	if (stacks.size_b == 0)
 	{
-		main.b = ft_calloc(1, sizeof(int));
-		main.b[0] = number;
-		main.a = organize_the_stack(main.a, main.size_a, 0);
-		main.size_b++;
+		stacks.b = ft_calloc(1, sizeof(int));
+		stacks.b[0] = number;
+		stacks.a = organize_the_stack(stacks.a, stacks.size_a, 0);
+		stacks.size_b++;
 	}
 	else
 	{
-		main.b = push_to_p(main.b, &main.size_b, number);
-		main.a = organize_the_stack(main.a, main.size_a, 1);
+		stacks.b = push_to_p(stacks.b, &stacks.size_b, number);
+		stacks.a = organize_the_stack(stacks.a, stacks.size_a, 1);
 	}
-	main.size_a--;
-	if (main.size_a == 0)
-		free(main.a);
+	stacks.size_a--;
+	if (stacks.size_a == 0)
+		free(stacks.a);
 	if (opt)
 		write(1, "pb\n", 3);
-	return (main);
+	return (stacks);
 }

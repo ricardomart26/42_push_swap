@@ -12,52 +12,52 @@
 
 #include "../push_swap.h"
 
-t_stacks	gen_moves_fake(t_stacks main, int option, int counter, int pb_pa)
+t_stacks	gen_moves_fake(t_stacks stacks, int option, int counter, int pb_pa)
 {
 	while (counter)
 	{
 		if (option == 0)
-			main = ra_funct(main, 0);
+			stacks = ra_funct(stacks, 0);
 		if (option == 1)
-			main = rra_funct(main, 0);
+			stacks = rra_funct(stacks, 0);
 		if (option == 2)
-			main = rb_funct(main, 0);
+			stacks = rb_funct(stacks, 0);
 		if (option == 3)
-			main = rrb_funct(main, 0);
+			stacks = rrb_funct(stacks, 0);
 		if (option == 4)
-			main = rr_funct(main, 0);
+			stacks = rr_funct(stacks, 0);
 		if (option == 5)
-			main = rrr_funct(main, 0);
+			stacks = rrr_funct(stacks, 0);
 		counter--;
 	}	
 	if (pb_pa == 1)
-		main = pb_funct(main, 0);
+		stacks = pb_funct(stacks, 0);
 	else if (pb_pa == 2)
-		main = pa_funct(main, 0);
-	return (main);
+		stacks = pa_funct(stacks, 0);
+	return (stacks);
 }
 
-t_stacks	gen_moves_real(t_stacks main, int option, int counter, int pb_pa)
+t_stacks	gen_moves_real(t_stacks stacks, int option, int counter, int pb_pa)
 {
 	while (counter)
 	{
 		if (option == 0)
-			main = ra_funct(main, 1);
+			stacks = ra_funct(stacks, 1);
 		if (option == 1)
-			main = rra_funct(main, 1);
+			stacks = rra_funct(stacks, 1);
 		if (option == 2)
-			main = rb_funct(main, 1);
+			stacks = rb_funct(stacks, 1);
 		if (option == 3)
-			main = rrb_funct(main, 1);
+			stacks = rrb_funct(stacks, 1);
 		if (option == 4)
-			main = rr_funct(main, 1);
+			stacks = rr_funct(stacks, 1);
 		if (option == 5)
-			main = rrr_funct(main, 1);
+			stacks = rrr_funct(stacks, 1);
 		counter--;
 	}
 	if (pb_pa == 1)
-		main = pb_funct(main, 1);
+		stacks = pb_funct(stacks, 1);
 	else if (pb_pa == 2)
-		main = pa_funct(main, 1);
-	return (main);
+		stacks = pa_funct(stacks, 1);
+	return (stacks);
 }

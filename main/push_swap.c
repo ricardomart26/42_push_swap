@@ -12,113 +12,113 @@
 
 #include "../push_swap.h"
 
-static void	push_everything_to_b(t_stacks *main, int *org)
+static void	push_everything_to_b(t_stacks *stacks, int *org)
 {
-	while (main->size_a != 3)
+	while (stacks->size_a != 3)
 	{
-		main->lowest = *org;
-		main->middle_size = main->size_a / 2;
-		main->lowest_pos = find(*org, main->a);
-		if (main->lowest_pos == 0)
-			*main = pb_funct(*main, 1);
-		else if (main->lowest_pos > main->middle_size && main->size_a != 0)
+		stacks->lowest = *org;
+		stacks->middle_size = stacks->size_a / 2;
+		stacks->lowest_pos = find(*org, stacks->a);
+		if (stacks->lowest_pos == 0)
+			*stacks = pb_funct(*stacks, 1);
+		else if (stacks->lowest_pos > stacks->middle_size && stacks->size_a != 0)
 		{
-			while (main->lowest_pos++ != main->size_a)
-				*main = rra_funct(*main, 1);
-			*main = pb_funct(*main, 1);
+			while (stacks->lowest_pos++ != stacks->size_a)
+				*stacks = rra_funct(*stacks, 1);
+			*stacks = pb_funct(*stacks, 1);
 		}
-		else if (main->lowest_pos <= main->middle_size && main->size_a != 0)
+		else if (stacks->lowest_pos <= stacks->middle_size && stacks->size_a != 0)
 		{
-			while (main->lowest_pos-- != 0)
-				*main = ra_funct(*main, 1);
-			*main = pb_funct(*main, 1);
+			while (stacks->lowest_pos-- != 0)
+				*stacks = ra_funct(*stacks, 1);
+			*stacks = pb_funct(*stacks, 1);
 		}
 		org++;
 	}
 }
 
-t_stacks	do_only3(t_stacks main)
+t_stacks	do_only3(t_stacks stacks)
 {
-	if (main.ac == 2)
-		return (sa_funct(main, 1));
+	if (stacks.ac == 2)
+		return (sa_funct(stacks, 1));
 	else
 	{
-		if (main.a[0] > main.a[1] && main.a[1]
-			< main.a[2] && main.a[0] < main.a[2])
-			main = sa_funct(main, 1);
-		else if (main.a[0] > main.a[1] && main.a[1]
-			< main.a[2] && main.a[0] > main.a[2])
-			main = ra_funct(main, 1);
-		else if (main.a[0] > main.a[1] && main.a[1] > main.a[2])
+		if (stacks.a[0] > stacks.a[1] && stacks.a[1]
+			< stacks.a[2] && stacks.a[0] < stacks.a[2])
+			stacks = sa_funct(stacks, 1);
+		else if (stacks.a[0] > stacks.a[1] && stacks.a[1]
+			< stacks.a[2] && stacks.a[0] > stacks.a[2])
+			stacks = ra_funct(stacks, 1);
+		else if (stacks.a[0] > stacks.a[1] && stacks.a[1] > stacks.a[2])
 		{
-			main = sa_funct(main, 1);
-			main = rra_funct(main, 1);
+			stacks = sa_funct(stacks, 1);
+			stacks = rra_funct(stacks, 1);
 		}
-		else if (main.a[0] < main.a[1] && main.a[1]
-			> main.a[2] && main.a[0] > main.a[2])
-			main = rra_funct(main, 1);
-		else if (main.a[0] < main.a[1] && main.a[1] > main.a[2])
+		else if (stacks.a[0] < stacks.a[1] && stacks.a[1]
+			> stacks.a[2] && stacks.a[0] > stacks.a[2])
+			stacks = rra_funct(stacks, 1);
+		else if (stacks.a[0] < stacks.a[1] && stacks.a[1] > stacks.a[2])
 		{
-			main = rra_funct(main, 1);
-			main = sa_funct(main, 1);
+			stacks = rra_funct(stacks, 1);
+			stacks = sa_funct(stacks, 1);
 		}
-		return (main);
+		return (stacks);
 	}
 }
 
-void	peanuts(t_stacks main)
+void	peanuts(t_stacks stacks)
 {
 	int	*org;
 
-	if (main.ac <= 3)
+	if (stacks.ac <= 3)
 	{
-		do_only3(main);
-		free_all_stacks_t(&main, main.size_b);
+		do_only3(stacks);
+		free_all_stacks_t(&stacks, stacks.size_b);
 		return ;
 	}
-	org = organize_array(main.a, main.size_a - 1);
-	push_everything_to_b(&main, org);
+	org = organize_array(stacks.a, stacks.size_a - 1);
+	push_everything_to_b(&stacks, org);
 	free(org);
 	org = NULL;
-	main = do_only3(main);
-	while (main.size_b != 0)
-		main = pa_funct(main, 1);
-	free_all_stacks_t(&main, main.size_b);
+	stacks = do_only3(stacks);
+	while (stacks.size_b != 0)
+		stacks = pa_funct(stacks, 1);
+	free_all_stacks_t(&stacks, stacks.size_b);
 }
 
-t_stacks	get_av(t_stacks main, char **av)
+t_stacks	get_av(t_stacks stacks, char **av)
 {
 	int			x;
 	long int	temp;
 
 	x = 1;
-	while (x < main.size_a + 1)
+	while (x < stacks.size_a + 1)
 	{
-		temp = ft_atoi(av[x], main);
+		temp = ft_atoi(av[x], stacks);
 		if (temp > 2147483647 || temp < -21474836478)
-			error_mes(&main);
-		main.a[x - 1] = (int)temp;
+			error_mes(&stacks);
+		stacks.a[x - 1] = (int)temp;
 		x++;
 	}
-	return (main);
+	return (stacks);
 }
 
 int	main(int ac, char **av)
 {
-	t_stacks	main;
+	t_stacks	stacks;
 
-	init_struct(&main, ac);
-	main = get_av(main, av);
-	if (is_valid(main) == 2)
+	init_struct(&stacks, ac);
+	stacks = get_av(stacks, av);
+	if (is_valid(stacks) == 2)
 	{
-		free_all_stacks_t(&main, main.size_b);
+		free_all_stacks_t(&stacks, stacks.size_b);
 		return (0);
 	}
 	if (ac < 20)
-		peanuts(main);
+		peanuts(stacks);
 	else if (ac <= 100)
-		do_easy_one(main);
+		do_easy_one(stacks);
 	else
-		not_so_easy_one(main);
+		not_so_easy_one(stacks);
 	return (0);
 }

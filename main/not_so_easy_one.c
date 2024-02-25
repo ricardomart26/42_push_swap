@@ -12,30 +12,30 @@
 
 #include "../push_swap.h"
 
-void	not_so_easy_one(t_stacks main)
+void	not_so_easy_one(t_stacks stacks)
 {
 	int		*org;
 	t_moves	cmd;
 
 	init_cmd(&cmd);
-	while (main.size_a != 3)
+	while (stacks.size_a != 3)
 	{
-		org = organize_array(main.a, main.size_a - 1);
-		init_main_loop(&main, org);
-		if (main.size_a > 100)
-			attr_chunks(&main, org, 11);
-		if (main.size_a > 20)
-			attr_chunks(&main, org, 6);
+		org = organize_array(stacks.a, stacks.size_a - 1);
+		init_stacks_loop(&stacks, org);
+		if (stacks.size_a > 100)
+			attr_chunks(&stacks, org, 11);
+		if (stacks.size_a > 20)
+			attr_chunks(&stacks, org, 6);
 		else
-			attr_chunks(&main, org, 2);
-		main = push_chunk_to_b(main);
-		free2(&org, &main.chunks);
+			attr_chunks(&stacks, org, 2);
+		stacks = push_chunk_to_b(stacks);
+		free2(&org, &stacks.chunks);
 	}
-	if (!is_correct_b(main.b, main.size_b))
-		cmd = b_correct(&main, main.size_b);
-	main = last3_a(main);
-	main = fuck_norm3(main);
-	while (main.b[0] < main.a[0] && main.size_b != 0)
-		main = pa_funct(main, 1);
-	free_all_stacks_t(&main, main.size_b);
+	if (!is_correct_b(stacks.b, stacks.size_b))
+		cmd = b_correct(&stacks, stacks.size_b);
+	stacks = last3_a(stacks);
+	stacks = fuck_norm3(stacks);
+	while (stacks.b[0] < stacks.a[0] && stacks.size_b != 0)
+		stacks = pa_funct(stacks, 1);
+	free_all_stacks_t(&stacks, stacks.size_b);
 }

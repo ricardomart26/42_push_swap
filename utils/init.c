@@ -12,34 +12,34 @@
 
 #include "../push_swap.h"
 
-void	attr_chunks(t_stacks *main, int *org, int divisor)
+void	attr_chunks(t_stacks *stacks, int *org, int divisor)
 {
 	int	i;
 	int	size_a;
 
-	size_a = main->size_a;
+	size_a = stacks->size_a;
 	size_a /= divisor;
-	main->chunks = (int *)ft_calloc(size_a, sizeof(int));
-	main->alloc_chunks = true;
+	stacks->chunks = (int *)ft_calloc(size_a, sizeof(int));
+	stacks->alloc_chunks = true;
 	i = 0;
 	while (i < size_a)
 	{
-		main->chunks[i] = *org;
+		stacks->chunks[i] = *org;
 		i++;
 		org++;
 	}
-	main->chunks[i] = '\0';
-	main->size_chunk = size_a - 1;
+	stacks->chunks[i] = '\0';
+	stacks->size_chunk = size_a - 1;
 }
 
-void	init_main_loop(t_stacks *main, int *org)
+void	init_stacks_loop(t_stacks *stacks, int *org)
 {
-	main->lowest = org[0];
-	if (main->size_a % 2 != 0)
-		main->middle_size = main->size_a / 2 + 1;
+	stacks->lowest = org[0];
+	if (stacks->size_a % 2 != 0)
+		stacks->middle_size = stacks->size_a / 2 + 1;
 	else
-		main->middle_size = main->size_a / 2;
-	main->alloc_chunks = false;
+		stacks->middle_size = stacks->size_a / 2;
+	stacks->alloc_chunks = false;
 }
 
 void	init_cmd(t_moves *cmd)
@@ -55,12 +55,12 @@ void	init_cmd(t_moves *cmd)
 	cmd->rrr = 0;
 }
 
-void	init_struct(t_stacks *main, int ac)
+void	init_struct(t_stacks *stacks, int ac)
 {
-	main->ac = ac - 1;
-	main->a = ft_calloc((ac - 1), sizeof(int));
-	if (!main->a)
+	stacks->ac = ac - 1;
+	stacks->a = ft_calloc((ac - 1), sizeof(int));
+	if (!stacks->a)
 		return ;
-	main->size_a = main->ac;
-	main->size_b = 0;
+	stacks->size_a = stacks->ac;
+	stacks->size_b = 0;
 }

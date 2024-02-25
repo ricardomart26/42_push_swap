@@ -12,49 +12,49 @@
 
 #include "../push_swap.h"
 
-t_stacks	rrr_funct(t_stacks main, int opt)
+t_stacks	rrr_funct(t_stacks stacks, int opt)
 {
-	main = rra_funct(main, 0);
-	main = rrb_funct(main, 0);
+	stacks = rra_funct(stacks, 0);
+	stacks = rrb_funct(stacks, 0);
 	if (opt)
 		write(1, "rrr\n", 4);
-	return (main);
+	return (stacks);
 }
 
-t_stacks	sa_funct(t_stacks main, int option)
+t_stacks	sa_funct(t_stacks stacks, int option)
 {
 	int	temp;
 
-	if (!main.a)
-		perror("\n\tIN SA: main stack A esta vazio\n");
-	temp = main.a[0];
-	main.a[0] = main.a[1];
-	main.a[1] = temp;
+	if (!stacks.a)
+		perror("\n\tIN SA: stacks stack A esta vazio\n");
+	temp = stacks.a[0];
+	stacks.a[0] = stacks.a[1];
+	stacks.a[1] = temp;
 	if (option)
 		write(1, "sa\n", 3);
-	return (main);
+	return (stacks);
 }
 
-t_stacks	sb_funct(t_stacks main, int option)
+t_stacks	sb_funct(t_stacks stacks, int option)
 {
 	int	x;
 	int	temp;
 
-	if (!main.b)
-		perror("\n\tIN SB: main stack B esta vazio\n");
+	if (!stacks.b)
+		perror("\n\tIN SB: stacks stack B esta vazio\n");
 	x = 0;
-	temp = main.b[x];
-	main.b[x] = main.b[x + 1];
-	main.b[x + 1] = temp;
+	temp = stacks.b[x];
+	stacks.b[x] = stacks.b[x + 1];
+	stacks.b[x + 1] = temp;
 	if (option)
 		write(1, "sb\n", 3);
-	return (main);
+	return (stacks);
 }
 
-t_stacks	ss_funct(t_stacks main)
+t_stacks	ss_funct(t_stacks stacks)
 {
-	main = sa_funct(main, 0);
-	main = sb_funct(main, 0);
+	stacks = sa_funct(stacks, 0);
+	stacks = sb_funct(stacks, 0);
 	write(1, "ss\n", 3);
-	return (main);
+	return (stacks);
 }

@@ -12,35 +12,35 @@
 
 #include "../push_swap.h"
 
-void	fuck_norm(t_stacks *temp, t_stacks *main)
+void	fuck_norm(t_stacks *temp, t_stacks *stacks)
 {
-	temp->lowest = main->lowest;
-	temp->size_chunk = main->size_chunk;
-	temp->middle_size = main->middle_size;
-	temp->size_a = main->size_a;
-	temp->size_b = main->size_b;
+	temp->lowest = stacks->lowest;
+	temp->size_chunk = stacks->size_chunk;
+	temp->middle_size = stacks->middle_size;
+	temp->size_a = stacks->size_a;
+	temp->size_b = stacks->size_b;
 }
 
-t_stacks	pass_stacks_to_temp(t_stacks main)
+t_stacks	pass_stacks_to_temp(t_stacks stacks)
 {
 	t_stacks	temp;
 	int			x;
 
-	temp.a = ft_calloc(main.size_a, sizeof(int));
-	fuck_norm(&temp, &main);
+	temp.a = ft_calloc(stacks.size_a, sizeof(int));
+	fuck_norm(&temp, &stacks);
 	x = 0;
-	while (main.size_a--)
+	while (stacks.size_a--)
 	{
-		temp.a[x] = main.a[x];
+		temp.a[x] = stacks.a[x];
 		x++;
 	}
 	x = 0;
-	if (main.size_b != 0)
+	if (stacks.size_b != 0)
 	{
-		temp.b = ft_calloc(main.size_b, sizeof(int));
-		while (main.size_b--)
+		temp.b = ft_calloc(stacks.size_b, sizeof(int));
+		while (stacks.size_b--)
 		{
-			temp.b[x] = main.b[x];
+			temp.b[x] = stacks.b[x];
 			x++;
 		}
 	}

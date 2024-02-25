@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-int	return_best_opt(t_stacks main, t_stacks temp, int num_in_chunk)
+int	return_best_opt(t_stacks stacks, t_stacks temp, int num_in_chunk)
 {
 	int	i;
 	int	x;
@@ -24,14 +24,14 @@ int	return_best_opt(t_stacks main, t_stacks temp, int num_in_chunk)
 		if (i == 3)
 			break ;
 		x = i + 1;
-		while (main.mv[i] <= main.mv[x] && x != 4)
+		while (stacks.mv[i] <= stacks.mv[x] && x != 4)
 			x++;
 		if (x == 4)
 		{
-			value = main.mv[i];
+			value = stacks.mv[i];
 			x = i;
 			if (num_in_chunk != 2)
-				i = see_if_is_equal(main, temp, value, i);
+				i = see_if_is_equal(stacks, temp, value, i);
 			break ;
 		}
 		i++;
@@ -68,14 +68,14 @@ int	do_end(t_stacks *temp, int *chunks)
 	return (0);
 }
 
-int	check_four_opt(t_stacks main, int *chunks)
+int	check_four_opt(t_stacks stacks, int *chunks)
 {
 	t_stacks	temp;
 	int			movesss;
 	int			nums_in_chunk;
 
 	movesss = 0;
-	temp = pass_stacks_to_temp(main);
+	temp = pass_stacks_to_temp(stacks);
 	nums_in_chunk = search_in_chunk(temp, chunks, temp.size_a);
 	if (nums_in_chunk == 0 || temp.size_a < 3)
 	{
@@ -85,14 +85,14 @@ int	check_four_opt(t_stacks main, int *chunks)
 	else if (nums_in_chunk == 1 || temp.size_a == 4)
 		return (do_end(&temp, chunks));
 	movesss = simulate_num1(&temp, chunks, 0);
-	main.mv[0] = simulate_next_f(temp, chunks, movesss);
-	main.mv[1] = simulate_next_s(temp, chunks, movesss);
+	stacks.mv[0] = simulate_next_f(temp, chunks, movesss);
+	stacks.mv[1] = simulate_next_s(temp, chunks, movesss);
 	free_all_stacks_t(&temp, temp.size_b);
-	temp = pass_stacks_to_temp(main);
+	temp = pass_stacks_to_temp(stacks);
 	movesss = simulate_num2(&temp, chunks, 0);
-	main.mv[2] = simulate_next_f(temp, chunks, movesss);
-	main.mv[3] = simulate_next_s(temp, chunks, movesss);
+	stacks.mv[2] = simulate_next_f(temp, chunks, movesss);
+	stacks.mv[3] = simulate_next_s(temp, chunks, movesss);
 	free_all_stacks_t(&temp, temp.size_b);
-	temp = pass_stacks_to_temp(main);
-	return (return_best_opt(main, temp, nums_in_chunk));
+	temp = pass_stacks_to_temp(stacks);
+	return (return_best_opt(stacks, temp, nums_in_chunk));
 }

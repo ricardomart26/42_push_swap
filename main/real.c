@@ -34,38 +34,38 @@ int	real_num1(t_stacks *temp, int *chunk)
 	return (cmd.total);
 }
 
-t_stacks	combo_opt(t_stacks main, int *chunks, int option)
+t_stacks	combo_opt(t_stacks stacks, int *chunks, int option)
 {
 	if (option == 0)
 	{
-		real_num1(&main, chunks);
-		real_num1(&main, chunks);
+		real_num1(&stacks, chunks);
+		real_num1(&stacks, chunks);
 	}
 	if (option == 1)
 	{
-		real_num1(&main, chunks);
-		real_num2(&main, chunks);
+		real_num1(&stacks, chunks);
+		real_num2(&stacks, chunks);
 	}
 	if (option == 2)
 	{
-		real_num2(&main, chunks);
-		real_num1(&main, chunks);
+		real_num2(&stacks, chunks);
+		real_num1(&stacks, chunks);
 	}
 	if (option == 3)
 	{
-		real_num2(&main, chunks);
-		real_num2(&main, chunks);
+		real_num2(&stacks, chunks);
+		real_num2(&stacks, chunks);
 	}
-	return (main);
+	return (stacks);
 }
 
-t_stacks	do_opt(t_stacks main, int *chunks, int option)
+t_stacks	do_opt(t_stacks stacks, int *chunks, int option)
 {
 	if (option < 4)
-		main = combo_opt(main, chunks, option);
+		stacks = combo_opt(stacks, chunks, option);
 	else if (option == 4)
-		simulate_num1(&main, chunks, 1);
+		simulate_num1(&stacks, chunks, 1);
 	else if (option == 5)
-		simulate_num2(&main, chunks, 1);
-	return (main);
+		simulate_num2(&stacks, chunks, 1);
+	return (stacks);
 }

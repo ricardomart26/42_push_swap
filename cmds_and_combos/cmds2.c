@@ -12,81 +12,81 @@
 
 #include "../push_swap.h"
 
-t_stacks	ra_funct(t_stacks main, int option)
+t_stacks	ra_funct(t_stacks stacks, int option)
 {
 	int	size;
 	int	x;
 	int	temp;
 
-	temp = main.a[0];
+	temp = stacks.a[0];
 	x = 0;
-	size = main.size_a - 1;
+	size = stacks.size_a - 1;
 	while (size--)
 	{
-		main.a[x] = main.a[x + 1];
+		stacks.a[x] = stacks.a[x + 1];
 		x++;
 	}
-	main.a[x] = temp;
+	stacks.a[x] = temp;
 	if (option)
 		write(1, "ra\n", 3);
-	return (main);
+	return (stacks);
 }
 
-t_stacks	rb_funct(t_stacks main, int option)
+t_stacks	rb_funct(t_stacks stacks, int option)
 {
 	int	size;
 	int	x;
 	int	temp;
 
-	temp = main.b[0];
+	temp = stacks.b[0];
 	x = 0;
-	size = main.size_b - 1;
+	size = stacks.size_b - 1;
 	while (size--)
 	{
-		main.b[x] = main.b[x + 1];
+		stacks.b[x] = stacks.b[x + 1];
 		x++;
 	}
-	main.b[x] = temp;
+	stacks.b[x] = temp;
 	if (option)
 		write(1, "rb\n", 3);
-	return (main);
+	return (stacks);
 }
 
-t_stacks	rr_funct(t_stacks main, int opt)
+t_stacks	rr_funct(t_stacks stacks, int opt)
 {
-	main = ra_funct(main, 0);
-	main = rb_funct(main, 0);
+	stacks = ra_funct(stacks, 0);
+	stacks = rb_funct(stacks, 0);
 	if (opt)
 		write(1, "rr\n", 3);
-	return (main);
+	return (stacks);
 }
 
-t_stacks	rra_funct(t_stacks main, int option)
+t_stacks	rra_funct(t_stacks stacks, int option)
 {
 	int	size;
 	int	last;
 
-	last = main.a[main.size_a - 1];
-	size = main.size_a;
+	last = stacks.a[stacks.size_a - 1];
+	size = stacks.size_a;
 	while (size--)
-		main.a[size] = main.a[size - 1];
-	main.a[0] = last;
+		stacks.a[size] = stacks.a[size - 1];
+	stacks.a[0] = last;
 	if (option)
 		write(1, "rra\n", 4);
-	return (main);
+	return (stacks);
 }
 
-t_stacks	rrb_funct(t_stacks main, int option)
+t_stacks	rrb_funct(t_stacks stacks, int option)
 {
 	int	size;
 	int	last;
 
-	last = main.b[main.size_b - 1];
-	size = main.size_b;
+	last = stacks.b[stacks.size_b - 1];
+	size = stacks.size_b;
 	while (size--)
-		main.b[size] = main.b[size - 1];
-	main.b[0] = last;
+		stacks.b[size] = stacks.b[size - 1];
+	stacks.b[0] = last;
 	if (option)
 		write(1, "rrb\n", 4);
-	return (main);
+	return (stacks);
 }

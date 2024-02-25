@@ -28,16 +28,16 @@ t_moves	set_b(t_moves cmd, int rb, int rrb)
 	return (cmd);
 }
 
-int	fuck_norm2(t_stacks main, int i, t_moves *cmd, int temp)
+int	fuck_norm2(t_stacks stacks, int i, t_moves *cmd, int temp)
 {
-	if (main.b[i] > cmd->num)
+	if (stacks.b[i] > cmd->num)
 		cmd->pos_b = i + 1;
-	else if (main.b[i] < cmd->num)
+	else if (stacks.b[i] < cmd->num)
 		cmd->pos_b = i;
 	return (temp);
 }
 
-void	check_diff(t_stacks main, t_moves *cmd, int i, int size)
+void	check_diff(t_stacks stacks, t_moves *cmd, int i, int size)
 {
 	int	temp;
 	int	diff;
@@ -46,60 +46,60 @@ void	check_diff(t_stacks main, t_moves *cmd, int i, int size)
 	temp = 0;
 	while (++i < size)
 	{
-		if (main.b[i] > cmd->num)
-			temp = main.b[i] - cmd->num;
-		else if (main.b[i] < cmd->num)
+		if (stacks.b[i] > cmd->num)
+			temp = stacks.b[i] - cmd->num;
+		else if (stacks.b[i] < cmd->num)
 		{
-			if (main.b[i] <= 0)
-				temp = cmd->num + (main.b[i] * -1);
+			if (stacks.b[i] <= 0)
+				temp = cmd->num + (stacks.b[i] * -1);
 			else
-				temp = cmd->num - main.b[i];
+				temp = cmd->num - stacks.b[i];
 		}
 		if (i == 0)
-			diff = fuck_norm2(main, i, cmd, temp);
+			diff = fuck_norm2(stacks, i, cmd, temp);
 		else if (temp < diff)
-			diff = fuck_norm2(main, i, cmd, temp);
+			diff = fuck_norm2(stacks, i, cmd, temp);
 	}
 }
 
-t_moves	place_to_put_nbr(t_stacks main, t_moves cmd, int size)
+t_moves	place_to_put_nbr(t_stacks stacks, t_moves cmd, int size)
 {
 	int	i;
 
 	i = -1;
-	if (cmd.num > main.b[0] && cmd.num < main.b[size - 1])
+	if (cmd.num > stacks.b[0] && cmd.num < stacks.b[size - 1])
 		cmd.pos_b = 0;
 	else
-		check_diff(main, &cmd, i, size);
-	if (cmd.pos_b > main.size_b / 2)
+		check_diff(stacks, &cmd, i, size);
+	if (cmd.pos_b > stacks.size_b / 2)
 		cmd = set_b(cmd, 0, size - cmd.pos_b);
-	else if (cmd.pos_b <= main.size_b / 2)
+	else if (cmd.pos_b <= stacks.size_b / 2)
 		cmd = set_b(cmd, cmd.pos_b, 0);
 	return (cmd);
 }
 
-t_moves	get_cmds(t_stacks main, t_moves cmd, int size)
+t_moves	get_cmds(t_stacks stacks, t_moves cmd, int size)
 {
 	int	max;
 	int	max_place;
 
 	if (size > 1)
 	{
-		max = biggest_num(main.b, size);
-		max_place = place_in_array(main.b, max);
-		if ((is_lowest_array(cmd.num, main.b, size) || cmd.num > max))
+		max = biggest_num(stacks.b, size);
+		max_place = place_in_array(stacks.b, max);
+		if ((is_lowest_array(cmd.num, stacks.b, size) || cmd.num > max))
 		{
 			if (max_place == 0)
 				set_b(cmd, 0, 0);
 			else if (max_place == size - 1 && cmd.num > max)
 				cmd = set_b(cmd, 0, 1);
-			else if (max_place > main.size_b / 2)
+			else if (max_place > stacks.size_b / 2)
 				cmd = set_b(cmd, 0, size - max_place);
-			else if (max_place <= main.size_b / 2)
+			else if (max_place <= stacks.size_b / 2)
 				cmd = set_b(cmd, max_place, 0);
 		}
 		else
-			cmd = place_to_put_nbr(main, cmd, main.size_b);
+			cmd = place_to_put_nbr(stacks, cmd, stacks.size_b);
 		cmd.total = 0;
 	}
 	return (cmd);

@@ -12,23 +12,23 @@
 
 #include "../push_swap.h"
 
-void	error_mes(t_stacks *main)
+void	error_mes(t_stacks *stacks)
 {
-	free_all_stacks_t(main, main->size_b);
+	free_all_stacks_t(stacks, stacks->size_b);
 	write(2, "Error\n", 7);
 	exit(0);
 }
 
-void	free_all_stacks_t(t_stacks *main, int size_b)
+void	free_all_stacks_t(t_stacks *stacks, int size_b)
 {
-	if (main->size_a)
+	if (stacks->size_a)
 	{
-		free(main->a);
-		main->a = NULL;
+		free(stacks->a);
+		stacks->a = NULL;
 	}
 	if (size_b)
 	{
-		free(main->b);
-		main->b = NULL;
+		free(stacks->b);
+		stacks->b = NULL;
 	}
 }

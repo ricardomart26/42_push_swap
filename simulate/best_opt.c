@@ -82,14 +82,14 @@ int	see_best_opt(int i, int x, t_stacks temp, int *chunks)
 	return (i);
 }
 
-int	see_if_is_equal(t_stacks main, t_stacks temp, int value, int i)
+int	see_if_is_equal(t_stacks stacks, t_stacks temp, int value, int i)
 {
 	int	x;
 
 	x = i;
 	while (x < 4)
 	{
-		if (value != main.mv[x + 1] && x + 1 != 4)
+		if (value != stacks.mv[x + 1] && x + 1 != 4)
 			x++;
 		else if (temp.size_a > 5)
 		{

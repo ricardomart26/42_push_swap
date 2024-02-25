@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-int	closer_to_beg(t_stacks main, int *chunk, int size, t_moves *cmd)
+int	closer_to_beg(t_stacks stacks, int *chunk, int size, t_moves *cmd)
 {
 	int	i;
 	int	x;
@@ -21,15 +21,15 @@ int	closer_to_beg(t_stacks main, int *chunk, int size, t_moves *cmd)
 	while (size + 1)
 	{
 		x = 0;
-		while (main.a[i] != chunk[x] && x < main.size_chunk + 1)
+		while (stacks.a[i] != chunk[x] && x < stacks.size_chunk + 1)
 			x++;
-		if (x == main.size_chunk + 1)
+		if (x == stacks.size_chunk + 1)
 			i++;
 		else
 		{
 			cmd->ra = i;
 			cmd->rra = 0;
-			cmd->num = main.a[i];
+			cmd->num = stacks.a[i];
 			break ;
 		}
 		size--;
@@ -39,24 +39,24 @@ int	closer_to_beg(t_stacks main, int *chunk, int size, t_moves *cmd)
 	return (1);
 }
 
-int	closer_to_end(t_stacks main, int *chunk, t_moves *cmd)
+int	closer_to_end(t_stacks stacks, int *chunk, t_moves *cmd)
 {
 	int	size;
 	int	x;
 
-	size = main.size_a - 1;
+	size = stacks.size_a - 1;
 	while (size + 1)
 	{
 		x = 0;
-		while (main.a[size] != chunk[x] && x < main.size_chunk + 1)
+		while (stacks.a[size] != chunk[x] && x < stacks.size_chunk + 1)
 			x++;
-		if (x == main.size_chunk + 1)
+		if (x == stacks.size_chunk + 1)
 			size--;
 		else
 		{
-			cmd->rra = main.size_a - size;
+			cmd->rra = stacks.size_a - size;
 			cmd->ra = 0;
-			cmd->num = main.a[size];
+			cmd->num = stacks.a[size];
 			return (size);
 		}
 	}

@@ -22,7 +22,7 @@ int	ft_strlen(char *str)
 	return (c);
 }
 
-static	void	if_minus(char *str, int *minus, int *c, t_stacks main)
+static	void	if_minus(char *str, int *minus, int *c, t_stacks stacks)
 {
 	*minus = 0;
 	if (str[0] == '-')
@@ -30,11 +30,11 @@ static	void	if_minus(char *str, int *minus, int *c, t_stacks main)
 		(*c)++;
 		*minus = 1;
 		if (str[1] == '\0')
-			error_mes(&main);
+			error_mes(&stacks);
 	}
 }
 
-long int	ft_atoi(char *str, t_stacks main)
+long int	ft_atoi(char *str, t_stacks stacks)
 {
 	int			c;
 	long int	ret;
@@ -46,11 +46,11 @@ long int	ft_atoi(char *str, t_stacks main)
 		return (0);
 	ret = 0;
 	c = -1;
-	if_minus(str, &minus, &c, main);
+	if_minus(str, &minus, &c, stacks);
 	while (++c < size)
 	{
 		if (ft_isntdigit(str[c]))
-			error_mes(&main);
+			error_mes(&stacks);
 		ret += str[c] - '0';
 		if (size != 1 && str[c + 1] != '\0')
 			ret *= 10;
